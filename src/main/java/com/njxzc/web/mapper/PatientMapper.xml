@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njxzc.web.mapper.PatientMapper">
+  <resultMap id="BaseResultMap" type="com.njxzc.web.entity.Patient">
+    <id column="patientId" jdbcType="INTEGER" property="patientid" />
+    <result column="medicalRecord" jdbcType="INTEGER" property="medicalrecord" />
+    <result column="chargeNo" jdbcType="INTEGER" property="chargeno" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="marrage" jdbcType="VARCHAR" property="marrage" />
+    <result column="occupation" jdbcType="VARCHAR" property="occupation" />
+    <result column="birthPlace" jdbcType="VARCHAR" property="birthplace" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="nationality" jdbcType="VARCHAR" property="nationality" />
+    <result column="ID number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="company and address" jdbcType="VARCHAR" property="companyAndAddress" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="postal code" jdbcType="INTEGER" property="postalCode" />
+    <result column="registered address" jdbcType="VARCHAR" property="registeredAddress" />
+    <result column="contacts name" jdbcType="VARCHAR" property="contactsName" />
+    <result column="contacts address" jdbcType="VARCHAR" property="contactsAddress" />
+    <result column="contacts relationship" jdbcType="VARCHAR" property="contactsRelationship" />
+    <result column="contacts telephone" jdbcType="VARCHAR" property="contactsTelephone" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    patientId, medicalRecord, chargeNo, name, sex, birthday, age, marrage, occupation, 
+    birthPlace, nation, nationality, "ID number", "company and address", telephone, "postal code", 
+    "registered address", "contacts name", "contacts address", "contacts relationship", 
+    "contacts telephone"
+  </sql>
+  <select id="selectByExample" parameterType="com.njxzc.web.entity.PatientExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from patient
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from patient
+    where patientId = #{patientid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from patient
+    where patientId = #{patientid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.njxzc.web.entity.PatientExample">
+    delete from patient
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.njxzc.web.entity.Patient">
+    insert into patient (patientId, medicalRecord, chargeNo, 
+      name, sex, birthday, 
+      age, marrage, occupation, 
+      birthPlace, nation, nationality, 
+      "ID number", "company and address", telephone, 
+      "postal code", "registered address", "contacts name", 
+      "contacts address", "contacts relationship", 
+      "contacts telephone")
+    values (#{patientid,jdbcType=INTEGER}, #{medicalrecord,jdbcType=INTEGER}, #{chargeno,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=TIMESTAMP}, 
+      #{age,jdbcType=INTEGER}, #{marrage,jdbcType=VARCHAR}, #{occupation,jdbcType=VARCHAR}, 
+      #{birthplace,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{nationality,jdbcType=VARCHAR}, 
+      #{idNumber,jdbcType=VARCHAR}, #{companyAndAddress,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{postalCode,jdbcType=INTEGER}, #{registeredAddress,jdbcType=VARCHAR}, #{contactsName,jdbcType=VARCHAR}, 
+      #{contactsAddress,jdbcType=VARCHAR}, #{contactsRelationship,jdbcType=VARCHAR}, 
+      #{contactsTelephone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.njxzc.web.entity.Patient">
+    insert into patient
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="patientid != null">
+        patientId,
+      </if>
+      <if test="medicalrecord != null">
+        medicalRecord,
+      </if>
+      <if test="chargeno != null">
+        chargeNo,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="marrage != null">
+        marrage,
+      </if>
+      <if test="occupation != null">
+        occupation,
+      </if>
+      <if test="birthplace != null">
+        birthPlace,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="nationality != null">
+        nationality,
+      </if>
+      <if test="idNumber != null">
+        "ID number",
+      </if>
+      <if test="companyAndAddress != null">
+        "company and address",
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="postalCode != null">
+        "postal code",
+      </if>
+      <if test="registeredAddress != null">
+        "registered address",
+      </if>
+      <if test="contactsName != null">
+        "contacts name",
+      </if>
+      <if test="contactsAddress != null">
+        "contacts address",
+      </if>
+      <if test="contactsRelationship != null">
+        "contacts relationship",
+      </if>
+      <if test="contactsTelephone != null">
+        "contacts telephone",
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="patientid != null">
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="medicalrecord != null">
+        #{medicalrecord,jdbcType=INTEGER},
+      </if>
+      <if test="chargeno != null">
+        #{chargeno,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="marrage != null">
+        #{marrage,jdbcType=VARCHAR},
+      </if>
+      <if test="occupation != null">
+        #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplace != null">
+        #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAndAddress != null">
+        #{companyAndAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null">
+        #{postalCode,jdbcType=INTEGER},
+      </if>
+      <if test="registeredAddress != null">
+        #{registeredAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsName != null">
+        #{contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsAddress != null">
+        #{contactsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsRelationship != null">
+        #{contactsRelationship,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsTelephone != null">
+        #{contactsTelephone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.njxzc.web.entity.PatientExample" resultType="java.lang.Long">
+    select count(*) from patient
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update patient
+    <set>
+      <if test="record.patientid != null">
+        patientId = #{record.patientid,jdbcType=INTEGER},
+      </if>
+      <if test="record.medicalrecord != null">
+        medicalRecord = #{record.medicalrecord,jdbcType=INTEGER},
+      </if>
+      <if test="record.chargeno != null">
+        chargeNo = #{record.chargeno,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null">
+        birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.age != null">
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.marrage != null">
+        marrage = #{record.marrage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupation != null">
+        occupation = #{record.occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthplace != null">
+        birthPlace = #{record.birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nation != null">
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nationality != null">
+        nationality = #{record.nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idNumber != null">
+        "ID number" = #{record.idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyAndAddress != null">
+        "company and address" = #{record.companyAndAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone != null">
+        telephone = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postalCode != null">
+        "postal code" = #{record.postalCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.registeredAddress != null">
+        "registered address" = #{record.registeredAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsName != null">
+        "contacts name" = #{record.contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsAddress != null">
+        "contacts address" = #{record.contactsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsRelationship != null">
+        "contacts relationship" = #{record.contactsRelationship,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsTelephone != null">
+        "contacts telephone" = #{record.contactsTelephone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update patient
+    set patientId = #{record.patientid,jdbcType=INTEGER},
+      medicalRecord = #{record.medicalrecord,jdbcType=INTEGER},
+      chargeNo = #{record.chargeno,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      age = #{record.age,jdbcType=INTEGER},
+      marrage = #{record.marrage,jdbcType=VARCHAR},
+      occupation = #{record.occupation,jdbcType=VARCHAR},
+      birthPlace = #{record.birthplace,jdbcType=VARCHAR},
+      nation = #{record.nation,jdbcType=VARCHAR},
+      nationality = #{record.nationality,jdbcType=VARCHAR},
+      "ID number" = #{record.idNumber,jdbcType=VARCHAR},
+      "company and address" = #{record.companyAndAddress,jdbcType=VARCHAR},
+      telephone = #{record.telephone,jdbcType=VARCHAR},
+      "postal code" = #{record.postalCode,jdbcType=INTEGER},
+      "registered address" = #{record.registeredAddress,jdbcType=VARCHAR},
+      "contacts name" = #{record.contactsName,jdbcType=VARCHAR},
+      "contacts address" = #{record.contactsAddress,jdbcType=VARCHAR},
+      "contacts relationship" = #{record.contactsRelationship,jdbcType=VARCHAR},
+      "contacts telephone" = #{record.contactsTelephone,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.web.entity.Patient">
+    update patient
+    <set>
+      <if test="medicalrecord != null">
+        medicalRecord = #{medicalrecord,jdbcType=INTEGER},
+      </if>
+      <if test="chargeno != null">
+        chargeNo = #{chargeno,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="marrage != null">
+        marrage = #{marrage,jdbcType=VARCHAR},
+      </if>
+      <if test="occupation != null">
+        occupation = #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplace != null">
+        birthPlace = #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        "ID number" = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAndAddress != null">
+        "company and address" = #{companyAndAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="postalCode != null">
+        "postal code" = #{postalCode,jdbcType=INTEGER},
+      </if>
+      <if test="registeredAddress != null">
+        "registered address" = #{registeredAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsName != null">
+        "contacts name" = #{contactsName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsAddress != null">
+        "contacts address" = #{contactsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsRelationship != null">
+        "contacts relationship" = #{contactsRelationship,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsTelephone != null">
+        "contacts telephone" = #{contactsTelephone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where patientId = #{patientid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njxzc.web.entity.Patient">
+    update patient
+    set medicalRecord = #{medicalrecord,jdbcType=INTEGER},
+      chargeNo = #{chargeno,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      age = #{age,jdbcType=INTEGER},
+      marrage = #{marrage,jdbcType=VARCHAR},
+      occupation = #{occupation,jdbcType=VARCHAR},
+      birthPlace = #{birthplace,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      nationality = #{nationality,jdbcType=VARCHAR},
+      "ID number" = #{idNumber,jdbcType=VARCHAR},
+      "company and address" = #{companyAndAddress,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      "postal code" = #{postalCode,jdbcType=INTEGER},
+      "registered address" = #{registeredAddress,jdbcType=VARCHAR},
+      "contacts name" = #{contactsName,jdbcType=VARCHAR},
+      "contacts address" = #{contactsAddress,jdbcType=VARCHAR},
+      "contacts relationship" = #{contactsRelationship,jdbcType=VARCHAR},
+      "contacts telephone" = #{contactsTelephone,jdbcType=VARCHAR}
+    where patientId = #{patientid,jdbcType=INTEGER}
+  </update>
+</mapper>

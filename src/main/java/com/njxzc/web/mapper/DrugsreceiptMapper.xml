@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njxzc.web.mapper.DrugsreceiptMapper">
+  <resultMap id="BaseResultMap" type="com.njxzc.web.entity.Drugsreceipt">
+    <id column="receiptId" jdbcType="INTEGER" property="receiptid" />
+    <result column="receipt" jdbcType="INTEGER" property="receipt" />
+    <result column="pharmacyDepotId" jdbcType="INTEGER" property="pharmacydepotid" />
+    <result column="employmentUnit" jdbcType="VARCHAR" property="employmentunit" />
+    <result column="drugsCount" jdbcType="INTEGER" property="drugscount" />
+    <result column="drugsId" jdbcType="INTEGER" property="drugsid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    receiptId, receipt, pharmacyDepotId, employmentUnit, drugsCount, drugsId
+  </sql>
+  <select id="selectByExample" parameterType="com.njxzc.web.entity.DrugsreceiptExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from drugsreceipt
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from drugsreceipt
+    where receiptId = #{receiptid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from drugsreceipt
+    where receiptId = #{receiptid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.njxzc.web.entity.DrugsreceiptExample">
+    delete from drugsreceipt
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.njxzc.web.entity.Drugsreceipt">
+    insert into drugsreceipt (receiptId, receipt, pharmacyDepotId, 
+      employmentUnit, drugsCount, drugsId
+      )
+    values (#{receiptid,jdbcType=INTEGER}, #{receipt,jdbcType=INTEGER}, #{pharmacydepotid,jdbcType=INTEGER}, 
+      #{employmentunit,jdbcType=VARCHAR}, #{drugscount,jdbcType=INTEGER}, #{drugsid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.njxzc.web.entity.Drugsreceipt">
+    insert into drugsreceipt
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="receiptid != null">
+        receiptId,
+      </if>
+      <if test="receipt != null">
+        receipt,
+      </if>
+      <if test="pharmacydepotid != null">
+        pharmacyDepotId,
+      </if>
+      <if test="employmentunit != null">
+        employmentUnit,
+      </if>
+      <if test="drugscount != null">
+        drugsCount,
+      </if>
+      <if test="drugsid != null">
+        drugsId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="receiptid != null">
+        #{receiptid,jdbcType=INTEGER},
+      </if>
+      <if test="receipt != null">
+        #{receipt,jdbcType=INTEGER},
+      </if>
+      <if test="pharmacydepotid != null">
+        #{pharmacydepotid,jdbcType=INTEGER},
+      </if>
+      <if test="employmentunit != null">
+        #{employmentunit,jdbcType=VARCHAR},
+      </if>
+      <if test="drugscount != null">
+        #{drugscount,jdbcType=INTEGER},
+      </if>
+      <if test="drugsid != null">
+        #{drugsid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.njxzc.web.entity.DrugsreceiptExample" resultType="java.lang.Long">
+    select count(*) from drugsreceipt
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update drugsreceipt
+    <set>
+      <if test="record.receiptid != null">
+        receiptId = #{record.receiptid,jdbcType=INTEGER},
+      </if>
+      <if test="record.receipt != null">
+        receipt = #{record.receipt,jdbcType=INTEGER},
+      </if>
+      <if test="record.pharmacydepotid != null">
+        pharmacyDepotId = #{record.pharmacydepotid,jdbcType=INTEGER},
+      </if>
+      <if test="record.employmentunit != null">
+        employmentUnit = #{record.employmentunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drugscount != null">
+        drugsCount = #{record.drugscount,jdbcType=INTEGER},
+      </if>
+      <if test="record.drugsid != null">
+        drugsId = #{record.drugsid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update drugsreceipt
+    set receiptId = #{record.receiptid,jdbcType=INTEGER},
+      receipt = #{record.receipt,jdbcType=INTEGER},
+      pharmacyDepotId = #{record.pharmacydepotid,jdbcType=INTEGER},
+      employmentUnit = #{record.employmentunit,jdbcType=VARCHAR},
+      drugsCount = #{record.drugscount,jdbcType=INTEGER},
+      drugsId = #{record.drugsid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.njxzc.web.entity.Drugsreceipt">
+    update drugsreceipt
+    <set>
+      <if test="receipt != null">
+        receipt = #{receipt,jdbcType=INTEGER},
+      </if>
+      <if test="pharmacydepotid != null">
+        pharmacyDepotId = #{pharmacydepotid,jdbcType=INTEGER},
+      </if>
+      <if test="employmentunit != null">
+        employmentUnit = #{employmentunit,jdbcType=VARCHAR},
+      </if>
+      <if test="drugscount != null">
+        drugsCount = #{drugscount,jdbcType=INTEGER},
+      </if>
+      <if test="drugsid != null">
+        drugsId = #{drugsid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where receiptId = #{receiptid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.njxzc.web.entity.Drugsreceipt">
+    update drugsreceipt
+    set receipt = #{receipt,jdbcType=INTEGER},
+      pharmacyDepotId = #{pharmacydepotid,jdbcType=INTEGER},
+      employmentUnit = #{employmentunit,jdbcType=VARCHAR},
+      drugsCount = #{drugscount,jdbcType=INTEGER},
+      drugsId = #{drugsid,jdbcType=INTEGER}
+    where receiptId = #{receiptid,jdbcType=INTEGER}
+  </update>
+</mapper>
