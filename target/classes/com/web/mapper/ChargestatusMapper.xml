@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.dao.ChargestatusMapper">
+  <resultMap id="BaseResultMap" type="com.web.entity.Chargestatus">
+    <id column="chargeItemNo" jdbcType="INTEGER" property="chargeitemno" />
+    <result column="chargeId" jdbcType="INTEGER" property="chargeid" />
+    <result column="chargeAmount" jdbcType="INTEGER" property="chargeamount" />
+    <result column="settleAmount" jdbcType="DOUBLE" property="settleamount" />
+    <result column="cashier" jdbcType="INTEGER" property="cashier" />
+    <result column="patientId" jdbcType="INTEGER" property="patientid" />
+    <result column="checkoutStatus" jdbcType="VARCHAR" property="checkoutstatus" />
+    <result column="isTransfer" jdbcType="INTEGER" property="istransfer" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    chargeItemNo, chargeId, chargeAmount, settleAmount, cashier, patientId, checkoutStatus, 
+    isTransfer
+  </sql>
+  <select id="selectByExample" parameterType="com.web.entity.ChargestatusExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from chargestatus
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from chargestatus
+    where chargeItemNo = #{chargeitemno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from chargestatus
+    where chargeItemNo = #{chargeitemno,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.entity.ChargestatusExample">
+    delete from chargestatus
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.entity.Chargestatus">
+    insert into chargestatus (chargeItemNo, chargeId, chargeAmount, 
+      settleAmount, cashier, patientId, 
+      checkoutStatus, isTransfer)
+    values (#{chargeitemno,jdbcType=INTEGER}, #{chargeid,jdbcType=INTEGER}, #{chargeamount,jdbcType=INTEGER}, 
+      #{settleamount,jdbcType=DOUBLE}, #{cashier,jdbcType=INTEGER}, #{patientid,jdbcType=INTEGER}, 
+      #{checkoutstatus,jdbcType=VARCHAR}, #{istransfer,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.entity.Chargestatus">
+    insert into chargestatus
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="chargeitemno != null">
+        chargeItemNo,
+      </if>
+      <if test="chargeid != null">
+        chargeId,
+      </if>
+      <if test="chargeamount != null">
+        chargeAmount,
+      </if>
+      <if test="settleamount != null">
+        settleAmount,
+      </if>
+      <if test="cashier != null">
+        cashier,
+      </if>
+      <if test="patientid != null">
+        patientId,
+      </if>
+      <if test="checkoutstatus != null">
+        checkoutStatus,
+      </if>
+      <if test="istransfer != null">
+        isTransfer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="chargeitemno != null">
+        #{chargeitemno,jdbcType=INTEGER},
+      </if>
+      <if test="chargeid != null">
+        #{chargeid,jdbcType=INTEGER},
+      </if>
+      <if test="chargeamount != null">
+        #{chargeamount,jdbcType=INTEGER},
+      </if>
+      <if test="settleamount != null">
+        #{settleamount,jdbcType=DOUBLE},
+      </if>
+      <if test="cashier != null">
+        #{cashier,jdbcType=INTEGER},
+      </if>
+      <if test="patientid != null">
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="checkoutstatus != null">
+        #{checkoutstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="istransfer != null">
+        #{istransfer,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.entity.ChargestatusExample" resultType="java.lang.Long">
+    select count(*) from chargestatus
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update chargestatus
+    <set>
+      <if test="record.chargeitemno != null">
+        chargeItemNo = #{record.chargeitemno,jdbcType=INTEGER},
+      </if>
+      <if test="record.chargeid != null">
+        chargeId = #{record.chargeid,jdbcType=INTEGER},
+      </if>
+      <if test="record.chargeamount != null">
+        chargeAmount = #{record.chargeamount,jdbcType=INTEGER},
+      </if>
+      <if test="record.settleamount != null">
+        settleAmount = #{record.settleamount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.cashier != null">
+        cashier = #{record.cashier,jdbcType=INTEGER},
+      </if>
+      <if test="record.patientid != null">
+        patientId = #{record.patientid,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkoutstatus != null">
+        checkoutStatus = #{record.checkoutstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.istransfer != null">
+        isTransfer = #{record.istransfer,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update chargestatus
+    set chargeItemNo = #{record.chargeitemno,jdbcType=INTEGER},
+      chargeId = #{record.chargeid,jdbcType=INTEGER},
+      chargeAmount = #{record.chargeamount,jdbcType=INTEGER},
+      settleAmount = #{record.settleamount,jdbcType=DOUBLE},
+      cashier = #{record.cashier,jdbcType=INTEGER},
+      patientId = #{record.patientid,jdbcType=INTEGER},
+      checkoutStatus = #{record.checkoutstatus,jdbcType=VARCHAR},
+      isTransfer = #{record.istransfer,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.entity.Chargestatus">
+    update chargestatus
+    <set>
+      <if test="chargeid != null">
+        chargeId = #{chargeid,jdbcType=INTEGER},
+      </if>
+      <if test="chargeamount != null">
+        chargeAmount = #{chargeamount,jdbcType=INTEGER},
+      </if>
+      <if test="settleamount != null">
+        settleAmount = #{settleamount,jdbcType=DOUBLE},
+      </if>
+      <if test="cashier != null">
+        cashier = #{cashier,jdbcType=INTEGER},
+      </if>
+      <if test="patientid != null">
+        patientId = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="checkoutstatus != null">
+        checkoutStatus = #{checkoutstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="istransfer != null">
+        isTransfer = #{istransfer,jdbcType=INTEGER},
+      </if>
+    </set>
+    where chargeItemNo = #{chargeitemno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.entity.Chargestatus">
+    update chargestatus
+    set chargeId = #{chargeid,jdbcType=INTEGER},
+      chargeAmount = #{chargeamount,jdbcType=INTEGER},
+      settleAmount = #{settleamount,jdbcType=DOUBLE},
+      cashier = #{cashier,jdbcType=INTEGER},
+      patientId = #{patientid,jdbcType=INTEGER},
+      checkoutStatus = #{checkoutstatus,jdbcType=VARCHAR},
+      isTransfer = #{istransfer,jdbcType=INTEGER}
+    where chargeItemNo = #{chargeitemno,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.dao.OutpatientTestMapper">
+  <resultMap id="BaseResultMap" type="com.web.entity.OutpatientTest">
+    <id column="patientTestNo" jdbcType="INTEGER" property="patienttestno" />
+    <result column="outpatientMedicalRecordId" jdbcType="INTEGER" property="outpatientmedicalrecordid" />
+    <result column="testDoctor" jdbcType="INTEGER" property="testdoctor" />
+    <result column="testTime" jdbcType="VARCHAR" property="testtime" />
+    <result column="testContext" jdbcType="VARCHAR" property="testcontext" />
+    <result column="testAnalysis" jdbcType="VARCHAR" property="testanalysis" />
+    <result column="testResult" jdbcType="VARCHAR" property="testresult" />
+    <result column="testCharge" jdbcType="DOUBLE" property="testcharge" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    patientTestNo, outpatientMedicalRecordId, testDoctor, testTime, testContext, testAnalysis, 
+    testResult, testCharge
+  </sql>
+  <select id="selectByExample" parameterType="com.web.entity.OutpatientTestExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from outpatient_test
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from outpatient_test
+    where patientTestNo = #{patienttestno,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from outpatient_test
+    where patientTestNo = #{patienttestno,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.entity.OutpatientTestExample">
+    delete from outpatient_test
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.entity.OutpatientTest">
+    insert into outpatient_test (patientTestNo, outpatientMedicalRecordId, 
+      testDoctor, testTime, testContext, 
+      testAnalysis, testResult, testCharge
+      )
+    values (#{patienttestno,jdbcType=INTEGER}, #{outpatientmedicalrecordid,jdbcType=INTEGER}, 
+      #{testdoctor,jdbcType=INTEGER}, #{testtime,jdbcType=VARCHAR}, #{testcontext,jdbcType=VARCHAR}, 
+      #{testanalysis,jdbcType=VARCHAR}, #{testresult,jdbcType=VARCHAR}, #{testcharge,jdbcType=DOUBLE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.entity.OutpatientTest">
+    insert into outpatient_test
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="patienttestno != null">
+        patientTestNo,
+      </if>
+      <if test="outpatientmedicalrecordid != null">
+        outpatientMedicalRecordId,
+      </if>
+      <if test="testdoctor != null">
+        testDoctor,
+      </if>
+      <if test="testtime != null">
+        testTime,
+      </if>
+      <if test="testcontext != null">
+        testContext,
+      </if>
+      <if test="testanalysis != null">
+        testAnalysis,
+      </if>
+      <if test="testresult != null">
+        testResult,
+      </if>
+      <if test="testcharge != null">
+        testCharge,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="patienttestno != null">
+        #{patienttestno,jdbcType=INTEGER},
+      </if>
+      <if test="outpatientmedicalrecordid != null">
+        #{outpatientmedicalrecordid,jdbcType=INTEGER},
+      </if>
+      <if test="testdoctor != null">
+        #{testdoctor,jdbcType=INTEGER},
+      </if>
+      <if test="testtime != null">
+        #{testtime,jdbcType=VARCHAR},
+      </if>
+      <if test="testcontext != null">
+        #{testcontext,jdbcType=VARCHAR},
+      </if>
+      <if test="testanalysis != null">
+        #{testanalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="testresult != null">
+        #{testresult,jdbcType=VARCHAR},
+      </if>
+      <if test="testcharge != null">
+        #{testcharge,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.entity.OutpatientTestExample" resultType="java.lang.Long">
+    select count(*) from outpatient_test
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update outpatient_test
+    <set>
+      <if test="record.patienttestno != null">
+        patientTestNo = #{record.patienttestno,jdbcType=INTEGER},
+      </if>
+      <if test="record.outpatientmedicalrecordid != null">
+        outpatientMedicalRecordId = #{record.outpatientmedicalrecordid,jdbcType=INTEGER},
+      </if>
+      <if test="record.testdoctor != null">
+        testDoctor = #{record.testdoctor,jdbcType=INTEGER},
+      </if>
+      <if test="record.testtime != null">
+        testTime = #{record.testtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testcontext != null">
+        testContext = #{record.testcontext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testanalysis != null">
+        testAnalysis = #{record.testanalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testresult != null">
+        testResult = #{record.testresult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testcharge != null">
+        testCharge = #{record.testcharge,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update outpatient_test
+    set patientTestNo = #{record.patienttestno,jdbcType=INTEGER},
+      outpatientMedicalRecordId = #{record.outpatientmedicalrecordid,jdbcType=INTEGER},
+      testDoctor = #{record.testdoctor,jdbcType=INTEGER},
+      testTime = #{record.testtime,jdbcType=VARCHAR},
+      testContext = #{record.testcontext,jdbcType=VARCHAR},
+      testAnalysis = #{record.testanalysis,jdbcType=VARCHAR},
+      testResult = #{record.testresult,jdbcType=VARCHAR},
+      testCharge = #{record.testcharge,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.entity.OutpatientTest">
+    update outpatient_test
+    <set>
+      <if test="outpatientmedicalrecordid != null">
+        outpatientMedicalRecordId = #{outpatientmedicalrecordid,jdbcType=INTEGER},
+      </if>
+      <if test="testdoctor != null">
+        testDoctor = #{testdoctor,jdbcType=INTEGER},
+      </if>
+      <if test="testtime != null">
+        testTime = #{testtime,jdbcType=VARCHAR},
+      </if>
+      <if test="testcontext != null">
+        testContext = #{testcontext,jdbcType=VARCHAR},
+      </if>
+      <if test="testanalysis != null">
+        testAnalysis = #{testanalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="testresult != null">
+        testResult = #{testresult,jdbcType=VARCHAR},
+      </if>
+      <if test="testcharge != null">
+        testCharge = #{testcharge,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where patientTestNo = #{patienttestno,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.entity.OutpatientTest">
+    update outpatient_test
+    set outpatientMedicalRecordId = #{outpatientmedicalrecordid,jdbcType=INTEGER},
+      testDoctor = #{testdoctor,jdbcType=INTEGER},
+      testTime = #{testtime,jdbcType=VARCHAR},
+      testContext = #{testcontext,jdbcType=VARCHAR},
+      testAnalysis = #{testanalysis,jdbcType=VARCHAR},
+      testResult = #{testresult,jdbcType=VARCHAR},
+      testCharge = #{testcharge,jdbcType=DOUBLE}
+    where patientTestNo = #{patienttestno,jdbcType=INTEGER}
+  </update>
+</mapper>

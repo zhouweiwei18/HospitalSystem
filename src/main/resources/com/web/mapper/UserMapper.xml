@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.web.entity.User">
+    <id column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="userPwd" jdbcType="VARCHAR" property="userpwd" />
+    <result column="userSex" jdbcType="VARCHAR" property="usersex" />
+    <result column="userPhoto" jdbcType="VARCHAR" property="userphoto" />
+    <result column="userCard" jdbcType="VARCHAR" property="usercard" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="postId" jdbcType="INTEGER" property="postid" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="icuId" jdbcType="INTEGER" property="icuid" />
+    <result column="describe" jdbcType="VARCHAR" property="describe" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    userId, userName, userPwd, userSex, userPhoto, userCard, birthday, postId, state, 
+    icuId, describe
+  </sql>
+  <select id="selectByExample" parameterType="com.web.entity.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.entity.UserExample">
+    delete from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.entity.User">
+    insert into user (userId, userName, userPwd, 
+      userSex, userPhoto, userCard, 
+      birthday, postId, state, 
+      icuId, describe)
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{userpwd,jdbcType=VARCHAR}, 
+      #{usersex,jdbcType=VARCHAR}, #{userphoto,jdbcType=VARCHAR}, #{usercard,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{postid,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{icuid,jdbcType=INTEGER}, #{describe,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.entity.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userId,
+      </if>
+      <if test="username != null">
+        userName,
+      </if>
+      <if test="userpwd != null">
+        userPwd,
+      </if>
+      <if test="usersex != null">
+        userSex,
+      </if>
+      <if test="userphoto != null">
+        userPhoto,
+      </if>
+      <if test="usercard != null">
+        userCard,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="postid != null">
+        postId,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="icuid != null">
+        icuId,
+      </if>
+      <if test="describe != null">
+        describe,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpwd != null">
+        #{userpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="usersex != null">
+        #{usersex,jdbcType=VARCHAR},
+      </if>
+      <if test="userphoto != null">
+        #{userphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="usercard != null">
+        #{usercard,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="postid != null">
+        #{postid,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="icuid != null">
+        #{icuid,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null">
+        #{describe,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.entity.UserExample" resultType="java.lang.Long">
+    select count(*) from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user
+    <set>
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        userName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userpwd != null">
+        userPwd = #{record.userpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usersex != null">
+        userSex = #{record.usersex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userphoto != null">
+        userPhoto = #{record.userphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usercard != null">
+        userCard = #{record.usercard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null">
+        birthday = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postid != null">
+        postId = #{record.postid,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null">
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.icuid != null">
+        icuId = #{record.icuid,jdbcType=INTEGER},
+      </if>
+      <if test="record.describe != null">
+        describe = #{record.describe,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user
+    set userId = #{record.userid,jdbcType=INTEGER},
+      userName = #{record.username,jdbcType=VARCHAR},
+      userPwd = #{record.userpwd,jdbcType=VARCHAR},
+      userSex = #{record.usersex,jdbcType=VARCHAR},
+      userPhoto = #{record.userphoto,jdbcType=VARCHAR},
+      userCard = #{record.usercard,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=VARCHAR},
+      postId = #{record.postid,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=INTEGER},
+      icuId = #{record.icuid,jdbcType=INTEGER},
+      describe = #{record.describe,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.entity.User">
+    update user
+    <set>
+      <if test="username != null">
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userpwd != null">
+        userPwd = #{userpwd,jdbcType=VARCHAR},
+      </if>
+      <if test="usersex != null">
+        userSex = #{usersex,jdbcType=VARCHAR},
+      </if>
+      <if test="userphoto != null">
+        userPhoto = #{userphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="usercard != null">
+        userCard = #{usercard,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="postid != null">
+        postId = #{postid,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="icuid != null">
+        icuId = #{icuid,jdbcType=INTEGER},
+      </if>
+      <if test="describe != null">
+        describe = #{describe,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.entity.User">
+    update user
+    set userName = #{username,jdbcType=VARCHAR},
+      userPwd = #{userpwd,jdbcType=VARCHAR},
+      userSex = #{usersex,jdbcType=VARCHAR},
+      userPhoto = #{userphoto,jdbcType=VARCHAR},
+      userCard = #{usercard,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      postId = #{postid,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      icuId = #{icuid,jdbcType=INTEGER},
+      describe = #{describe,jdbcType=VARCHAR}
+    where userId = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
@@ -11,86 +9,79 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
         http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-
-	<!-- 1、AOP注解配置 -->
-	<aop:aspectj-autoproxy proxy-target-class="true"/>
-
-	<!-- 2、注解方法注入 -->
-	<context:component-scan
-		base-package="com.njxzc.web"></context:component-scan>
-
-	<!-- 3、读取属性文件<context:property-placeholder location="classpath:jdbc.properties"/> -->
-	<context:property-placeholder
-		location="classpath:jdbc.properties" />
-
-	<!-- 4、配置数据源 数据源:C3P0、durid、spring-jdbc、commons-dbcp等 -->
-	<bean id="dataSource"
-		class="com.mchange.v2.c3p0.ComboPooledDataSource">
-		<property name="driverClass" value="${jdbc.driver}"></property>
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        ">
+        
+    <!-- 1、AOP注解配置 -->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+ 
+    <!-- 2、注解方法注入 -->
+    <context:component-scan base-package="com.web"></context:component-scan>
+     
+    <!-- 3、读取属性文件<context:property-placeholder location="classpath:jdbc.properties"/> -->
+     <context:property-placeholder location="classpath:jdbc.properties" />
+    
+    <!-- 4、配置数据源   数据源:C3P0、durid、spring-jdbc、commons-dbcp等 -->
+    <bean id="dataSource"  class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driver}"></property>
 		<property name="jdbcUrl" value="${jdbc.url}"></property>
 		<property name="user" value="${jdbc.username}"></property>
 		<property name="password" value="${jdbc.password}"></property>
-		<!-- 相关连接池信息 -->
-	</bean>
-
-	<!-- 5、sqlSessionFactory的配置 -->
-	<bean id="sqlSessionFactory"
-		class="org.mybatis.spring.SqlSessionFactoryBean">
-		<!-- 配置数据源 -->
-		<property name="dataSource" ref="dataSource"></property>
-
-		<!-- 读取mybatis的配置文件 -->
-		<property name="configLocation"
-			value="classpath:mybatis-config.xml"></property>
-
-		<!-- 读取映射文件 -->
-		<property name="mapperLocations"
-			value="classpath:com/njxzc/web/mapper/*.xml"></property>
-
-		<!-- 别名的设置 -->
-		<property name="typeAliasesPackage" value="com.njxzc.web.entity"></property>
-	</bean>
-
-	<!-- 6、mybatis的mapper代理类的配置 (代码中没有数据访问层的实现类) -->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<!-- sqlSessionFactory的指定 -->
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
-
-		<!-- 数据访问层的包 -->
-		<property name="basePackage" value="com.njxzc.web.mapper"></property>
-	</bean>
-
-	<!-- 7、事务管理 -->
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>
-	</bean>
-
-  
-	<!-- 8、通知对象 -->
-	<!-- <tx:advice id="myAdvice"
-		transaction-manager="transactionManager">
-		<tx:attributes>
-			对insert开头的方法都要进行事务管理
-			<tx:method name="insert*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
-			<tx:method name="save*" propagation="REQUIRED" />
-			<tx:method name="query*" propagation="REQUIRED" />
-			<tx:method name="*" propagation="REQUIRED" />
-		</tx:attributes>
-	</tx:advice> -->
-
-	<!-- 9、AOP的配置 -->
-	<!-- <aop:config>
-		切入点的配置
-		<aop:pointcut
-			expression="execution(* com.njxzc.web.service..*.*(..))" id="myPointCut" />
-		通知
-		<aop:advisor advice-ref="myAdvice"
-			pointcut-ref="myPointCut" />
-	</aop:config> -->
+         
+         <!-- 相关连接池信息  -->
+       
+    </bean>
+     
+     <!-- 5、sqlSessionFactory的配置 -->
+     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	        <!-- 配置数据源 -->
+	        <property name="dataSource" ref="dataSource"></property>
+	        
+	        <!-- 读取mybatis的配置文件 -->
+	        <property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	        
+	        <!-- 读取映射文件 -->
+	        <property name="mapperLocations" value="classpath:com/web/mapper/*.xml"></property>
+	        
+	        <!-- 别名的设置 -->
+	        <property name="typeAliasesPackage" value="com.web.entity"></property>
+     </bean>
+     
+     <!-- 6、mybatis的mapper代理类的配置   (代码中没有数据访问层的实现类)-->
+     <bean  class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+           <!-- sqlSessionFactory的指定 -->
+          <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+         
+           <!-- 数据访问层的包 -->
+           <property name="basePackage" value="com.web.dao"></property>
+        </bean>
+     
+     <!-- 7、事务管理 -->
+     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+           <property name="dataSource" ref="dataSource"></property>
+     </bean>
+     
+     <!-- 8、通知对象 -->
+     <tx:advice id="myAdvice" transaction-manager="transactionManager">
+         <tx:attributes>
+              <!-- 对insert开头的方法都要进行事务管理 -->
+              <tx:method name="insert*" propagation="REQUIRED"/>
+              <tx:method name="update*" propagation="REQUIRED"/>
+              <tx:method name="delete*" propagation="REQUIRED"/>
+              <tx:method name="save*" propagation="REQUIRED"/>
+              <tx:method name="query*" propagation="REQUIRED"/>
+              <tx:method name="*" propagation="REQUIRED"/>
+         </tx:attributes>
+     </tx:advice>
+     
+     <!-- 9、AOP的配置 -->
+      <aop:config>
+      
+          <!-- 切入点的配置 -->
+          <aop:pointcut expression="execution(* com.web.biz..*.*(..))" id="myPointCut"/>
+          
+          <!-- 通知 -->
+          <aop:advisor advice-ref="myAdvice" pointcut-ref="myPointCut"/>
+      </aop:config>    
  
-
-</beans>
+ </beans>
