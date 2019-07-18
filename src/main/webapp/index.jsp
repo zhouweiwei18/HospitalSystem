@@ -5,6 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>苏微医院</title>
+
+<%-- <%@ include file="common/commoncss.jsp" %>
+<%@ include file="common/commonjs.jsp" %> --%>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- basic styles -->
 <link
@@ -13,18 +17,6 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css" />
 
-<!--[if IE 7]>
-		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
-		<![endif]-->
-
-<!-- page specific plugin styles -->
-
-<!-- fonts -->
-<!-- 
-		<link rel="stylesheet" href="http://fonts.useso.com/css?family=Open+Sans:400,300" /> -->
-
-<!-- ace styles -->
-
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/ace.min.css" />
 <link rel="stylesheet"
@@ -32,26 +24,17 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/ace-skins.min.css" />
 
-<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
-		<![endif]-->
-
-<!-- inline styles related to this page -->
-
-<!-- ace settings handler -->
+<!-- 下面是table的css(分页) -->
+<link href="${pageContext.request.contextPath}/plugin/css/bootstrap-theme.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/plugin/css/bootstrap-table.css" rel="stylesheet"> 
 
 <script
 	src="${pageContext.request.contextPath}/assets/js/ace-extra.min.js"></script>
-
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-<!--[if lt IE 9]>
-		<script src="assets/js/html5shiv.js"></script>
-		<script src="assets/js/respond.min.js"></script>
-		<![endif]-->
 </head>
-
+ 
 <body>
+
+
 	<div class="navbar navbar-default" id="navbar">
 		<script type="text/javascript">
 			try {
@@ -110,12 +93,13 @@
 			} catch (e) {
 			}
 		</script>
-
+	
 		<div class="main-container-inner">
 			<a class="menu-toggler" id="menu-toggler" href="#"> <span
 				class="menu-text"></span>
 			</a>
-
+			
+			 
 			<div class="sidebar" id="sidebar">
 				<script type="text/javascript">
 					try {
@@ -133,6 +117,12 @@
 					</div>
 				</div>
 				<!-- #sidebar-shortcuts -->
+				
+				<!-- 引入自己添加的manager.js文件 -->
+				<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/manager.js">
+					
+				</script> --%>
+
 
 				<ul class="nav nav-list">
 					<li class="active"><a href="index.html"> <i
@@ -146,7 +136,7 @@
 					</a>
 
 						<ul class="submenu">
-							<li><a href="elements.html"> <i
+							<li><a href="#" id="emp"> <i
 									class="icon-double-angle-right"></i> 员工管理
 							</a></li>
 
@@ -209,6 +199,9 @@
 									class="icon-double-angle-right"></i> 医嘱管理
 							</a></li>
 						</ul></li>
+	
+					
+
 
 					<li><a href="#" class="dropdown-toggle"> <i
 							class="icon-edit"></i> <span class="menu-text"> 住院管理 </span> <b
@@ -318,8 +311,14 @@
 				</script>
 			</div>
 
-			<div class="main-content">
-				<div class="breadcrumbs" id="breadcrumbs">
+			<div class="main-content" style="height: 600px">
+				
+				<div style="float: left;width: 1350px;height: 100px">
+					<table id="table">
+					</table>
+				</div>
+				
+			<!-- 	<div class="breadcrumbs" id="breadcrumbs"  >
 					<script type="text/javascript">
 						try {
 							ace.settings.check('breadcrumbs', 'fixed')
@@ -331,39 +330,15 @@
 						<li><i class="icon-home home-icon"></i> <a href="#">首页</a></li>
 						<li class="active">苏微医院控制台</li>
 					</ul>
-					<!-- .breadcrumb -->
-				</div>
-
-				<div class="page-content">
-					<div class="page-header">
-						<h1>
-							苏微医院控制台 <small> <i class="icon-double-angle-right"></i>
-								查看
-							</small>
-						</h1>
-					</div>
-					<!-- /.page-header -->
-
-					<div class="row">
-						<div class="col-xs-12">
-							<!-- PAGE CONTENT BEGINS -->
-
-							<div class="alert alert-block alert-success">
-								<button type="button" class="close" data-dismiss="alert">
-									<i class="icon-remove"></i>
-								</button>
-
-								<i class="icon-ok green"></i> 欢迎使用 <strong class="green">
-									苏微医院系统 <small>(v1.2)</small>
-								</strong> ,这里为你提供更更全面的医疗服务.
-							</div>
- 
-							<!-- PAGE CONTENT ENDS -->
-						</div>
-						<!-- /.col -->
-					</div>
-					<!-- /.row -->
-				</div>
+					.breadcrumb
+				
+					
+				</div> -->
+				 
+				
+				<!-- <div class="page-content">
+					 
+				</div> -->
 				<!-- /.page-content -->
 			</div>
 			<!-- /.main-content -->
@@ -422,12 +397,19 @@
 			<!-- /#ace-settings-container -->
 		</div>
 		<!-- /.main-container-inner -->
+			
 
 		<a href="#" id="btn-scroll-up"
 			class="btn-scroll-up btn btn-sm btn-inverse"> <i
 			class="icon-double-angle-up icon-only bigger-110"></i>
 		</a>
+		
+		
 	</div>
+	
+	
+	
+	
 	<!-- /.main-container -->
 
 	<!-- basic scripts -->
@@ -499,9 +481,21 @@
 	<script
 		src="${pageContext.request.contextPath}/assets/js/ace-elements.min.js"></script>
 	<script src="${pageContext.request.contextPath}/assets/js/ace.min.js"></script>
+	
+	<!-- boostraptable -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/bootstrap3.3.7.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/bootstrap-table.js"></script>
+	<!-- 导出excel、pdf文件 -->
+	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/export/bootstrap-table-export.js"></script>
+	<script src="${pageContext.request.contextPath}/plugin/js/tableExport/libs/pdfmake/pdfmake.min.js"></script>
+	<script src="${pageContext.request.contextPath}/plugin/js/tableExport/libs/pdfmake/vfs_fonts.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/tableExport/libs/FileSaver/FileSaver.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/tableExport/libs/jsPDF/jspdf.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/tableExport/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/tableExport/tableExport.js"></script>
 
 	<!-- inline scripts related to this page -->
-
 	<script type="text/javascript">
 		jQuery(function($) {
 			$('.easy-pie-chart.percentage')
@@ -744,8 +738,68 @@
 					});
 
 		})
+		
+		
+		/* 下面手动添加的代码 */
+		
+		 $('#emp').click(function(){
+			 $.ajax({
+					type : "POST",
+					url : "${pageContext.request.contextPath }/user/getUser.action",
+					data : {},//json序列化 
+					async : false,//这里必须要同步
+					datatype : "json", //此处不能省略 
+					contentType : "application/json; charset=utf-8",//此处不能省略 
+					success : function(data) {
+						
+						//var tableStr = "<table style='border: 1' id='table'><tr><td></td></tr></table>";
+						
+						//var str = $("#employeeTable");
+						alert("数据返回了");
+						$('#table').bootstrapTable({
+							  url: '${pageContext.request.contextPath}/user/getUser.action',//访问后台（json）的地址
+							  pagination: true,//允许分页
+							  search: true,//可以搜索
+							  pageSize:3,//每页显示3条数据
+							  pageList:[2,3,5,8,10],//每页显示的条数列表
+							  showColumns:true,//选择显示的列
+							  showRefresh:true,//允许刷新
+							  showExport:true,//允许导出
+							  exportDataType:'all',
+							  exportTypes:['txt','doc','excel'],
+							  columns: [{
+							    field: 'userid',//字段名称    对应json中的key
+							    title: '编号'
+							  }, {
+							    field: 'username',
+							    title: '姓名'
+							  }, {
+							    field: 'userphoto',
+							    title: '头像',
+							    formatter:function(value,row,index){
+							    	//value:值   row：行      index:索引
+							    	var imageUrl = '<img alt="" src="/imgeurl/'+row.userphoto+'" width="50" height="50">';
+							    	return imageUrl;
+							    }
+							  }, {
+								    field: 'usersex',
+								    title: '性别'
+							  }, {
+								    field: 'birthday',
+								    title: '生日日期'
+								  },{
+									  field:'usercard',
+									  title:'身份证'
+								  }]
+							})
+						
+						//alert(data);
+					},
+					error : function(data) {
+						alert("error");
+					}
+				});
+		}) 
 	</script>
-
 </body>
 </html>
-

@@ -20,8 +20,9 @@ public class UserServiceImpl implements UserService {
 	public List<User> selectAll(UserExample example) {
 
 		List<User> list = userMapper.selectByExample(example);
-		
+
 		return list;
 	}
+
 
 }
