@@ -60,7 +60,7 @@ public class User implements Serializable {
     /**
      * 描述
      */
-    private String describe;
+    private String descc;
 
     private static final long serialVersionUID = 1L;
 
@@ -144,12 +144,12 @@ public class User implements Serializable {
         this.icuid = icuid;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getDescc() {
+        return descc;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setDescc(String descc) {
+        this.descc = descc;
     }
 
     @Override
@@ -174,7 +174,7 @@ public class User implements Serializable {
             && (this.getPostid() == null ? other.getPostid() == null : this.getPostid().equals(other.getPostid()))
             && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()))
             && (this.getIcuid() == null ? other.getIcuid() == null : this.getIcuid().equals(other.getIcuid()))
-            && (this.getDescribe() == null ? other.getDescribe() == null : this.getDescribe().equals(other.getDescribe()));
+            && (this.getDescc() == null ? other.getDescc() == null : this.getDescc().equals(other.getDescc()));
     }
 
     @Override
@@ -191,7 +191,7 @@ public class User implements Serializable {
         result = prime * result + ((getPostid() == null) ? 0 : getPostid().hashCode());
         result = prime * result + ((getState() == null) ? 0 : getState().hashCode());
         result = prime * result + ((getIcuid() == null) ? 0 : getIcuid().hashCode());
-        result = prime * result + ((getDescribe() == null) ? 0 : getDescribe().hashCode());
+        result = prime * result + ((getDescc() == null) ? 0 : getDescc().hashCode());
         return result;
     }
 
@@ -211,7 +211,7 @@ public class User implements Serializable {
         sb.append(", postid=").append(postid);
         sb.append(", state=").append(state);
         sb.append(", icuid=").append(icuid);
-        sb.append(", describe=").append(describe);
+        sb.append(", descc=").append(descc);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

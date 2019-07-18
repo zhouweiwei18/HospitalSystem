@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.dao.PatientMapper">
+  <resultMap id="BaseResultMap" type="com.web.entity.Patient">
+    <id column="patientId" jdbcType="INTEGER" property="patientid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="marrage" jdbcType="VARCHAR" property="marrage" />
+    <result column="occupation" jdbcType="VARCHAR" property="occupation" />
+    <result column="birthPlace" jdbcType="VARCHAR" property="birthplace" />
+    <result column="nation" jdbcType="VARCHAR" property="nation" />
+    <result column="nationality" jdbcType="VARCHAR" property="nationality" />
+    <result column="idCard" jdbcType="VARCHAR" property="idcard" />
+    <result column="companyAndAddress" jdbcType="VARCHAR" property="companyandaddress" />
+    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+    <result column="postalCode" jdbcType="INTEGER" property="postalcode" />
+    <result column="registeredAddress" jdbcType="VARCHAR" property="registeredaddress" />
+    <result column="contactsName" jdbcType="VARCHAR" property="contactsname" />
+    <result column="contactsAddress" jdbcType="VARCHAR" property="contactsaddress" />
+    <result column="contactsRelationship" jdbcType="VARCHAR" property="contactsrelationship" />
+    <result column="contactsTelephone" jdbcType="VARCHAR" property="contactstelephone" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    patientId, name, sex, birthday, age, marrage, occupation, birthPlace, nation, nationality, 
+    idCard, companyAndAddress, telephone, postalCode, registeredAddress, contactsName, 
+    contactsAddress, contactsRelationship, contactsTelephone, isDelete
+  </sql>
+  <select id="selectByExample" parameterType="com.web.entity.PatientExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from patient
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from patient
+    where patientId = #{patientid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from patient
+    where patientId = #{patientid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.entity.PatientExample">
+    delete from patient
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.entity.Patient">
+    insert into patient (patientId, name, sex, 
+      birthday, age, marrage, 
+      occupation, birthPlace, nation, 
+      nationality, idCard, companyAndAddress, 
+      telephone, postalCode, registeredAddress, 
+      contactsName, contactsAddress, contactsRelationship, 
+      contactsTelephone, isDelete)
+    values (#{patientid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=TIMESTAMP}, #{age,jdbcType=INTEGER}, #{marrage,jdbcType=VARCHAR}, 
+      #{occupation,jdbcType=VARCHAR}, #{birthplace,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, 
+      #{nationality,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{companyandaddress,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{postalcode,jdbcType=INTEGER}, #{registeredaddress,jdbcType=VARCHAR}, 
+      #{contactsname,jdbcType=VARCHAR}, #{contactsaddress,jdbcType=VARCHAR}, #{contactsrelationship,jdbcType=VARCHAR}, 
+      #{contactstelephone,jdbcType=VARCHAR}, #{isdelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.entity.Patient">
+    insert into patient
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="patientid != null">
+        patientId,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="marrage != null">
+        marrage,
+      </if>
+      <if test="occupation != null">
+        occupation,
+      </if>
+      <if test="birthplace != null">
+        birthPlace,
+      </if>
+      <if test="nation != null">
+        nation,
+      </if>
+      <if test="nationality != null">
+        nationality,
+      </if>
+      <if test="idcard != null">
+        idCard,
+      </if>
+      <if test="companyandaddress != null">
+        companyAndAddress,
+      </if>
+      <if test="telephone != null">
+        telephone,
+      </if>
+      <if test="postalcode != null">
+        postalCode,
+      </if>
+      <if test="registeredaddress != null">
+        registeredAddress,
+      </if>
+      <if test="contactsname != null">
+        contactsName,
+      </if>
+      <if test="contactsaddress != null">
+        contactsAddress,
+      </if>
+      <if test="contactsrelationship != null">
+        contactsRelationship,
+      </if>
+      <if test="contactstelephone != null">
+        contactsTelephone,
+      </if>
+      <if test="isdelete != null">
+        isDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="patientid != null">
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="marrage != null">
+        #{marrage,jdbcType=VARCHAR},
+      </if>
+      <if test="occupation != null">
+        #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplace != null">
+        #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="companyandaddress != null">
+        #{companyandaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="postalcode != null">
+        #{postalcode,jdbcType=INTEGER},
+      </if>
+      <if test="registeredaddress != null">
+        #{registeredaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsname != null">
+        #{contactsname,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsaddress != null">
+        #{contactsaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsrelationship != null">
+        #{contactsrelationship,jdbcType=VARCHAR},
+      </if>
+      <if test="contactstelephone != null">
+        #{contactstelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.entity.PatientExample" resultType="java.lang.Long">
+    select count(*) from patient
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update patient
+    <set>
+      <if test="record.patientid != null">
+        patientId = #{record.patientid,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null">
+        sex = #{record.sex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null">
+        birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.age != null">
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.marrage != null">
+        marrage = #{record.marrage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupation != null">
+        occupation = #{record.occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthplace != null">
+        birthPlace = #{record.birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nation != null">
+        nation = #{record.nation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nationality != null">
+        nationality = #{record.nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcard != null">
+        idCard = #{record.idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyandaddress != null">
+        companyAndAddress = #{record.companyandaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone != null">
+        telephone = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postalcode != null">
+        postalCode = #{record.postalcode,jdbcType=INTEGER},
+      </if>
+      <if test="record.registeredaddress != null">
+        registeredAddress = #{record.registeredaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsname != null">
+        contactsName = #{record.contactsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsaddress != null">
+        contactsAddress = #{record.contactsaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactsrelationship != null">
+        contactsRelationship = #{record.contactsrelationship,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactstelephone != null">
+        contactsTelephone = #{record.contactstelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isdelete != null">
+        isDelete = #{record.isdelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update patient
+    set patientId = #{record.patientid,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=TIMESTAMP},
+      age = #{record.age,jdbcType=INTEGER},
+      marrage = #{record.marrage,jdbcType=VARCHAR},
+      occupation = #{record.occupation,jdbcType=VARCHAR},
+      birthPlace = #{record.birthplace,jdbcType=VARCHAR},
+      nation = #{record.nation,jdbcType=VARCHAR},
+      nationality = #{record.nationality,jdbcType=VARCHAR},
+      idCard = #{record.idcard,jdbcType=VARCHAR},
+      companyAndAddress = #{record.companyandaddress,jdbcType=VARCHAR},
+      telephone = #{record.telephone,jdbcType=VARCHAR},
+      postalCode = #{record.postalcode,jdbcType=INTEGER},
+      registeredAddress = #{record.registeredaddress,jdbcType=VARCHAR},
+      contactsName = #{record.contactsname,jdbcType=VARCHAR},
+      contactsAddress = #{record.contactsaddress,jdbcType=VARCHAR},
+      contactsRelationship = #{record.contactsrelationship,jdbcType=VARCHAR},
+      contactsTelephone = #{record.contactstelephone,jdbcType=VARCHAR},
+      isDelete = #{record.isdelete,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.entity.Patient">
+    update patient
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="marrage != null">
+        marrage = #{marrage,jdbcType=VARCHAR},
+      </if>
+      <if test="occupation != null">
+        occupation = #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="birthplace != null">
+        birthPlace = #{birthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="nation != null">
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="nationality != null">
+        nationality = #{nationality,jdbcType=VARCHAR},
+      </if>
+      <if test="idcard != null">
+        idCard = #{idcard,jdbcType=VARCHAR},
+      </if>
+      <if test="companyandaddress != null">
+        companyAndAddress = #{companyandaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null">
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="postalcode != null">
+        postalCode = #{postalcode,jdbcType=INTEGER},
+      </if>
+      <if test="registeredaddress != null">
+        registeredAddress = #{registeredaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsname != null">
+        contactsName = #{contactsname,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsaddress != null">
+        contactsAddress = #{contactsaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactsrelationship != null">
+        contactsRelationship = #{contactsrelationship,jdbcType=VARCHAR},
+      </if>
+      <if test="contactstelephone != null">
+        contactsTelephone = #{contactstelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        isDelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where patientId = #{patientid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.entity.Patient">
+    update patient
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=TIMESTAMP},
+      age = #{age,jdbcType=INTEGER},
+      marrage = #{marrage,jdbcType=VARCHAR},
+      occupation = #{occupation,jdbcType=VARCHAR},
+      birthPlace = #{birthplace,jdbcType=VARCHAR},
+      nation = #{nation,jdbcType=VARCHAR},
+      nationality = #{nationality,jdbcType=VARCHAR},
+      idCard = #{idcard,jdbcType=VARCHAR},
+      companyAndAddress = #{companyandaddress,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      postalCode = #{postalcode,jdbcType=INTEGER},
+      registeredAddress = #{registeredaddress,jdbcType=VARCHAR},
+      contactsName = #{contactsname,jdbcType=VARCHAR},
+      contactsAddress = #{contactsaddress,jdbcType=VARCHAR},
+      contactsRelationship = #{contactsrelationship,jdbcType=VARCHAR},
+      contactsTelephone = #{contactstelephone,jdbcType=VARCHAR},
+      isDelete = #{isdelete,jdbcType=INTEGER}
+    where patientId = #{patientid,jdbcType=INTEGER}
+  </update>
+</mapper>

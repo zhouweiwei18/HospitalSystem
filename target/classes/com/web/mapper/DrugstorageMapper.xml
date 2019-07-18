@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.dao.DrugstorageMapper">
+  <resultMap id="BaseResultMap" type="com.web.entity.Drugstorage">
+    <id column="drugStorageid" jdbcType="INTEGER" property="drugstorageid" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="inChargePerson" jdbcType="INTEGER" property="inchargeperson" />
+    <result column="area" jdbcType="DOUBLE" property="area" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    drugStorageid, category, inChargePerson, area, isDelete
+  </sql>
+  <select id="selectByExample" parameterType="com.web.entity.DrugstorageExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from drugstorage
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from drugstorage
+    where drugStorageid = #{drugstorageid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from drugstorage
+    where drugStorageid = #{drugstorageid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.entity.DrugstorageExample">
+    delete from drugstorage
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.entity.Drugstorage">
+    insert into drugstorage (drugStorageid, category, inChargePerson, 
+      area, isDelete)
+    values (#{drugstorageid,jdbcType=INTEGER}, #{category,jdbcType=VARCHAR}, #{inchargeperson,jdbcType=INTEGER}, 
+      #{area,jdbcType=DOUBLE}, #{isdelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.entity.Drugstorage">
+    insert into drugstorage
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="drugstorageid != null">
+        drugStorageid,
+      </if>
+      <if test="category != null">
+        category,
+      </if>
+      <if test="inchargeperson != null">
+        inChargePerson,
+      </if>
+      <if test="area != null">
+        area,
+      </if>
+      <if test="isdelete != null">
+        isDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="drugstorageid != null">
+        #{drugstorageid,jdbcType=INTEGER},
+      </if>
+      <if test="category != null">
+        #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="inchargeperson != null">
+        #{inchargeperson,jdbcType=INTEGER},
+      </if>
+      <if test="area != null">
+        #{area,jdbcType=DOUBLE},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.entity.DrugstorageExample" resultType="java.lang.Long">
+    select count(*) from drugstorage
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update drugstorage
+    <set>
+      <if test="record.drugstorageid != null">
+        drugStorageid = #{record.drugstorageid,jdbcType=INTEGER},
+      </if>
+      <if test="record.category != null">
+        category = #{record.category,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inchargeperson != null">
+        inChargePerson = #{record.inchargeperson,jdbcType=INTEGER},
+      </if>
+      <if test="record.area != null">
+        area = #{record.area,jdbcType=DOUBLE},
+      </if>
+      <if test="record.isdelete != null">
+        isDelete = #{record.isdelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update drugstorage
+    set drugStorageid = #{record.drugstorageid,jdbcType=INTEGER},
+      category = #{record.category,jdbcType=VARCHAR},
+      inChargePerson = #{record.inchargeperson,jdbcType=INTEGER},
+      area = #{record.area,jdbcType=DOUBLE},
+      isDelete = #{record.isdelete,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.entity.Drugstorage">
+    update drugstorage
+    <set>
+      <if test="category != null">
+        category = #{category,jdbcType=VARCHAR},
+      </if>
+      <if test="inchargeperson != null">
+        inChargePerson = #{inchargeperson,jdbcType=INTEGER},
+      </if>
+      <if test="area != null">
+        area = #{area,jdbcType=DOUBLE},
+      </if>
+      <if test="isdelete != null">
+        isDelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where drugStorageid = #{drugstorageid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.entity.Drugstorage">
+    update drugstorage
+    set category = #{category,jdbcType=VARCHAR},
+      inChargePerson = #{inchargeperson,jdbcType=INTEGER},
+      area = #{area,jdbcType=DOUBLE},
+      isDelete = #{isdelete,jdbcType=INTEGER}
+    where drugStorageid = #{drugstorageid,jdbcType=INTEGER}
+  </update>
+</mapper>

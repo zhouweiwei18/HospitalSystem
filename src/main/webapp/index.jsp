@@ -4,16 +4,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>安居客</title>
+<title>苏微医院</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!-- basic styles -->
 <link
 	href="${pageContext.request.contextPath}/assets/css/bootstrap.min.css"
 	rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
-
 <link rel="stylesheet"
-	href="http://fonts.useso.com/css?family=Open+Sans:400,300" />
+	href="${pageContext.request.contextPath}/assets/css/font-awesome.min.css" />
+
+<!--[if IE 7]>
+		  <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+<!-- page specific plugin styles -->
+
+<!-- fonts -->
+<!-- 
+		<link rel="stylesheet" href="http://fonts.useso.com/css?family=Open+Sans:400,300" /> -->
+
+<!-- ace styles -->
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/ace.min.css" />
@@ -22,9 +32,23 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/ace-skins.min.css" />
 
+<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+<!-- inline styles related to this page -->
+
+<!-- ace settings handler -->
+
 <script
 	src="${pageContext.request.contextPath}/assets/js/ace-extra.min.js"></script>
 
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+<!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
 </head>
 
 <body>
@@ -39,7 +63,7 @@
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left">
 				<a href="#" class="navbar-brand"> <small> <i
-						class="icon-leaf"></i> 安居客房源系统
+						class="icon-leaf"></i> 苏微医院
 				</small>
 				</a>
 				<!-- /.brand -->
@@ -113,71 +137,169 @@
 				<ul class="nav nav-list">
 					<li class="active"><a href="index.html"> <i
 							class="icon-dashboard"></i> <span class="menu-text">
-								安居客控制台 </span>
+								苏微医院控制台 </span>
 					</a></li>
 
 					<li><a href="#" class="dropdown-toggle"> <i
-							class="icon-desktop"></i> <span class="menu-text"> 房源管理 </span> <b
+							class="icon-desktop"></i> <span class="menu-text"> 日常管理 </span> <b
 							class="arrow icon-angle-down"></b>
 					</a>
 
 						<ul class="submenu">
 							<li><a href="elements.html"> <i
-									class="icon-double-angle-right"></i> 发布房源
+									class="icon-double-angle-right"></i> 员工管理
+							</a></li>
+
+							<li><a href="elements.html"> <i
+									class="icon-double-angle-right"></i> 岗位管理
+							</a></li>
+							<li><a href="elements.html"> <i
+									class="icon-double-angle-right"></i> 科室管理
 							</a></li>
 
 							<li><a href="buttons.html"> <i
-									class="icon-double-angle-right"></i> 发布记录
+									class="icon-double-angle-right"></i> 值班管理
 							</a></li>
 
 							<li><a href="treeview.html"> <i
-									class="icon-double-angle-right"></i> 刷新记录
+									class="icon-double-angle-right"></i> 假期值班时间
 							</a></li>
 
 							<li><a href="jquery-ui.html"> <i
-									class="icon-double-angle-right"></i> 复制房源
+									class="icon-double-angle-right"></i> 病区管理
 							</a></li>
 
 							<li><a href="nestable-list.html"> <i
-									class="icon-double-angle-right"></i> 账号设置
+									class="icon-double-angle-right"></i> 设施管理
 							</a></li>
 
 						</ul></li>
 
 					<li><a href="#" class="dropdown-toggle"> <i
-							class="icon-list"></i> <span class="menu-text"> 账户管理 </span> <b
+							class="icon-list"></i> <span class="menu-text"> 门诊管理 </span> <b
 							class="arrow icon-angle-down"></b>
 					</a>
 
 						<ul class="submenu">
 							<li><a href="tables.html"> <i
-									class="icon-double-angle-right"></i> 余额充值
+									class="icon-double-angle-right"></i> 门诊挂号
 							</a></li>
 
 							<li><a href="jqgrid.html"> <i
-									class="icon-double-angle-right"></i> 充值记录
+									class="icon-double-angle-right"></i> 门诊病历
 							</a></li>
 
 							<li><a href="jqgrid.html"> <i
-									class="icon-double-angle-right"></i> 密码设定
+									class="icon-double-angle-right"></i> 门诊处方
+							</a></li>
+
+							<li><a href="jqgrid.html"> <i
+									class="icon-double-angle-right"></i> 门诊收费
+							</a></li>
+
+							<li><a href="jqgrid.html"> <i
+									class="icon-double-angle-right"></i> 门诊检查
+							</a></li>
+
+							<li><a href="jqgrid.html"> <i
+									class="icon-double-angle-right"></i> 门诊病人
+							</a></li>
+
+							<li><a href="jqgrid.html"> <i
+									class="icon-double-angle-right"></i> 医嘱管理
 							</a></li>
 						</ul></li>
 
 					<li><a href="#" class="dropdown-toggle"> <i
-							class="icon-edit"></i> <span class="menu-text"> 论坛管理 </span> <b
+							class="icon-edit"></i> <span class="menu-text"> 住院管理 </span> <b
 							class="arrow icon-angle-down"></b>
 					</a>
 
 						<ul class="submenu">
 							<li><a href="form-elements.html"> <i
-									class="icon-double-angle-right"></i> 发布公告
+									class="icon-double-angle-right"></i> 住院病人
 							</a></li>
 
 							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 进入论坛
+									class="icon-double-angle-right"></i> 床位管理
+							</a></li>
+							<li><a href="form-wizard.html"> <i
+									class="icon-double-angle-right"></i> 医嘱管理
+							</a></li>
+							<li><a href="form-wizard.html"> <i
+									class="icon-double-angle-right"></i> 医院处方
+							</a></li>
+							<li><a href="form-wizard.html"> <i
+									class="icon-double-angle-right"></i> 医院收费
+							</a></li>
+							<li><a href="form-wizard.html"> <i
+									class="icon-double-angle-right"></i> 医嘱检查
+							</a></li>
+							<li><a href="form-wizard.html"> <i
+									class="icon-double-angle-right"></i> 手术管理
 							</a></li>
 
 						</ul></li>
+
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-cog"></i> <span class="menu-text"> 药品管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
+
+						<ul class="submenu">
+							<li><a href="form-elements.html"> <i
+									class="icon-double-angle-right"></i> 药品信息
+							</a></li>
+
+							<li><a href="form-wizard.html"> <i
+									class="icon-double-angle-right"></i> 订单管理
+							</a></li>
+							<li><a href="form-wizard.html"> <i
+									class="icon-double-angle-right"></i> 药品库存
+							</a></li>
+							<li><a href="form-wizard.html"> <i
+									class="icon-double-angle-right"></i> 供应商
+							</a></li>
+							<li><a href="form-wizard.html"> <i
+									class="icon-double-angle-right"></i> 缺药单
+							</a></li>
+
+
+						</ul></li>
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-leaf"></i> <span class="menu-text"> 财务管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
+
+						<ul class="submenu">
+							<li><a href="form-elements.html"> <i
+									class="icon-double-angle-right"></i> 员工工资
+							</a></li>
+
+							<li><a href="form-wizard.html"> <i
+									class="icon-double-angle-right"></i> 收费情况
+							</a></li>
+							<li><a href="form-wizard.html"> <i
+									class="icon-double-angle-right"></i> 支出情况
+							</a></li>
+
+						</ul>
+					<li><a href="#" class="dropdown-toggle"> <i
+							class="icon-user"></i> <span class="menu-text"> 行政管理 </span> <b
+							class="arrow icon-angle-down"></b>
+					</a>
+
+						<ul class="submenu">
+							<li><a href="form-elements.html"> <i
+									class="icon-double-angle-right"></i> 差旅安排
+							</a></li>
+
+							<li><a href="form-wizard.html"> <i
+									class="icon-double-angle-right"></i> 考勤记录
+							</a></li>
+
+						</ul></li>
+					</li>
 
 				</ul>
 				<!-- /.nav-list -->
@@ -207,7 +329,7 @@
 
 					<ul class="breadcrumb">
 						<li><i class="icon-home home-icon"></i> <a href="#">首页</a></li>
-						<li class="active">安居客控制台</li>
+						<li class="active">苏微医院控制台</li>
 					</ul>
 					<!-- .breadcrumb -->
 				</div>
@@ -215,7 +337,8 @@
 				<div class="page-content">
 					<div class="page-header">
 						<h1>
-							安居客控制台 <small> <i class="icon-double-angle-right"></i> 查看
+							苏微医院控制台 <small> <i class="icon-double-angle-right"></i>
+								查看
 							</small>
 						</h1>
 					</div>
@@ -231,14 +354,10 @@
 								</button>
 
 								<i class="icon-ok green"></i> 欢迎使用 <strong class="green">
-									安居客房源系统 <small>(v1.2)</small>
-								</strong> ,这里为你提供更更全面的房源信息管理.
+									苏微医院系统 <small>(v1.2)</small>
+								</strong> ,这里为你提供更更全面的医疗服务.
 							</div>
-
-
-
-
-
+ 
 							<!-- PAGE CONTENT ENDS -->
 						</div>
 						<!-- /.col -->

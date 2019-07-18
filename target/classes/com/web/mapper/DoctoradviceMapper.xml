@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.dao.DoctoradviceMapper">
+  <resultMap id="BaseResultMap" type="com.web.entity.Doctoradvice">
+    <id column="doctorAdviceId" jdbcType="INTEGER" property="doctoradviceid" />
+    <result column="medicalRecord" jdbcType="INTEGER" property="medicalrecord" />
+    <result column="startupDate" jdbcType="VARCHAR" property="startupdate" />
+    <result column="processingDate" jdbcType="VARCHAR" property="processingdate" />
+    <result column="doctorAdviceContent" jdbcType="VARCHAR" property="doctoradvicecontent" />
+    <result column="processingSchemeNo" jdbcType="INTEGER" property="processingschemeno" />
+    <result column="attendingDoctor" jdbcType="INTEGER" property="attendingdoctor" />
+    <result column="patientId" jdbcType="INTEGER" property="patientid" />
+    <result column="diseaseName" jdbcType="VARCHAR" property="diseasename" />
+    <result column="leaveHospital" jdbcType="VARCHAR" property="leavehospital" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    doctorAdviceId, medicalRecord, startupDate, processingDate, doctorAdviceContent, 
+    processingSchemeNo, attendingDoctor, patientId, diseaseName, leaveHospital, isDelete
+  </sql>
+  <select id="selectByExample" parameterType="com.web.entity.DoctoradviceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from doctoradvice
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from doctoradvice
+    where doctorAdviceId = #{doctoradviceid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from doctoradvice
+    where doctorAdviceId = #{doctoradviceid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.entity.DoctoradviceExample">
+    delete from doctoradvice
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.entity.Doctoradvice">
+    insert into doctoradvice (doctorAdviceId, medicalRecord, startupDate, 
+      processingDate, doctorAdviceContent, processingSchemeNo, 
+      attendingDoctor, patientId, diseaseName, 
+      leaveHospital, isDelete)
+    values (#{doctoradviceid,jdbcType=INTEGER}, #{medicalrecord,jdbcType=INTEGER}, #{startupdate,jdbcType=VARCHAR}, 
+      #{processingdate,jdbcType=VARCHAR}, #{doctoradvicecontent,jdbcType=VARCHAR}, #{processingschemeno,jdbcType=INTEGER}, 
+      #{attendingdoctor,jdbcType=INTEGER}, #{patientid,jdbcType=INTEGER}, #{diseasename,jdbcType=VARCHAR}, 
+      #{leavehospital,jdbcType=VARCHAR}, #{isdelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.entity.Doctoradvice">
+    insert into doctoradvice
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="doctoradviceid != null">
+        doctorAdviceId,
+      </if>
+      <if test="medicalrecord != null">
+        medicalRecord,
+      </if>
+      <if test="startupdate != null">
+        startupDate,
+      </if>
+      <if test="processingdate != null">
+        processingDate,
+      </if>
+      <if test="doctoradvicecontent != null">
+        doctorAdviceContent,
+      </if>
+      <if test="processingschemeno != null">
+        processingSchemeNo,
+      </if>
+      <if test="attendingdoctor != null">
+        attendingDoctor,
+      </if>
+      <if test="patientid != null">
+        patientId,
+      </if>
+      <if test="diseasename != null">
+        diseaseName,
+      </if>
+      <if test="leavehospital != null">
+        leaveHospital,
+      </if>
+      <if test="isdelete != null">
+        isDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="doctoradviceid != null">
+        #{doctoradviceid,jdbcType=INTEGER},
+      </if>
+      <if test="medicalrecord != null">
+        #{medicalrecord,jdbcType=INTEGER},
+      </if>
+      <if test="startupdate != null">
+        #{startupdate,jdbcType=VARCHAR},
+      </if>
+      <if test="processingdate != null">
+        #{processingdate,jdbcType=VARCHAR},
+      </if>
+      <if test="doctoradvicecontent != null">
+        #{doctoradvicecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="processingschemeno != null">
+        #{processingschemeno,jdbcType=INTEGER},
+      </if>
+      <if test="attendingdoctor != null">
+        #{attendingdoctor,jdbcType=INTEGER},
+      </if>
+      <if test="patientid != null">
+        #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="diseasename != null">
+        #{diseasename,jdbcType=VARCHAR},
+      </if>
+      <if test="leavehospital != null">
+        #{leavehospital,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.entity.DoctoradviceExample" resultType="java.lang.Long">
+    select count(*) from doctoradvice
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update doctoradvice
+    <set>
+      <if test="record.doctoradviceid != null">
+        doctorAdviceId = #{record.doctoradviceid,jdbcType=INTEGER},
+      </if>
+      <if test="record.medicalrecord != null">
+        medicalRecord = #{record.medicalrecord,jdbcType=INTEGER},
+      </if>
+      <if test="record.startupdate != null">
+        startupDate = #{record.startupdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.processingdate != null">
+        processingDate = #{record.processingdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctoradvicecontent != null">
+        doctorAdviceContent = #{record.doctoradvicecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.processingschemeno != null">
+        processingSchemeNo = #{record.processingschemeno,jdbcType=INTEGER},
+      </if>
+      <if test="record.attendingdoctor != null">
+        attendingDoctor = #{record.attendingdoctor,jdbcType=INTEGER},
+      </if>
+      <if test="record.patientid != null">
+        patientId = #{record.patientid,jdbcType=INTEGER},
+      </if>
+      <if test="record.diseasename != null">
+        diseaseName = #{record.diseasename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.leavehospital != null">
+        leaveHospital = #{record.leavehospital,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isdelete != null">
+        isDelete = #{record.isdelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update doctoradvice
+    set doctorAdviceId = #{record.doctoradviceid,jdbcType=INTEGER},
+      medicalRecord = #{record.medicalrecord,jdbcType=INTEGER},
+      startupDate = #{record.startupdate,jdbcType=VARCHAR},
+      processingDate = #{record.processingdate,jdbcType=VARCHAR},
+      doctorAdviceContent = #{record.doctoradvicecontent,jdbcType=VARCHAR},
+      processingSchemeNo = #{record.processingschemeno,jdbcType=INTEGER},
+      attendingDoctor = #{record.attendingdoctor,jdbcType=INTEGER},
+      patientId = #{record.patientid,jdbcType=INTEGER},
+      diseaseName = #{record.diseasename,jdbcType=VARCHAR},
+      leaveHospital = #{record.leavehospital,jdbcType=VARCHAR},
+      isDelete = #{record.isdelete,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.entity.Doctoradvice">
+    update doctoradvice
+    <set>
+      <if test="medicalrecord != null">
+        medicalRecord = #{medicalrecord,jdbcType=INTEGER},
+      </if>
+      <if test="startupdate != null">
+        startupDate = #{startupdate,jdbcType=VARCHAR},
+      </if>
+      <if test="processingdate != null">
+        processingDate = #{processingdate,jdbcType=VARCHAR},
+      </if>
+      <if test="doctoradvicecontent != null">
+        doctorAdviceContent = #{doctoradvicecontent,jdbcType=VARCHAR},
+      </if>
+      <if test="processingschemeno != null">
+        processingSchemeNo = #{processingschemeno,jdbcType=INTEGER},
+      </if>
+      <if test="attendingdoctor != null">
+        attendingDoctor = #{attendingdoctor,jdbcType=INTEGER},
+      </if>
+      <if test="patientid != null">
+        patientId = #{patientid,jdbcType=INTEGER},
+      </if>
+      <if test="diseasename != null">
+        diseaseName = #{diseasename,jdbcType=VARCHAR},
+      </if>
+      <if test="leavehospital != null">
+        leaveHospital = #{leavehospital,jdbcType=VARCHAR},
+      </if>
+      <if test="isdelete != null">
+        isDelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where doctorAdviceId = #{doctoradviceid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.entity.Doctoradvice">
+    update doctoradvice
+    set medicalRecord = #{medicalrecord,jdbcType=INTEGER},
+      startupDate = #{startupdate,jdbcType=VARCHAR},
+      processingDate = #{processingdate,jdbcType=VARCHAR},
+      doctorAdviceContent = #{doctoradvicecontent,jdbcType=VARCHAR},
+      processingSchemeNo = #{processingschemeno,jdbcType=INTEGER},
+      attendingDoctor = #{attendingdoctor,jdbcType=INTEGER},
+      patientId = #{patientid,jdbcType=INTEGER},
+      diseaseName = #{diseasename,jdbcType=VARCHAR},
+      leaveHospital = #{leavehospital,jdbcType=VARCHAR},
+      isDelete = #{isdelete,jdbcType=INTEGER}
+    where doctorAdviceId = #{doctoradviceid,jdbcType=INTEGER}
+  </update>
+</mapper>

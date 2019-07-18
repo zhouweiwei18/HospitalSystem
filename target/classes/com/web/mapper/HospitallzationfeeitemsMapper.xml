@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.dao.HospitallzationfeeitemsMapper">
+  <resultMap id="BaseResultMap" type="com.web.entity.Hospitallzationfeeitems">
+    <id column="projecdId" jdbcType="INTEGER" property="projecdid" />
+    <result column="prescriptionNo" jdbcType="INTEGER" property="prescriptionno" />
+    <result column="hospitalizationId" jdbcType="INTEGER" property="hospitalizationid" />
+    <result column="receivableDate" jdbcType="VARCHAR" property="receivabledate" />
+    <result column="cashier" jdbcType="INTEGER" property="cashier" />
+    <result column="chargeMoney" jdbcType="DOUBLE" property="chargemoney" />
+    <result column="checkoutStatus" jdbcType="INTEGER" property="checkoutstatus" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    projecdId, prescriptionNo, hospitalizationId, receivableDate, cashier, chargeMoney, 
+    checkoutStatus
+  </sql>
+  <select id="selectByExample" parameterType="com.web.entity.HospitallzationfeeitemsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hospitallzationfeeitems
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hospitallzationfeeitems
+    where projecdId = #{projecdid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hospitallzationfeeitems
+    where projecdId = #{projecdid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.web.entity.HospitallzationfeeitemsExample">
+    delete from hospitallzationfeeitems
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.entity.Hospitallzationfeeitems">
+    insert into hospitallzationfeeitems (projecdId, prescriptionNo, hospitalizationId, 
+      receivableDate, cashier, chargeMoney, 
+      checkoutStatus)
+    values (#{projecdid,jdbcType=INTEGER}, #{prescriptionno,jdbcType=INTEGER}, #{hospitalizationid,jdbcType=INTEGER}, 
+      #{receivabledate,jdbcType=VARCHAR}, #{cashier,jdbcType=INTEGER}, #{chargemoney,jdbcType=DOUBLE}, 
+      #{checkoutstatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.entity.Hospitallzationfeeitems">
+    insert into hospitallzationfeeitems
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="projecdid != null">
+        projecdId,
+      </if>
+      <if test="prescriptionno != null">
+        prescriptionNo,
+      </if>
+      <if test="hospitalizationid != null">
+        hospitalizationId,
+      </if>
+      <if test="receivabledate != null">
+        receivableDate,
+      </if>
+      <if test="cashier != null">
+        cashier,
+      </if>
+      <if test="chargemoney != null">
+        chargeMoney,
+      </if>
+      <if test="checkoutstatus != null">
+        checkoutStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="projecdid != null">
+        #{projecdid,jdbcType=INTEGER},
+      </if>
+      <if test="prescriptionno != null">
+        #{prescriptionno,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalizationid != null">
+        #{hospitalizationid,jdbcType=INTEGER},
+      </if>
+      <if test="receivabledate != null">
+        #{receivabledate,jdbcType=VARCHAR},
+      </if>
+      <if test="cashier != null">
+        #{cashier,jdbcType=INTEGER},
+      </if>
+      <if test="chargemoney != null">
+        #{chargemoney,jdbcType=DOUBLE},
+      </if>
+      <if test="checkoutstatus != null">
+        #{checkoutstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.entity.HospitallzationfeeitemsExample" resultType="java.lang.Long">
+    select count(*) from hospitallzationfeeitems
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update hospitallzationfeeitems
+    <set>
+      <if test="record.projecdid != null">
+        projecdId = #{record.projecdid,jdbcType=INTEGER},
+      </if>
+      <if test="record.prescriptionno != null">
+        prescriptionNo = #{record.prescriptionno,jdbcType=INTEGER},
+      </if>
+      <if test="record.hospitalizationid != null">
+        hospitalizationId = #{record.hospitalizationid,jdbcType=INTEGER},
+      </if>
+      <if test="record.receivabledate != null">
+        receivableDate = #{record.receivabledate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cashier != null">
+        cashier = #{record.cashier,jdbcType=INTEGER},
+      </if>
+      <if test="record.chargemoney != null">
+        chargeMoney = #{record.chargemoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.checkoutstatus != null">
+        checkoutStatus = #{record.checkoutstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update hospitallzationfeeitems
+    set projecdId = #{record.projecdid,jdbcType=INTEGER},
+      prescriptionNo = #{record.prescriptionno,jdbcType=INTEGER},
+      hospitalizationId = #{record.hospitalizationid,jdbcType=INTEGER},
+      receivableDate = #{record.receivabledate,jdbcType=VARCHAR},
+      cashier = #{record.cashier,jdbcType=INTEGER},
+      chargeMoney = #{record.chargemoney,jdbcType=DOUBLE},
+      checkoutStatus = #{record.checkoutstatus,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.web.entity.Hospitallzationfeeitems">
+    update hospitallzationfeeitems
+    <set>
+      <if test="prescriptionno != null">
+        prescriptionNo = #{prescriptionno,jdbcType=INTEGER},
+      </if>
+      <if test="hospitalizationid != null">
+        hospitalizationId = #{hospitalizationid,jdbcType=INTEGER},
+      </if>
+      <if test="receivabledate != null">
+        receivableDate = #{receivabledate,jdbcType=VARCHAR},
+      </if>
+      <if test="cashier != null">
+        cashier = #{cashier,jdbcType=INTEGER},
+      </if>
+      <if test="chargemoney != null">
+        chargeMoney = #{chargemoney,jdbcType=DOUBLE},
+      </if>
+      <if test="checkoutstatus != null">
+        checkoutStatus = #{checkoutstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where projecdId = #{projecdid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.web.entity.Hospitallzationfeeitems">
+    update hospitallzationfeeitems
+    set prescriptionNo = #{prescriptionno,jdbcType=INTEGER},
+      hospitalizationId = #{hospitalizationid,jdbcType=INTEGER},
+      receivableDate = #{receivabledate,jdbcType=VARCHAR},
+      cashier = #{cashier,jdbcType=INTEGER},
+      chargeMoney = #{chargemoney,jdbcType=DOUBLE},
+      checkoutStatus = #{checkoutstatus,jdbcType=INTEGER}
+    where projecdId = #{projecdid,jdbcType=INTEGER}
+  </update>
+</mapper>

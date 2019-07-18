@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.web.dao.CheckMapper">
+  <resultMap id="BaseResultMap" type="com.web.entity.Check">
+    <result column="checkId" jdbcType="INTEGER" property="checkid" />
+    <result column="checkDoctor" jdbcType="INTEGER" property="checkdoctor" />
+    <result column="checkTime" jdbcType="VARCHAR" property="checktime" />
+    <result column="checkProjectNo" jdbcType="INTEGER" property="checkprojectno" />
+    <result column="checkResult" jdbcType="VARCHAR" property="checkresult" />
+    <result column="doctorAdviceId" jdbcType="INTEGER" property="doctoradviceid" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    checkId, checkDoctor, checkTime, checkProjectNo, checkResult, doctorAdviceId, isDelete
+  </sql>
+  <select id="selectByExample" parameterType="com.web.entity.CheckExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from check
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.web.entity.CheckExample">
+    delete from check
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.web.entity.Check">
+    insert into check (checkId, checkDoctor, checkTime, 
+      checkProjectNo, checkResult, doctorAdviceId, 
+      isDelete)
+    values (#{checkid,jdbcType=INTEGER}, #{checkdoctor,jdbcType=INTEGER}, #{checktime,jdbcType=VARCHAR}, 
+      #{checkprojectno,jdbcType=INTEGER}, #{checkresult,jdbcType=VARCHAR}, #{doctoradviceid,jdbcType=INTEGER}, 
+      #{isdelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.web.entity.Check">
+    insert into check
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="checkid != null">
+        checkId,
+      </if>
+      <if test="checkdoctor != null">
+        checkDoctor,
+      </if>
+      <if test="checktime != null">
+        checkTime,
+      </if>
+      <if test="checkprojectno != null">
+        checkProjectNo,
+      </if>
+      <if test="checkresult != null">
+        checkResult,
+      </if>
+      <if test="doctoradviceid != null">
+        doctorAdviceId,
+      </if>
+      <if test="isdelete != null">
+        isDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="checkid != null">
+        #{checkid,jdbcType=INTEGER},
+      </if>
+      <if test="checkdoctor != null">
+        #{checkdoctor,jdbcType=INTEGER},
+      </if>
+      <if test="checktime != null">
+        #{checktime,jdbcType=VARCHAR},
+      </if>
+      <if test="checkprojectno != null">
+        #{checkprojectno,jdbcType=INTEGER},
+      </if>
+      <if test="checkresult != null">
+        #{checkresult,jdbcType=VARCHAR},
+      </if>
+      <if test="doctoradviceid != null">
+        #{doctoradviceid,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.web.entity.CheckExample" resultType="java.lang.Long">
+    select count(*) from check
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update check
+    <set>
+      <if test="record.checkid != null">
+        checkId = #{record.checkid,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkdoctor != null">
+        checkDoctor = #{record.checkdoctor,jdbcType=INTEGER},
+      </if>
+      <if test="record.checktime != null">
+        checkTime = #{record.checktime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkprojectno != null">
+        checkProjectNo = #{record.checkprojectno,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkresult != null">
+        checkResult = #{record.checkresult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doctoradviceid != null">
+        doctorAdviceId = #{record.doctoradviceid,jdbcType=INTEGER},
+      </if>
+      <if test="record.isdelete != null">
+        isDelete = #{record.isdelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update check
+    set checkId = #{record.checkid,jdbcType=INTEGER},
+      checkDoctor = #{record.checkdoctor,jdbcType=INTEGER},
+      checkTime = #{record.checktime,jdbcType=VARCHAR},
+      checkProjectNo = #{record.checkprojectno,jdbcType=INTEGER},
+      checkResult = #{record.checkresult,jdbcType=VARCHAR},
+      doctorAdviceId = #{record.doctoradviceid,jdbcType=INTEGER},
+      isDelete = #{record.isdelete,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
