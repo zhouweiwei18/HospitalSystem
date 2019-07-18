@@ -31,6 +31,12 @@
 	href="${pageContext.request.contextPath}/assets/css/ace-rtl.min.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/ace-skins.min.css" />
+	
+	
+<link href="${pageContext.request.contextPath}/plugin/css/bootstrap-theme.css" rel="stylesheet">
+
+<!-- boostraptable -->
+<link href="${pageContext.request.contextPath}/plugin/css/bootstrap-table.css" rel="stylesheet"> 
 
 <!--[if lte IE 8]>
 		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -70,7 +76,7 @@
 			</div>
 			<!-- /.navbar-header -->
 
-			<div class="navbar-header pull-right" role="navigation">
+			<div class="navbar-header pull-right" role="navigation" >
 				<ul class="nav ace-nav">
 
 
@@ -146,7 +152,7 @@
 					</a>
 
 						<ul class="submenu">
-							<li><a href="elements.html"> <i
+							<li><a href="#"  id="loginOrexit"> <i
 									class="icon-double-angle-right"></i> 员工管理
 							</a></li>
 
@@ -433,6 +439,36 @@
 	<!-- basic scripts -->
 
 	<!--[if !IE]> -->
+
+
+
+
+
+	
+	<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">我的头像</h4>
+            </div>
+            <div class="modal-body">
+                <img id="myDialogImage" alt="" src="" width="300" height="300">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+
+
+
+
 
 	<script
 		src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
@@ -742,10 +778,20 @@
 						else
 							$(this).closest('li').removeClass('selected');
 					});
+			
+			$("#loginOrexit").click(function(){
+				alert();
+				})
+				
+ $(document).ready(function(){
+ $("#loginOrexit").click(function(){
+    alert();
+  });
+});
 
-		})
+
 	</script>
-
+		
+	
 </body>
 </html>
-
