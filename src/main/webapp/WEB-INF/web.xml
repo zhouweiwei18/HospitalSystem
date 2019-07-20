@@ -4,11 +4,11 @@
 	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	<display-name>Archetype Created Web Application</display-name>
+	<display-name></display-name>
 
 	<!-- 起始欢迎界面 -->
 	<welcome-file-list>
-		<welcome-file>/index.jsp</welcome-file>
+		<welcome-file>/login/login.jsp</welcome-file>
 	</welcome-file-list>
 
 	<!-- 读取spring配置文件 -->
@@ -16,6 +16,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
+
 
 	<!-- Spring字符集过滤器 -->
 	<filter>
@@ -33,6 +34,21 @@
 	<filter-mapping>
 		<filter-name>SpringEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>com.web.filter.LoginFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>*.action</url-pattern>
 	</filter-mapping>
 
 	<!-- 日志记录 -->
@@ -70,4 +86,48 @@
 		<servlet-name>dispatcherServlet</servlet-name>
 		<url-pattern>*.action</url-pattern>
 	</servlet-mapping>
+
+	<!-- 验证码 -->
+	<servlet>
+		<servlet-name>KaptchaServlet</servlet-name>
+		<servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+		<init-param>
+			<param-name>kaptcha.image.width</param-name>
+			<param-value>200</param-value>
+		</init-param>
+		<init-param>
+			<param-name>kaptcha.image.height</param-name>
+			<param-value>50</param-value>
+		</init-param>
+		<init-param>
+			<param-name>kaptcha.textproducer.char.length</param-name>
+			<param-value>5</param-value>
+		</init-param>
+		<init-param>
+			<param-name>kaptcha.border.color</param-name>
+			<param-value>blue</param-value>
+		</init-param>
+		<init-param>
+			<param-name>kaptcha.textproducer.font.names</param-name>
+			<param-value>Arial</param-value>
+		</init-param>
+		<init-param>
+			<param-name>kaptcha.textproducer.font.size</param-name>
+			<param-value>30</param-value>
+		</init-param>
+		<init-param>
+			<param-name>kaptcha.textproducer.font.color</param-name>
+			<param-value>blue</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>KaptchaServlet</servlet-name>
+		<url-pattern>/kaptcha.action</url-pattern>
+	</servlet-mapping>
+
+	<!-- session生命周期设置 -->
+	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
 </web-app>

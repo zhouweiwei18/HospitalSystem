@@ -60,7 +60,7 @@
 				value="classpath:applicationContent-myBatis.xml" />
 			
 			<!-- 读取映射文件 -->
-	        <property name="mapperLocations" value="classpath:com/web/mapper/*.xml"></property>  
+	        <property name="mapperLocations" value="classpath:com/web/mapper/*.xml"></property> 
 			
 			<!-- typeAliasesPackage：该属性可以给包中的类注册别名，注册后可以直接使用类名，而不用使用全限定的类名（就是不用包含包名）。 -->
 			<property name="typeAliasesPackage" value="com.web.entity" />
