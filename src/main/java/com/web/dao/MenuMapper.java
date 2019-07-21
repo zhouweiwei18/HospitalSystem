@@ -27,4 +27,11 @@ public interface MenuMapper {
     int updateByPrimaryKeySelective(Menu record);
 
     int updateByPrimaryKey(Menu record);
+    
+    /**
+     * 根据父级id查询菜单
+     * @param parentId
+     * @return
+     */
+    List<Menu> queryByParentId(Integer parentId);
 }

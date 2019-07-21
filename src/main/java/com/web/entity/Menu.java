@@ -1,6 +1,8 @@
 package com.web.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * menu
@@ -48,8 +50,18 @@ public class Menu implements Serializable {
     private Integer menudelete;
 
     private static final long serialVersionUID = 1L;
+    
+    private List<Menu> childMenu = new ArrayList<>();//子菜单
 
-    public Integer getMenuid() {
+    public List<Menu> getChildMenu() {
+		return childMenu;
+	}
+
+	public void setChildMenu(List<Menu> childMenu) {
+		this.childMenu = childMenu;
+	}
+
+	public Integer getMenuid() {
         return menuid;
     }
 

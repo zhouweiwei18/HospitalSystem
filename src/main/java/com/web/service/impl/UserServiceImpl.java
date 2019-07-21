@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.web.dao.UserMapper;
 import com.web.entity.User;
 import com.web.entity.UserExample;
+import com.web.entity.UserExample.Criteria;
 import com.web.service.UserService;
 
 @Service
@@ -24,5 +25,18 @@ public class UserServiceImpl implements UserService {
 		return list;
 	}
 
+	@Override
+	public User login(String userName, String password) {
+
+		UserExample example = new UserExample();
+
+		Criteria criteria = example.createCriteria();
+		criteria.andUsernameEqualTo(userName);
+		criteria.andUserpwdEqualTo(password);
+
+		List<User> list = userMapper.selectByExample(example);
+
+		return list.size() > 0 ? list.get(0) : null;
+	}
 
 }

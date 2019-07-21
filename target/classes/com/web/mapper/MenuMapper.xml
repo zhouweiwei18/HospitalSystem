@@ -263,4 +263,17 @@
       menuDelete = #{menudelete,jdbcType=INTEGER}
     where menuId = #{menuid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 根据父级id查询菜单 -->
+  <select id="queryByParentId" parameterType="Integer" resultType="com.web.entity.Menu">
+	  	select * 
+	  	from menu
+	  	where 1=1
+ 	 <if test="_parameter != null">
+       and parentId=#{parentId}
+     </if>
+     <if test="_parameter == null">
+       and parentId is null
+     </if>
+  </select>
 </mapper>

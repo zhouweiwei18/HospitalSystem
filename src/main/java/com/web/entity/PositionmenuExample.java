@@ -124,6 +124,66 @@ public class PositionmenuExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andPmidIsNull() {
+            addCriterion("pmid is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPmidIsNotNull() {
+            addCriterion("pmid is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPmidEqualTo(Integer value) {
+            addCriterion("pmid =", value, "pmid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPmidNotEqualTo(Integer value) {
+            addCriterion("pmid <>", value, "pmid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPmidGreaterThan(Integer value) {
+            addCriterion("pmid >", value, "pmid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPmidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("pmid >=", value, "pmid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPmidLessThan(Integer value) {
+            addCriterion("pmid <", value, "pmid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPmidLessThanOrEqualTo(Integer value) {
+            addCriterion("pmid <=", value, "pmid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPmidIn(List<Integer> values) {
+            addCriterion("pmid in", values, "pmid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPmidNotIn(List<Integer> values) {
+            addCriterion("pmid not in", values, "pmid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPmidBetween(Integer value1, Integer value2) {
+            addCriterion("pmid between", value1, value2, "pmid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPmidNotBetween(Integer value1, Integer value2) {
+            addCriterion("pmid not between", value1, value2, "pmid");
+            return (Criteria) this;
+        }
+
         public Criteria andPostidIsNull() {
             addCriterion("postId is null");
             return (Criteria) this;

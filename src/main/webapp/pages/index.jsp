@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -124,8 +125,31 @@
 							class="icon-dashboard"></i> <span class="menu-text">
 								苏微医院控制台 </span>
 					</a></li>
+					
+					<c:forEach items="${menuList }" var="one">
+						<li><a href="#" class="dropdown-toggle"> <i
+								class="icon-desktop"></i> <span class="menu-text">
+									${one.menuName } </span> <b class="arrow icon-angle-down"></b>
+						</a>
+							<ul class="submenu">
+								<c:forEach items="${one.childMenuPojo}" var="two">
+									<li><a class="dropdown-toggle" id="emp" dataUrl="${pageContext.request.contextPath }/${two.menuUrl}">
+											<i class="icon-double-angle-right"></i> ${two.menuName} <b
+											class="arrow icon-angle-down"></b>
+									</a>
+										<ul class="submenu">
+											<c:forEach items="${two.childMenuPojo}" var="three">
+												<li><a
+													dataUrl="${pageContext.request.contextPath }/${three.menuUrl}">
+														<i class="icon-leaf"></i> ${three.menuName}
+												</a></li>
+											</c:forEach>
+										</ul></li>
+								</c:forEach>
+							</ul></li>
+					</c:forEach>
 
-					<li><a href="#" class="dropdown-toggle"> <i
+					<!-- <li><a href="#" class="dropdown-toggle"> <i
 							class="icon-desktop"></i> <span class="menu-text"> 日常管理 </span> <b
 							class="arrow icon-angle-down"></b>
 					</a>
@@ -284,7 +308,7 @@
 							</a></li>
 
 						</ul></li>
-					</li>
+					</li> -->
 
 				</ul>
 				<!-- /.nav-list -->
@@ -709,6 +733,11 @@
 		
 		
 		/* 下面手动添加的代码 */
+		
+		$(".nav-list .submenu ul a").click(function() {
+				var menuUrl = $(this).attr("dataUrl");
+				$("#menuFrame").attr("src", menuUrl);
+		});
 		
 		$("#imgObj").click(function(){
 		   $(this).attr("src","${pageContext.request.contextPath}/kaptcha.action");

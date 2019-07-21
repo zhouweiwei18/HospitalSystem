@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface PositionmenuMapper {
-    long countByExample(PositionmenuExample example);
+	long countByExample(PositionmenuExample example);
 
     int deleteByExample(PositionmenuExample example);
 
-    int deleteByPrimaryKey(Integer postid);
+    int deleteByPrimaryKey(Integer pmid);
 
     int insert(Positionmenu record);
 
@@ -18,7 +18,7 @@ public interface PositionmenuMapper {
 
     List<Positionmenu> selectByExample(PositionmenuExample example);
 
-    Positionmenu selectByPrimaryKey(Integer postid);
+    Positionmenu selectByPrimaryKey(Integer pmid);
 
     int updateByExampleSelective(@Param("record") Positionmenu record, @Param("example") PositionmenuExample example);
 
@@ -27,4 +27,11 @@ public interface PositionmenuMapper {
     int updateByPrimaryKeySelective(Positionmenu record);
 
     int updateByPrimaryKey(Positionmenu record);
+    
+    /**
+     * 根据职位id查询菜单id集合
+     * @param poId
+     * @return
+     */
+    List<Integer> selctMenuByPoId(@Param("poId") Integer poId);
 }

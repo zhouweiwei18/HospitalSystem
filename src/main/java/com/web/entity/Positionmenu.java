@@ -7,6 +7,11 @@ import java.io.Serializable;
  * @author 
  */
 public class Positionmenu implements Serializable {
+    /**
+     * 主键
+     */
+    private Integer pmid;
+
     private Integer postid;
 
     private Integer menuid;
@@ -17,6 +22,14 @@ public class Positionmenu implements Serializable {
     private Integer postnumber;
 
     private static final long serialVersionUID = 1L;
+
+    public Integer getPmid() {
+        return pmid;
+    }
+
+    public void setPmid(Integer pmid) {
+        this.pmid = pmid;
+    }
 
     public Integer getPostid() {
         return postid;
@@ -54,7 +67,8 @@ public class Positionmenu implements Serializable {
             return false;
         }
         Positionmenu other = (Positionmenu) that;
-        return (this.getPostid() == null ? other.getPostid() == null : this.getPostid().equals(other.getPostid()))
+        return (this.getPmid() == null ? other.getPmid() == null : this.getPmid().equals(other.getPmid()))
+            && (this.getPostid() == null ? other.getPostid() == null : this.getPostid().equals(other.getPostid()))
             && (this.getMenuid() == null ? other.getMenuid() == null : this.getMenuid().equals(other.getMenuid()))
             && (this.getPostnumber() == null ? other.getPostnumber() == null : this.getPostnumber().equals(other.getPostnumber()));
     }
@@ -63,6 +77,7 @@ public class Positionmenu implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((getPmid() == null) ? 0 : getPmid().hashCode());
         result = prime * result + ((getPostid() == null) ? 0 : getPostid().hashCode());
         result = prime * result + ((getMenuid() == null) ? 0 : getMenuid().hashCode());
         result = prime * result + ((getPostnumber() == null) ? 0 : getPostnumber().hashCode());
@@ -75,6 +90,7 @@ public class Positionmenu implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
+        sb.append(", pmid=").append(pmid);
         sb.append(", postid=").append(postid);
         sb.append(", menuid=").append(menuid);
         sb.append(", postnumber=").append(postnumber);

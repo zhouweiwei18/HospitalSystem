@@ -15,13 +15,13 @@
     <div class="message">医院信息管理系统</div>
     <div id="darkbannerwrap"></div>
     
-    <form method="post" action="${pageContext.request.contextPath}/login.do">
+    <form method="post" action="${pageContext.request.contextPath}/login.action">
 		<input name="action" value="login" type="hidden">
 		<input name="userName" placeholder="用户名" required="" type="text">
 		<hr class="hr15">
 		<input name="userPwd" placeholder="密码" required="" type="password">
 		<hr class="hr15">
-		<img id="imgObj" alt="" src="${pageContext.request.contextPath}/kaptcha.action" title="看不清，点击刷新">
+		<img id="imgObj" alt="" src="${pageContext.request.contextPath}/kaptcha.do" title="看不清，点击刷新">
 		<hr class="hr15">
 		<input name="code" placeholder="验证码" required="" type="text">
 		<hr class="hr15">
@@ -33,7 +33,7 @@
 <script type="text/javascript">
    $(function(){//jquery加载事件  text()、attr()、val()、html()
 	   $("#imgObj").click(function(){
-		   $(this).attr("src","${pageContext.request.contextPath}/kaptcha.action");
+		   $(this).attr("src","${pageContext.request.contextPath}/kaptcha.do");
 	   })
    })
 </script>

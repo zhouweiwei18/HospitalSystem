@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.web.dao.PositionmenuMapper">
   <resultMap id="BaseResultMap" type="com.web.entity.Positionmenu">
-    <id column="postId" jdbcType="INTEGER" property="postid" />
+    <id column="pmid" jdbcType="INTEGER" property="pmid" />
+    <result column="postId" jdbcType="INTEGER" property="postid" />
     <result column="menuId" jdbcType="INTEGER" property="menuid" />
     <result column="postNumber" jdbcType="INTEGER" property="postnumber" />
   </resultMap>
@@ -65,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    postId, menuId, postNumber
+    pmid, postId, menuId, postNumber
   </sql>
   <select id="selectByExample" parameterType="com.web.entity.PositionmenuExample" resultMap="BaseResultMap">
     select
@@ -93,11 +94,11 @@
     select 
     <include refid="Base_Column_List" />
     from positionmenu
-    where postId = #{postid,jdbcType=INTEGER}
+    where pmid = #{pmid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from positionmenu
-    where postId = #{postid,jdbcType=INTEGER}
+    where pmid = #{pmid,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.web.entity.PositionmenuExample">
     delete from positionmenu
@@ -106,14 +107,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.web.entity.Positionmenu">
-    insert into positionmenu (postId, menuId, postNumber
-      )
-    values (#{postid,jdbcType=INTEGER}, #{menuid,jdbcType=INTEGER}, #{postnumber,jdbcType=INTEGER}
-      )
+    insert into positionmenu (pmid, postId, menuId, 
+      postNumber)
+    values (#{pmid,jdbcType=INTEGER}, #{postid,jdbcType=INTEGER}, #{menuid,jdbcType=INTEGER}, 
+      #{postnumber,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.web.entity.Positionmenu">
     insert into positionmenu
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pmid != null">
+        pmid,
+      </if>
       <if test="postid != null">
         postId,
       </if>
@@ -125,6 +129,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pmid != null">
+        #{pmid,jdbcType=INTEGER},
+      </if>
       <if test="postid != null">
         #{postid,jdbcType=INTEGER},
       </if>
@@ -145,6 +152,9 @@
   <update id="updateByExampleSelective" parameterType="map">
     update positionmenu
     <set>
+      <if test="record.pmid != null">
+        pmid = #{record.pmid,jdbcType=INTEGER},
+      </if>
       <if test="record.postid != null">
         postId = #{record.postid,jdbcType=INTEGER},
       </if>
@@ -161,7 +171,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update positionmenu
-    set postId = #{record.postid,jdbcType=INTEGER},
+    set pmid = #{record.pmid,jdbcType=INTEGER},
+      postId = #{record.postid,jdbcType=INTEGER},
       menuId = #{record.menuid,jdbcType=INTEGER},
       postNumber = #{record.postnumber,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -171,6 +182,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.web.entity.Positionmenu">
     update positionmenu
     <set>
+      <if test="postid != null">
+        postId = #{postid,jdbcType=INTEGER},
+      </if>
       <if test="menuid != null">
         menuId = #{menuid,jdbcType=INTEGER},
       </if>
@@ -178,12 +192,20 @@
         postNumber = #{postnumber,jdbcType=INTEGER},
       </if>
     </set>
-    where postId = #{postid,jdbcType=INTEGER}
+    where pmid = #{pmid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.web.entity.Positionmenu">
     update positionmenu
-    set menuId = #{menuid,jdbcType=INTEGER},
+    set postId = #{postid,jdbcType=INTEGER},
+      menuId = #{menuid,jdbcType=INTEGER},
       postNumber = #{postnumber,jdbcType=INTEGER}
-    where postId = #{postid,jdbcType=INTEGER}
+    where pmid = #{pmid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 根据职位id查询你菜单id的集合 -->
+  <select id="selctMenuByPoId" parameterType="Integer" resultType="Integer">
+  	SELECT menuId 
+  	FROM positionmenu 
+  	WHERE postId = #{poId}
+  </select>
 </mapper>

@@ -1,7 +1,6 @@
 package com.web.filter;
 
 import java.io.IOException;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,41 +11,63 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.web.entity.User;
+/**
+ * Servlet Filter implementation class LoginFilter
+ */
 
 public class LoginFilter implements Filter {
 
-	public void destroy() {
+	FilterConfig config;
 
+	public void destroy() {
+		this.config = null;
 	}
 
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		HttpServletRequest request = (HttpServletRequest) req;
-		HttpServletResponse response = (HttpServletResponse) res;
-		// 获得session中用户名
-		HttpSession session = request.getSession();
+		// 调用该方法过滤器通过验证，不调用打回
+		// chain.doFilter(request,response)
+		System.out.println("before the login filter!");
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse res = (HttpServletResponse) response;
 
-		User user = (User) session.getAttribute("user");
+		req.setCharacterEncoding("utf-8");// 设置字符集
+		res.setCharacterEncoding("utf-8");
+		res.setContentType("text/html;charset=UTF-8");
 
-		String url = request.getRequestURI().toString();
+		String url = req.getRequestURI().toString();// 请求的路径
+		HttpSession session = req.getSession(true);
 
-		// 非法用户
-		if (!url.endsWith("login.jsp") && !url.endsWith("userLogin.action")&& !url.endsWith("kaptcha.action")) {
-			if (user == null) {
-				//String loginInfo ="/HospitalSystem/login/login.jsp";
-				response.sendRedirect(request.getRequestURI()+"/login/login.jsp");
-			} else {
-				// 不过滤 放行
-				chain.doFilter(request, response);
-			}
-		} else {
-			// 不过滤
-			chain.doFilter(request, response);
+		Object obj = session.getAttribute("loginName");// 获取session
+
+		// req.getSession().removeAttribute("loginName");
+
+		System.out.println("-----------url-----------" + url);
+
+		if (url.endsWith("index.jsp") || url.endsWith("registe.jsp")|| url.endsWith(".css")|| url.endsWith(".js")|| url.endsWith(".jpg")|| url.endsWith(".png")) { // 判断此字符串是否是以指定的后缀结束
+
+			chain.doFilter(request, response);// 对拦截的资源放行
+
+		} else if (url.contains("login")) { // 判断当此字符串是否包含指定值，返回true
+
+			chain.doFilter(request, response);// 对拦截的资源放行
+
+		} else if (obj != null) { // 获取当前的session不为空时
+
+			chain.doFilter(request, response);// 对拦截的资源放行
+
+		} else { // if (null == obj || ((String) obj).length() == 0)
+
+			System.out.println("after the login filter!");
+
+			res.sendRedirect(req.getContextPath() + "/index.jsp"); // 重定向
 		}
 	}
 
-	public void init(FilterConfig arg0) throws ServletException {
+	public void init(FilterConfig config) throws ServletException {
 
+		System.out.println("begin do the login filter!");
+
+		this.config = config;
 	}
 }
