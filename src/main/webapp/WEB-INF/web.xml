@@ -70,4 +70,44 @@
 		<servlet-name>dispatcherServlet</servlet-name>
 		<url-pattern>*.action</url-pattern>
 	</servlet-mapping>
+	
+	  <!-- 验证码 -->
+  <servlet>
+      <servlet-name>KaptchaServlet</servlet-name>
+      <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+       <init-param>  
+	        <param-name>kaptcha.image.width</param-name>  
+	        <param-value>200</param-value>  
+	    </init-param>  
+	    <init-param>  
+	        <param-name>kaptcha.image.height</param-name>  
+	        <param-value>50</param-value>  
+	    </init-param>  
+	    <init-param>  
+	        <param-name>kaptcha.textproducer.char.length</param-name>  
+	        <param-value>5</param-value>  
+	    </init-param> 
+	    <init-param>
+	         <param-name>kaptcha.border.color</param-name>
+	         <param-value>blue</param-value>
+	    </init-param>
+	    <init-param>
+	        <param-name>kaptcha.textproducer.font.names</param-name>
+	        <param-value>Arial</param-value>
+	    </init-param>
+	    <init-param>
+	         <param-name>kaptcha.textproducer.font.size</param-name>
+	         <param-value>30</param-value>
+	    </init-param>
+	    <init-param>
+	        <param-name>kaptcha.textproducer.font.color</param-name>
+	        <param-value>blue</param-value>
+	    </init-param>
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>KaptchaServlet</servlet-name>
+      <url-pattern>/kaptcha.do</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
