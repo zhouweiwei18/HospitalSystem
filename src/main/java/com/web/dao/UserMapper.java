@@ -2,6 +2,8 @@ package com.web.dao;
 
 import com.web.entity.User;
 import com.web.entity.UserExample;
+import com.web.pojo.UserAndPartment;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,18 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+    
+    /**
+     * 根据用户id查询该用户所有信息(department)
+     * @param id
+     * @return
+     */
+    List<UserAndPartment> selectByUserId(Integer id);
+
+    /**
+     * 同时更新User和department
+     * @param uap
+     * @return
+     */
+	int updateUserAndDepart(UserAndPartment uap);
 }

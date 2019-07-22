@@ -4,7 +4,7 @@
 	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	<display-name></display-name>
+	<display-name>苏微医院</display-name>
 
 	<!-- 起始欢迎界面 -->
 	<welcome-file-list>
@@ -96,7 +96,7 @@
 		</init-param>
 		<init-param>
 			<param-name>kaptcha.textproducer.char.length</param-name>
-			<param-value>5</param-value>
+			<param-value>4</param-value>
 		</init-param>
 		<init-param>
 			<param-name>kaptcha.border.color</param-name>
@@ -123,6 +123,6 @@
 
 	<!-- session生命周期设置 -->
 	<session-config>
-		<session-timeout>1</session-timeout>
+		<session-timeout>10</session-timeout>
 	</session-config>
 </web-app>

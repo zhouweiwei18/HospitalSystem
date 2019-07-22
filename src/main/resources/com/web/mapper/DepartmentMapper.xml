@@ -7,7 +7,7 @@
     <result column="departmentAddress" jdbcType="VARCHAR" property="departmentaddress" />
     <result column="departmentTelephone" jdbcType="VARCHAR" property="departmenttelephone" />
     <result column="userid" jdbcType="INTEGER" property="userid" />
-    <result column="delete" jdbcType="VARCHAR" property="delete" />
+    <result column="isDelete" jdbcType="VARCHAR" property="isdelete" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    departmentId, departmentName, departmentAddress, departmentTelephone, userid, delete
+    departmentId, departmentName, departmentAddress, departmentTelephone, userid, isDelete
   </sql>
   <select id="selectByExample" parameterType="com.web.entity.DepartmentExample" resultMap="BaseResultMap">
     select
@@ -110,10 +110,10 @@
   </delete>
   <insert id="insert" parameterType="com.web.entity.Department">
     insert into department (departmentId, departmentName, departmentAddress, 
-      departmentTelephone, userid, delete
+      departmentTelephone, userid, isDelete
       )
     values (#{departmentid,jdbcType=INTEGER}, #{departmentname,jdbcType=VARCHAR}, #{departmentaddress,jdbcType=VARCHAR}, 
-      #{departmenttelephone,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{delete,jdbcType=VARCHAR}
+      #{departmenttelephone,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{isdelete,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.web.entity.Department">
@@ -134,8 +134,8 @@
       <if test="userid != null">
         userid,
       </if>
-      <if test="delete != null">
-        delete,
+      <if test="isdelete != null">
+        isDelete,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -154,8 +154,8 @@
       <if test="userid != null">
         #{userid,jdbcType=INTEGER},
       </if>
-      <if test="delete != null">
-        #{delete,jdbcType=VARCHAR},
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -183,8 +183,8 @@
       <if test="record.userid != null">
         userid = #{record.userid,jdbcType=INTEGER},
       </if>
-      <if test="record.delete != null">
-        delete = #{record.delete,jdbcType=VARCHAR},
+      <if test="record.isdelete != null">
+        isDelete = #{record.isdelete,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -198,7 +198,7 @@
       departmentAddress = #{record.departmentaddress,jdbcType=VARCHAR},
       departmentTelephone = #{record.departmenttelephone,jdbcType=VARCHAR},
       userid = #{record.userid,jdbcType=INTEGER},
-      delete = #{record.delete,jdbcType=VARCHAR}
+      isDelete = #{record.isdelete,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -218,8 +218,8 @@
       <if test="userid != null">
         userid = #{userid,jdbcType=INTEGER},
       </if>
-      <if test="delete != null">
-        delete = #{delete,jdbcType=VARCHAR},
+      <if test="isdelete != null">
+        isDelete = #{isdelete,jdbcType=VARCHAR},
       </if>
     </set>
     where departmentId = #{departmentid,jdbcType=INTEGER}
@@ -230,7 +230,7 @@
       departmentAddress = #{departmentaddress,jdbcType=VARCHAR},
       departmentTelephone = #{departmenttelephone,jdbcType=VARCHAR},
       userid = #{userid,jdbcType=INTEGER},
-      delete = #{delete,jdbcType=VARCHAR}
+      isDelete = #{isdelete,jdbcType=VARCHAR}
     where departmentId = #{departmentid,jdbcType=INTEGER}
   </update>
 </mapper>

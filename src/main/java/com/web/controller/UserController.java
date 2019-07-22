@@ -7,8 +7,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +18,7 @@ import com.web.entity.Menu;
 import com.web.entity.User;
 import com.web.entity.UserExample;
 import com.web.pojo.MenuPojo;
+import com.web.pojo.UserAndPartment;
 import com.web.service.MenuService;
 import com.web.service.PositionMenuService;
 import com.web.service.UserService;
@@ -33,6 +34,29 @@ public class UserController {
 
 	@Resource
 	MenuService menuService;
+
+	@RequestMapping("/user/updateUserById")
+	@ResponseBody
+	public Integer updateUserById(UserAndPartment uap) {
+
+		return userService.updateUserAndDepartment(uap);
+
+	}
+
+	@RequestMapping("/user/getUserById")
+	@ResponseBody
+	public UserAndPartment getUserById(Integer id) {
+
+		// 根据id查询当前user的所有信息，这里仅考虑了department表的信息
+		List<UserAndPartment> list = userService.getUserAndPart(id);
+
+		if (list != null) {
+
+			return list.get(0);
+		}
+
+		return null;
+	}
 
 	@RequestMapping("user/getUser")
 	@ResponseBody
@@ -79,11 +103,11 @@ public class UserController {
 
 				// 匹配权限 什么样的职位id有什么样的菜单
 				List<MenuPojo> menuList = merge(menuIDs, list);
-				
+
 				for (MenuPojo menuPojo : menuList) {
 					System.out.println(menuPojo.toString());
 				}
-				
+
 				// 传递权限菜单数据到主页面
 				model.addObject("menuList", menuList);
 

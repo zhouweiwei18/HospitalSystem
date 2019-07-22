@@ -311,4 +311,84 @@
       descc = #{descc,jdbcType=VARCHAR}
     where userId = #{userid,jdbcType=INTEGER}
   </update>
+  
+  
+  <!-- 同时更新User和department -->
+  <update id="updateUserAndDepart" parameterType="com.web.pojo.UserAndPartment">
+  	UPDATE user u ,
+ 	department d   
+	SET u.userName = #{username},  
+	    u.userPwd = #{userpwd},  
+        u.userSex = #{usersex},  
+        d.departmentName = #{departmentname}  
+	WHERE
+    u.userId = d.userid
+    and 
+    u.userId= #{userid}
+    ;
+  </update>
+  
+  <!-- 自定义resultMap用于一堆多查询 -->
+	<resultMap id="MyResultMap" type="com.web.pojo.UserAndPartment">
+		<id column="userId" property="userid" jdbcType="INTEGER" />
+		<result column="userName" property="username"
+			jdbcType="VARCHAR" />
+		<result column="userPwd" property="userpwd"
+			jdbcType="VARCHAR" />
+		<result column="userName" property="username"
+			jdbcType="VARCHAR" />
+		<result column="usersex" property="usersex"
+			jdbcType="VARCHAR" />
+		<result column="userPhoto" property="userphoto"
+			jdbcType="VARCHAR" />
+		<result column="userCard" property="usercard"
+			jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday"
+			jdbcType="VARCHAR" />
+		<result column="postId" property="postid"
+			jdbcType="VARCHAR" />
+		<result column="state" property="state"
+			jdbcType="VARCHAR" />
+		<result column="icuId" property="icuid"
+			jdbcType="VARCHAR" />
+		<result column="descc" property="descc"
+			jdbcType="VARCHAR" />
+		<result column="departmentId" property="departmentid"
+			jdbcType="VARCHAR" />
+		<result column="departmentName" property="departmentname"
+			jdbcType="VARCHAR" />
+		<result column="departmentAddress" property="departmentaddress"
+			jdbcType="VARCHAR" />
+		<result column="departmentTelephone" property="departmenttelephone"
+			jdbcType="VARCHAR" />
+		<result column="idDelete" property="delete"
+			jdbcType="VARCHAR" />
+	</resultMap>
+  
+  <!-- 添加一对一查询 -->
+	<select id="selectByUserId" parameterType="int" resultMap="MyResultMap">
+		select
+			user.userId, 
+			user.userName,
+			user.userPwd,
+			user.userSex,
+			user.userCard,
+			user.birthday,
+			user.state,
+			user.icuId,
+			user.descc,
+			department.departmentId,
+			department.departmentName,
+			department.departmentAddress,
+			department.departmentTelephone,
+			department.isDelete
+		from 
+			user,department
+		where
+			user.userId = department.userid
+		and 
+			user.userId=#{id}
+	</select>
+  
+  
 </mapper>

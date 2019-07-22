@@ -9,6 +9,7 @@ import com.web.dao.UserMapper;
 import com.web.entity.User;
 import com.web.entity.UserExample;
 import com.web.entity.UserExample.Criteria;
+import com.web.pojo.UserAndPartment;
 import com.web.service.UserService;
 
 @Service
@@ -37,6 +38,22 @@ public class UserServiceImpl implements UserService {
 		List<User> list = userMapper.selectByExample(example);
 
 		return list.size() > 0 ? list.get(0) : null;
+	}
+
+	@Override
+	public List<UserAndPartment> getUserAndPart(Integer id) {
+
+		List<UserAndPartment> list = userMapper.selectByUserId(id);
+
+		return list;
+	}
+
+	@Override
+	public int updateUserAndDepartment(UserAndPartment uap) {
+		
+		int i = userMapper.updateUserAndDepart(uap);
+		
+		return i;
 	}
 
 }

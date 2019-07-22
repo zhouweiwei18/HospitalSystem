@@ -35,7 +35,7 @@ public class Department implements Serializable {
     /**
      * 删除
      */
-    private String delete;
+    private String isdelete;
 
     private static final long serialVersionUID = 1L;
 
@@ -79,12 +79,12 @@ public class Department implements Serializable {
         this.userid = userid;
     }
 
-    public String getDelete() {
-        return delete;
+    public String getIsdelete() {
+        return isdelete;
     }
 
-    public void setDelete(String delete) {
-        this.delete = delete;
+    public void setIsdelete(String isdelete) {
+        this.isdelete = isdelete;
     }
 
     @Override
@@ -104,7 +104,7 @@ public class Department implements Serializable {
             && (this.getDepartmentaddress() == null ? other.getDepartmentaddress() == null : this.getDepartmentaddress().equals(other.getDepartmentaddress()))
             && (this.getDepartmenttelephone() == null ? other.getDepartmenttelephone() == null : this.getDepartmenttelephone().equals(other.getDepartmenttelephone()))
             && (this.getUserid() == null ? other.getUserid() == null : this.getUserid().equals(other.getUserid()))
-            && (this.getDelete() == null ? other.getDelete() == null : this.getDelete().equals(other.getDelete()));
+            && (this.getIsdelete() == null ? other.getIsdelete() == null : this.getIsdelete().equals(other.getIsdelete()));
     }
 
     @Override
@@ -116,7 +116,7 @@ public class Department implements Serializable {
         result = prime * result + ((getDepartmentaddress() == null) ? 0 : getDepartmentaddress().hashCode());
         result = prime * result + ((getDepartmenttelephone() == null) ? 0 : getDepartmenttelephone().hashCode());
         result = prime * result + ((getUserid() == null) ? 0 : getUserid().hashCode());
-        result = prime * result + ((getDelete() == null) ? 0 : getDelete().hashCode());
+        result = prime * result + ((getIsdelete() == null) ? 0 : getIsdelete().hashCode());
         return result;
     }
 
@@ -131,7 +131,7 @@ public class Department implements Serializable {
         sb.append(", departmentaddress=").append(departmentaddress);
         sb.append(", departmenttelephone=").append(departmenttelephone);
         sb.append(", userid=").append(userid);
-        sb.append(", delete=").append(delete);
+        sb.append(", isdelete=").append(isdelete);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

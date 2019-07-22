@@ -454,73 +454,73 @@ public class DepartmentExample {
             return (Criteria) this;
         }
 
-        public Criteria andDeleteIsNull() {
-            addCriterion("delete is null");
+        public Criteria andIsdeleteIsNull() {
+            addCriterion("isDelete is null");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteIsNotNull() {
-            addCriterion("delete is not null");
+        public Criteria andIsdeleteIsNotNull() {
+            addCriterion("isDelete is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteEqualTo(String value) {
-            addCriterion("delete =", value, "delete");
+        public Criteria andIsdeleteEqualTo(String value) {
+            addCriterion("isDelete =", value, "isdelete");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteNotEqualTo(String value) {
-            addCriterion("delete <>", value, "delete");
+        public Criteria andIsdeleteNotEqualTo(String value) {
+            addCriterion("isDelete <>", value, "isdelete");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteGreaterThan(String value) {
-            addCriterion("delete >", value, "delete");
+        public Criteria andIsdeleteGreaterThan(String value) {
+            addCriterion("isDelete >", value, "isdelete");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteGreaterThanOrEqualTo(String value) {
-            addCriterion("delete >=", value, "delete");
+        public Criteria andIsdeleteGreaterThanOrEqualTo(String value) {
+            addCriterion("isDelete >=", value, "isdelete");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteLessThan(String value) {
-            addCriterion("delete <", value, "delete");
+        public Criteria andIsdeleteLessThan(String value) {
+            addCriterion("isDelete <", value, "isdelete");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteLessThanOrEqualTo(String value) {
-            addCriterion("delete <=", value, "delete");
+        public Criteria andIsdeleteLessThanOrEqualTo(String value) {
+            addCriterion("isDelete <=", value, "isdelete");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteLike(String value) {
-            addCriterion("delete like", value, "delete");
+        public Criteria andIsdeleteLike(String value) {
+            addCriterion("isDelete like", value, "isdelete");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteNotLike(String value) {
-            addCriterion("delete not like", value, "delete");
+        public Criteria andIsdeleteNotLike(String value) {
+            addCriterion("isDelete not like", value, "isdelete");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteIn(List<String> values) {
-            addCriterion("delete in", values, "delete");
+        public Criteria andIsdeleteIn(List<String> values) {
+            addCriterion("isDelete in", values, "isdelete");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteNotIn(List<String> values) {
-            addCriterion("delete not in", values, "delete");
+        public Criteria andIsdeleteNotIn(List<String> values) {
+            addCriterion("isDelete not in", values, "isdelete");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteBetween(String value1, String value2) {
-            addCriterion("delete between", value1, value2, "delete");
+        public Criteria andIsdeleteBetween(String value1, String value2) {
+            addCriterion("isDelete between", value1, value2, "isdelete");
             return (Criteria) this;
         }
 
-        public Criteria andDeleteNotBetween(String value1, String value2) {
-            addCriterion("delete not between", value1, value2, "delete");
+        public Criteria andIsdeleteNotBetween(String value1, String value2) {
+            addCriterion("isDelete not between", value1, value2, "isdelete");
             return (Criteria) this;
         }
     }

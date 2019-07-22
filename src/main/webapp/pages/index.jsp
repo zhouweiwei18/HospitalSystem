@@ -127,16 +127,17 @@
 					</a></li>
 					
 					<c:forEach items="${menuList }" var="one">
-						<li><a href="#" class="dropdown-toggle"> <i
-								class="icon-desktop"></i> <span class="menu-text">
-									${one.menuName } </span> <b class="arrow icon-angle-down"></b>
-						</a>
+						<li><a href="#" class="dropdown-toggle"> 
+							<i class="icon-desktop"></i> 
+								<span class="menu-text"> ${one.menuName }</span> 
+								<b class="arrow icon-angle-down"></b>
+							</a>
 							<ul class="submenu">
 								<c:forEach items="${one.childMenuPojo}" var="two">
-									<li><a class="dropdown-toggle" id="emp" dataUrl="${pageContext.request.contextPath }/${two.menuUrl}">
-											<i class="icon-double-angle-right"></i> ${two.menuName} <b
-											class="arrow icon-angle-down"></b>
-									</a>
+									<li><a href="" class="dropdown-toggle"  id="" onclick="showEmps(${two.menuId})">
+											<i class="icon-double-angle-right"></i> ${two.menuName} 
+											<b class="arrow icon-angle-down"></b>
+										</a>
 										<ul class="submenu">
 											<c:forEach items="${two.childMenuPojo}" var="three">
 												<li><a
@@ -144,175 +145,13 @@
 														<i class="icon-leaf"></i> ${three.menuName}
 												</a></li>
 											</c:forEach>
-										</ul></li>
+										</ul>
+									</li>
 								</c:forEach>
 							</ul></li>
 					</c:forEach>
-
-					<!-- <li><a href="#" class="dropdown-toggle"> <i
-							class="icon-desktop"></i> <span class="menu-text"> 日常管理 </span> <b
-							class="arrow icon-angle-down"></b>
-					</a>
-
-						<ul class="submenu">
-							<li><a href="#" id="emp"> <i
-									class="icon-double-angle-right"></i> 员工管理
-							</a></li>
-
-							<li><a href="elements.html"> <i
-									class="icon-double-angle-right"></i> 岗位管理
-							</a></li>
-							<li><a href="elements.html"> <i
-									class="icon-double-angle-right"></i> 科室管理
-							</a></li>
-
-							<li><a href="buttons.html"> <i
-									class="icon-double-angle-right"></i> 值班管理
-							</a></li>
-
-							<li><a href="treeview.html"> <i
-									class="icon-double-angle-right"></i> 假期值班时间
-							</a></li>
-
-							<li><a href="jquery-ui.html"> <i
-									class="icon-double-angle-right"></i> 病区管理
-							</a></li>
-
-							<li><a href="nestable-list.html"> <i
-									class="icon-double-angle-right"></i> 设施管理
-							</a></li>
-
-						</ul></li>
-
-					<li><a href="javascript:void(0);" class="dropdown-toggle"> <i
-							class="icon-list"></i> <span class="menu-text"> 门诊管理 </span> <b
-							class="arrow icon-angle-down"></b>
-					</a>
-
-						<ul class="submenu">
-							<li><a href="tables.html"> <i
-									class="icon-double-angle-right"></i> 门诊挂号
-							</a></li>
-
-							<li><a href="jqgrid.html"> <i
-									class="icon-double-angle-right"></i> 门诊病历
-							</a></li>
-
-							<li><a href="jqgrid.html"> <i
-									class="icon-double-angle-right"></i> 门诊处方
-							</a></li>
-
-							<li><a href="jqgrid.html"> <i
-									class="icon-double-angle-right"></i> 门诊收费
-							</a></li>
-
-							<li><a href="jqgrid.html"> <i
-									class="icon-double-angle-right"></i> 门诊检查
-							</a></li>
-
-							<li><a href="jqgrid.html"> <i
-									class="icon-double-angle-right"></i> 门诊病人
-							</a></li>
-
-							<li><a href="jqgrid.html"> <i
-									class="icon-double-angle-right"></i> 医嘱管理
-							</a></li>
-						</ul></li>
-
-					<li><a href="#" class="dropdown-toggle"> <i
-							class="icon-edit"></i> <span class="menu-text"> 住院管理 </span> <b
-							class="arrow icon-angle-down"></b>
-					</a>
-
-						<ul class="submenu">
-							<li><a href="form-elements.html"> <i
-									class="icon-double-angle-right"></i> 住院病人
-							</a></li>
-
-							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 床位管理
-							</a></li>
-							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 医嘱管理
-							</a></li>
-							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 医院处方
-							</a></li>
-							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 医院收费
-							</a></li>
-							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 医嘱检查
-							</a></li>
-							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 手术管理
-							</a></li>
-
-						</ul></li>
-
-					<li><a href="#" class="dropdown-toggle"> <i
-							class="icon-cog"></i> <span class="menu-text"> 药品管理 </span> <b
-							class="arrow icon-angle-down"></b>
-					</a>
-
-						<ul class="submenu">
-							<li><a href="form-elements.html"> <i
-									class="icon-double-angle-right"></i> 药品信息
-							</a></li>
-
-							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 订单管理
-							</a></li>
-							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 药品库存
-							</a></li>
-							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 供应商
-							</a></li>
-							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 缺药单
-							</a></li>
-
-
-						</ul></li>
-					<li><a href="#" class="dropdown-toggle"> <i
-							class="icon-leaf"></i> <span class="menu-text"> 财务管理 </span> <b
-							class="arrow icon-angle-down"></b>
-					</a>
-
-						<ul class="submenu">
-							<li><a href="form-elements.html"> <i
-									class="icon-double-angle-right"></i> 员工工资
-							</a></li>
-
-							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 收费情况
-							</a></li>
-							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 支出情况
-							</a></li>
-
-						</ul>
-					<li><a href="#" class="dropdown-toggle"> <i
-							class="icon-user"></i> <span class="menu-text"> 行政管理 </span> <b
-							class="arrow icon-angle-down"></b>
-					</a>
-
-						<ul class="submenu">
-							<li><a href="form-elements.html"> <i
-									class="icon-double-angle-right"></i> 差旅安排
-							</a></li>
-
-							<li><a href="form-wizard.html"> <i
-									class="icon-double-angle-right"></i> 考勤记录
-							</a></li>
-
-						</ul></li>
-					</li> -->
-
-				</ul>
-				<!-- /.nav-list -->
-
+				 </ul> 
+					   
 				<div class="sidebar-collapse" id="sidebar-collapse">
 					<i class="icon-double-angle-left"
 						data-icon1="icon-double-angle-left"
@@ -329,11 +168,56 @@
 
 			<div class="main-content" style="height: 600px">
 				 
+				<!-- 修改的模态框 -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				    <div class="modal-dialog">
+				        <div class="modal-content">
+				            <div class="modal-header">
+				                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				                <h4 class="modal-title" id="myModalLabel">Edit Employee Information</h4>
+				            </div>
+				            <div class="modal-body">
+								<form id="updateForm">
+									 
+									 <input name="userid" id="userid" style="display: none;" value=""> 
+								  <div class="form-group">
+								    <label for="exampleInputEmail1">username</label>
+								    <input type="email" class="form-control" id="username" name="username" placeholder="Email">
+								  </div>
+								  
+								  <div class="form-group">
+								    <label for="exampleInputEmail1">password</label>
+								    <input type="email" class="form-control" id="password" name="userpwd" placeholder="Email">
+								  </div>
+								  
+								  <div class="form-group">
+								    <label for="exampleInputEmail1">sex</label>
+								    <input type="email" class="form-control" id="sex" name="usersex" placeholder="Email">
+								  </div>
+								  
+								  <div class="form-group">
+								    <label for="exampleInputEmail1">postname</label>
+								    <!-- <input type="email" class="form-control" id="postname" placeholder="Email"> -->
+								    <select id="departmentSelect" name="departmentname">  
+								    	
+								    </select>
+								  </div>
+								  
+								</form>
+							</div>
+				            <div class="modal-footer">
+				                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				                <button type="button" class="btn btn-primary" id="submitForm">提交更改</button>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+				 
  
 				<!-- 这是现实所有员工信息的table(bootstrap-table) -->
-				<div style="float: left;width: 1350px;height: 100px">
-					<table id="table">
-					</table>
+				<div style="float: left;width: 1350px;height: 100px" id="tableId">
+					<!-- <table id="table">
+					</table> -->
 				</div>
 				 
 			</div>
@@ -437,8 +321,7 @@
 
 	<script type="text/javascript">
 		if ("ontouchend" in document)
-			document
-					.write("<script src='${pageContext.request.contextPath}/assets/js/jquery.mobile.custom.min.js'>"
+			document.write("<script src='${pageContext.request.contextPath}/assets/js/jquery.mobile.custom.min.js'>"
 							+ "<"+"script>");
 	</script>
 	<script
@@ -486,6 +369,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/tableExport/libs/jsPDF/jspdf.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/tableExport/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/tableExport/tableExport.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/jquery.serializejson.min.js"></script>
 
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
@@ -734,6 +618,203 @@
 		
 		/* 下面手动添加的代码 */
 		
+	    function showEmps(id) {
+			
+			//alert(id);
+			if(id==7){
+				//alert("这是员工");
+				//往员工表格所在div写入一个表格
+				var tab = "<table id='table'></table>";
+				
+				$("#tableId").append(tab);
+				
+				window.operateEvents = {
+					    'click.btnEditPicGroupDetail': function (e, value, row, index) {
+					       alert(row.qxxh);
+					       $("#myModal").modal('show');
+					     }
+				};
+				
+				$('#table').bootstrapTable({
+					  url: '${pageContext.request.contextPath}/user/getUser.action',//访问后台（json）的地址
+					  pagination: true,//允许分页
+					  search: true,//可以搜索
+					  pageSize:3,//每页显示3条数据
+					  pageList:[2,3,5,8,10],//每页显示的条数列表
+					  showColumns:true,//选择显示的列
+					  showRefresh:true,//允许刷新
+					  showExport:true,//允许导出
+					  exportDataType:'all',
+					  exportTypes:['txt','doc','excel'],
+					  columns: [
+					  {
+					    field: 'userid',//字段名称    对应json中的key
+					    title: '编号',
+					    align: 'center',
+					    width:100
+					  }, 
+					  {
+					    field: 'username',
+					    width:200,
+					    align: 'center',
+					    title: '姓名'
+					  }, 
+					  {
+						    field: 'userpwd',
+						    width:200,
+						    align: 'center',
+						    title: '密码'
+					  }, 
+					  {
+					    field: 'userphoto',
+					    width:200,
+					    align: 'center',
+					    title: '头像',
+					    formatter:function(value,row,index){
+					    	//value:值   row：行      index:索引
+					    	var imageUrl = '<img alt="" src="/imgeurl/'+row.userphoto+'" width="50" height="50">';
+					    	return imageUrl;
+					    }
+					  }, 
+					  {
+						    field: 'usersex',
+						    width:100,
+						    align: 'center',
+						    title: '性别'
+					  }, 
+					 /*  {
+						    field: 'birthday',
+						    title: '生日日期'
+					  }, */
+					  {
+						  field:'usercard',
+						  title:'身份证',
+						  align: 'center',
+						  width:200
+						  /* cellStyle:{  
+							 css:{
+								 "background-color":"red"
+							 	 }  
+						  } */
+					  },
+					  {
+						    field: 'postid',
+						    width:200,
+						    align: 'center',
+						    title: '职位id'
+					  }, 
+					  /* {
+						    field: 'postid',
+						    title: '姓名'
+					  }, */
+					 /*  {
+						    field: 'state',
+						    title: '状态'
+					  }, */
+					  /* {
+						    field: 'icuid',
+						    title: '病区号'
+					  }, */
+					  {
+				            field: 'operate',
+				            title: '操作',
+				            align: 'center',
+				            width: '200px',
+				            //events: operateEvents,
+				            formatter: operateFormatter
+				        },
+					  /* {
+						    field: 'descc',
+						    title: '描述'
+					  } */
+					  
+					  ]
+					})
+			}else{
+				
+				$("#tableId").empty();
+				
+			}
+		}
+		
+		function updateButt(id){
+			
+			//alert("当前行用户的id"+id);
+			
+			$('#myModal').modal().on('shown.bs.modal',
+				 function() {
+				//alert("idshidsfsdf");
+				  // alert(id);
+				  //alert("模态框");
+				  //下面ajax请求后台，查询所有department信息
+					$.ajax({
+			    	    type:"post", //请求方式
+			    	    url:"${pageContext.request.contextPath}/department/getAllDepartment.action", //请求路径
+			    	    async: false,
+			    	    data:{},
+			    	    traditional: true,//加上这个就可以传数组
+			    	    dataType : 'json', 
+			    	    success:function(data){
+			    	    	
+			    	    	//alert("department数据返回了");
+			    	    	//获取select
+			    	    	var dar = $("#departmentSelect");
+			    	    	dar.empty();
+			    	    	//遍历List<Department>
+							 $.each(data, function(i, item) {
+								//alert(item.departmentId);
+								//alert(item.departmentname);
+								var op = "<option id="+item.departmentid+" value="+item.departmentname+">"+item.departmentname+"</option>";
+								dar.append(op);
+								//alert(data.dList[i].departmentname;);
+							});
+			    	    	
+			    	    },
+						error : function(data) {
+							alert("error");
+						}
+			        });
+				  
+						
+				     $.ajax({
+			    	    type:"post", //请求方式
+			    	    url:"${pageContext.request.contextPath}/user/getUserById.action", //请求路径
+			    	    async: false,
+			    	    data:{   	
+			    	    	"id":id,
+			    	    },
+			    	    traditional: true,//加上这个就可以传数组
+			    	    dataType : 'json', 
+			    	    success:function(data){
+			    	    	//alert(data.username);
+			    	    	//数据填充到修改表单
+			    	    	//获取表单给表单清空
+			    	    	//$("#updateForm").reset();
+			    	    	$("#username").attr("value",data.username);
+			    	    	$("#password").attr("value",data.userpwd);
+			    	    	$("#sex").attr("value",data.usersex);
+			    	    	$("#userid").attr("value",data.userid);
+			    	    	$("#departmentSelect option[id="+data.departmentid+"]").attr("selected", true);
+			    	    },
+						error : function(data) {
+							alert("error");
+							//$("#updateForm").reset();
+						}
+			        }) 
+			})
+	
+		}
+		 
+		function operateFormatter(value, row, index) {
+			
+		    return [
+		        '<div class="btn-group">',
+		        '<button id="btnEditPicGroupDetail1" type="button" onclick="updateButt('+row.userid+')" class="btn btn-default"  singleSelected=true>修改</button>',
+		        '<button id="btnEditPicGroupDetail2" type="button" class="btn btn-default"  singleSelected=true>删除</button>',
+		        '</div>'
+		    ].join('');
+		}
+		
 		$(".nav-list .submenu ul a").click(function() {
 				var menuUrl = $(this).attr("dataUrl");
 				$("#menuFrame").attr("src", menuUrl);
@@ -742,97 +823,47 @@
 		$("#imgObj").click(function(){
 		   $(this).attr("src","${pageContext.request.contextPath}/kaptcha.action");
 	   	})
-		 
-		 $('#emp').click(function(){
-			 /* $.ajax({
-					type : "POST",
-					url : "${pageContext.request.contextPath }/user/getUser.action",
-					data : {},//json序列化 
-					async : false,//这里必须要同步
-					datatype : "json", //此处不能省略 
-					contentType : "application/json; charset=utf-8",//此处不能省略 
-					success : function(data) { */
-						
-						//var tableStr = "<table style='border: 1' id='table'><tr><td></td></tr></table>";
-						
-						//var str = $("#employeeTable");
-						//alert("数据返回了");
-						$('#table').bootstrapTable({
-							  url: '${pageContext.request.contextPath}/user/getUser.action',//访问后台（json）的地址
-							  pagination: true,//允许分页
-							  search: true,//可以搜索
-							  pageSize:3,//每页显示3条数据
-							  pageList:[2,3,5,8,10],//每页显示的条数列表
-							  showColumns:true,//选择显示的列
-							  showRefresh:true,//允许刷新
-							  showExport:true,//允许导出
-							  exportDataType:'all',
-							  exportTypes:['txt','doc','excel'],
-							  columns: [
-							  {
-							    field: 'userid',//字段名称    对应json中的key
-							    title: '编号'
-							  }, 
-							  {
-							    field: 'username',
-							    title: '姓名'
-							  }, 
-							  {
-								    field: 'userpwd',
-								    title: '密码'
-							  }, 
-							  {
-							    field: 'userphoto',
-							    title: '头像',
-							    formatter:function(value,row,index){
-							    	//value:值   row：行      index:索引
-							    	var imageUrl = '<img alt="" src="/imgeurl/'+row.userphoto+'" width="50" height="50">';
-							    	return imageUrl;
-							    }
-							  }, 
-							  {
-								    field: 'usersex',
-								    title: '性别'
-							  }, 
-							  {
-								    field: 'birthday',
-								    title: '生日日期'
-							  },
-							  {
-									  field:'usercard',
-									  title:'身份证'
-							  },
-							  {
-								    field: 'postid',
-								    title: '职位id'
-							  }, 
-							  {
-								    field: 'postid',
-								    title: '姓名'
-							  },
-							  {
-								    field: 'state',
-								    title: '状态'
-							  },
-							  {
-								    field: 'icuid',
-								    title: '病区号'
-							  },
-							  {
-								    field: 'descc',
-								    title: '描述'
-							  }
-							  
-							  ]
-							})
-						
-						//alert(data);
-					/* },
-					error : function(data) {
-						alert("error");
-					}
-				}); */
-		}) 
+	   	
+	   	
+		$("#submitForm").click(function(){
+		   
+			//var formData = $("#submitForm").serializeJSON();
+			var username = $("#username").val();
+			var password = $("#password").val();
+			var sex = $("#sex").val();
+			var userid = $("#userid").val();
+			//$('#departmentSelect option:selected').val();
+			var departmentname = $('#departmentSelect option:selected').val();
+			
+			alert(username);
+			alert(password);
+			alert(sex);
+			alert(departmentSelect);
+			
+			$.ajax({
+	    	    type:"post", //请求方式
+	    	    url:"${pageContext.request.contextPath}/user/updateUserById.action", //请求路径
+	    	    async: false,
+	    	    data:
+					{
+	    	    		"userid":userid,
+	    	    		"username":username,
+	    	    		"userpwd":password,
+	    	    		"usersex":sex,
+	    	    		"departmentname":departmentname
+					},
+	    	    traditional: true,//加上这个就可以传数组
+	    	    dataType : 'json', 
+	    	    success:function(data){
+	    	    	alert("成功了！");
+	    	    },
+				error : function(data) {
+					alert("error");
+				}
+	        })
+			 
+	   	})
 	</script>
+	 
 </body>
 </html>

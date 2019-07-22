@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>苏微医院欢迎您</title>
 <link href="${pageContext.request.contextPath}/plugin/css/login/login.css" rel="stylesheet">
 <!-- jsp包含指令 -->
 <%@ include file="common/commoncss.jsp" %>
