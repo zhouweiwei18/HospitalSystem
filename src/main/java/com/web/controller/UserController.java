@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -79,51 +78,78 @@ public class UserController {
 		// 获取Session对象
 		HttpSession session = req.getSession();
 
+		// 获取Session当中的用户信息，如果用户已经登录过了的话
+		User user = (User) session.getAttribute("user");
+
 		// 获取session域中的验证码信息
 		String randomCode = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
 
-		// 判断验证码是否正确
-		if (code.equalsIgnoreCase(randomCode)) {
+		if (user == null) {
+			// 说明session中没有用户登录信息
+			// 或者说登录信息已经过期了
+			// -------------------------------------------
+			// 判断用户名和密码是否正确 (正常的登录)
+			// 判断验证码是否正确
+			if (code.equalsIgnoreCase(randomCode)) {
+				user = userService.login(userName, userPwd);
+				// System.out.println(user + "------------------------------------------");
+				// 判断是否登录成功
+				if (user != null) {
 
-			// 判断用户名和密码是否正确
-			User user = userService.login(userName, userPwd);
+					// 将该用户信息放入Session中
+					session.setAttribute("user", user);
+					
+					List<MenuPojo> menuList = allocateMenu(user);
 
-			System.out.println(user + "------------------------------------------");
-			// 判断是否登录成功
-			if (user != null) {
+					// 传递权限菜单数据到主页面
+					model.addObject("menuList", menuList);
 
-				// 得到当前用户的岗位id
-				Integer poId = user.getPostid();
-
-				// 根据岗位id查询对应权限菜单
-				List<Integer> menuIDs = pms.selectMenuByPoId(poId);
-
-				// 查询所有的菜单
-				List<Menu> list = menuService.queryByParentId(null);
-
-				// 匹配权限 什么样的职位id有什么样的菜单
-				List<MenuPojo> menuList = merge(menuIDs, list);
-
-				for (MenuPojo menuPojo : menuList) {
-					System.out.println(menuPojo.toString());
+					model.setViewName("pages/index");// 跳转到主页面
+				} else {
+					//说明用户名密码出错
+					model.setViewName("login");
 				}
-
-				// 传递权限菜单数据到主页面
-				model.addObject("menuList", menuList);
-
-				model.setViewName("pages/index");// 跳转到主页面
-			} else {
-
+			}else {
+				//说明验证码出错
 				model.setViewName("login");
 			}
+		}else {
+			//说明用户只是临时关掉了窗口
+			//并且在服务器session生命周期内
+			//只要对当前用户分配菜单即可
+			// 得到当前用户的岗位id
+			List<MenuPojo> menuList = allocateMenu(user);
 
-		} else {
-			model.setViewName("login");
+			// 传递权限菜单数据到主页面
+			model.addObject("menuList", menuList);
+
+			model.setViewName("pages/index");// 跳转到主页面
 		}
 
 		return model;
 	}
+	
+	
+	//根据用户信息分配菜单的方法
+	private List<MenuPojo> allocateMenu(User user){
+		Integer poId = user.getPostid(); 
 
+		// 根据岗位id查询对应权限菜单
+		List<Integer> menuIDs = pms.selectMenuByPoId(poId);
+
+		// 查询所有的菜单
+		List<Menu> list = menuService.queryByParentId(null);
+
+		// 匹配权限 什么样的职位id有什么样的菜单
+		List<MenuPojo> menuList = merge(menuIDs, list);
+
+		for (MenuPojo menuPojo : menuList) {
+			System.out.println(menuPojo.toString());
+		}
+		
+		return menuList;
+	}
+	 
 	private List<MenuPojo> merge(List<Integer> menuIDs, List<Menu> list) {
 
 		List<MenuPojo> menuPojolist = new ArrayList<>();

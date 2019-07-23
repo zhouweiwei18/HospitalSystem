@@ -21,7 +21,7 @@
 		<hr class="hr15">
 		<input name="userPwd" placeholder="密码" required="" type="password">
 		<hr class="hr15">
-		<img id="imgObj" alt="" src="${pageContext.request.contextPath}/kaptcha.do" title="看不清，点击刷新">
+		<img id="imgObj" alt="" src="${pageContext.request.contextPath}/kaptcha.action" title="看不清，点击刷新">
 		<hr class="hr15">
 		<input name="code" placeholder="验证码" required="" type="text">
 		<hr class="hr15">
@@ -33,7 +33,7 @@
 <script type="text/javascript">
    $(function(){//jquery加载事件  text()、attr()、val()、html()
 	   $("#imgObj").click(function(){
-		   $(this).attr("src","${pageContext.request.contextPath}/kaptcha.do");
+		   $(this).attr("src","${pageContext.request.contextPath}/kaptcha.action");
 	   })
    })
 </script>

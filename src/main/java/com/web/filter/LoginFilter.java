@@ -38,13 +38,13 @@ public class LoginFilter implements Filter {
 		String url = req.getRequestURI().toString();// 请求的路径
 		HttpSession session = req.getSession(true);
 
-		Object obj = session.getAttribute("loginName");// 获取session
+		Object obj = session.getAttribute("user");// 获取session
 
 		// req.getSession().removeAttribute("loginName");
 
 		System.out.println("-----------url-----------" + url);
 
-		if (url.endsWith("index.jsp") || url.endsWith("registe.jsp")|| url.endsWith(".css")|| url.endsWith(".js")|| url.endsWith(".jpg")|| url.endsWith(".png")) { // 判断此字符串是否是以指定的后缀结束
+		if (url.endsWith("login.jsp")||url.endsWith("kaptcha.action")) { // 判断此字符串是否是以指定的后缀结束
 
 			chain.doFilter(request, response);// 对拦截的资源放行
 
@@ -53,6 +53,11 @@ public class LoginFilter implements Filter {
 			chain.doFilter(request, response);// 对拦截的资源放行
 
 		} else if (obj != null) { // 获取当前的session不为空时
+			//当用户这个时候要请求index.jsp页面时，需要重定向到login登录方法
+			//分配用户菜单
+			if(url.endsWith("index.jsp")) {
+				res.sendRedirect(req.getContextPath() + "/login.action"); // 重定向
+			}
 
 			chain.doFilter(request, response);// 对拦截的资源放行
 
@@ -60,7 +65,7 @@ public class LoginFilter implements Filter {
 
 			System.out.println("after the login filter!");
 
-			res.sendRedirect(req.getContextPath() + "/index.jsp"); // 重定向
+			res.sendRedirect(req.getContextPath() + "/login.jsp"); // 重定向
 		}
 	}
 
