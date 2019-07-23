@@ -90,33 +90,55 @@ public class UserController {
 			// -------------------------------------------
 			// 判断用户名和密码是否正确 (正常的登录)
 			// 判断验证码是否正确
-			if (code.equalsIgnoreCase(randomCode)) {
-				user = userService.login(userName, userPwd);
-				// System.out.println(user + "------------------------------------------");
-				// 判断是否登录成功
-				if (user != null) {
+			//防止直接在url地址栏输入http://localhost:8080/HospitalSystem/login.action
+			//确保用户经过了登录页面
+			if (code != null) { 
+				if (code.equalsIgnoreCase(randomCode)) {
+					user = userService.login(userName, userPwd);
+					// System.out.println(user + "------------------------------------------");
+					// 判断是否登录成功
+					if (user != null) {
 
-					// 将该用户信息放入Session中
-					session.setAttribute("user", user);
-					
-					List<MenuPojo> menuList = allocateMenu(user);
+						// 将该用户信息放入Session中
+						session.setAttribute("user", user);
 
-					// 传递权限菜单数据到主页面
-					model.addObject("menuList", menuList);
+						List<MenuPojo> menuList = allocateMenu(user);
 
-					model.setViewName("pages/index");// 跳转到主页面
+						// 传递权限菜单数据到主页面
+						model.addObject("menuList", menuList);
+
+						model.setViewName("pages/index");// 跳转到主页面
+					} else {
+						// 说明用户名密码出错
+						model.setViewName("login");
+					}
 				} else {
-					//说明用户名密码出错
+					// 说明验证码出错
 					model.setViewName("login");
 				}
-			}else {
-				//说明验证码出错
+			} else {
+				// 说明验证码出错
 				model.setViewName("login");
 			}
-		}else {
-			//说明用户只是临时关掉了窗口
-			//并且在服务器session生命周期内
-			//只要对当前用户分配菜单即可
+		} else {
+			// 说明用户只是临时关掉了窗口
+			// 并且在服务器session生命周期内
+			// 只要对当前用户分配菜单即可
+			// 这里要注意的是，这次登录的可能不是session中保存的用户登录的
+			// 可能是另一个用户要登陆，所以进行比对
+			// 用户名密码不为空(1:登录页面 2：点击了浏览器的刷新按钮)
+			// 两个判断保证的是有密码和用户名，有验证码的user一定是登录表单过来的
+			if (!(userName == null && userPwd == null) && !(user.getUsername().equals(userName)
+					&& user.getUserpwd().equals(userPwd) && code.equalsIgnoreCase(randomCode))) {
+				// 说明是从登录页面过来的,清楚当前服务器Session中的user
+				session.removeAttribute("user");
+
+				// 重新登录 //也可以直接转发到login,直接登录(这里不太会写)
+				model.setViewName("login");
+				// 直接结束
+				return model;
+			}
+			// 下面分配菜单列表即可
 			// 得到当前用户的岗位id
 			List<MenuPojo> menuList = allocateMenu(user);
 
@@ -128,11 +150,10 @@ public class UserController {
 
 		return model;
 	}
-	
-	
-	//根据用户信息分配菜单的方法
-	private List<MenuPojo> allocateMenu(User user){
-		Integer poId = user.getPostid(); 
+
+	// 根据用户信息分配菜单的方法
+	private List<MenuPojo> allocateMenu(User user) {
+		Integer poId = user.getPostid();
 
 		// 根据岗位id查询对应权限菜单
 		List<Integer> menuIDs = pms.selectMenuByPoId(poId);
@@ -146,10 +167,10 @@ public class UserController {
 		for (MenuPojo menuPojo : menuList) {
 			System.out.println(menuPojo.toString());
 		}
-		
+
 		return menuList;
 	}
-	 
+
 	private List<MenuPojo> merge(List<Integer> menuIDs, List<Menu> list) {
 
 		List<MenuPojo> menuPojolist = new ArrayList<>();

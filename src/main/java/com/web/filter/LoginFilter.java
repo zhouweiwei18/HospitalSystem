@@ -43,7 +43,7 @@ public class LoginFilter implements Filter {
 		// req.getSession().removeAttribute("loginName");
 
 		System.out.println("-----------url-----------" + url);
-
+		
 		if (url.endsWith("login.jsp")||url.endsWith("kaptcha.action")) { // 判断此字符串是否是以指定的后缀结束
 
 			chain.doFilter(request, response);// 对拦截的资源放行

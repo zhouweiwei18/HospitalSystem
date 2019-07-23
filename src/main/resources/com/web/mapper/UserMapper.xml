@@ -389,6 +389,5 @@
 		and 
 			user.userId=#{id}
 	</select>
-  
-  
+	 
 </mapper>

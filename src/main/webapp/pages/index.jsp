@@ -46,14 +46,11 @@
 						class="icon-leaf"></i> 苏微医院
 				</small>
 				</a>
-				<!-- /.brand -->
 			</div>
-			<!-- /.navbar-header -->
-
+			 
 			<div class="navbar-header pull-right" role="navigation">
 				<ul class="nav ace-nav">
-
-
+ 
 					<li class="light-blue"><a data-toggle="dropdown" href="#"
 						class="dropdown-toggle"> <img class="nav-user-photo"
 							src="${pageContext.request.contextPath}/assets/avatars/user.jpg"
@@ -71,18 +68,14 @@
 							</a></li>
 
 							<li class="divider"></li>
-
-							<!-- <li><a href="#"> <i class="icon-off"></i> 退出 -->
+ 
 							<li>
 								<a href="javascript:void(0);" onclick="loginClick()"> <i class="icon-off"></i>退出</a>
 							</li>
 						</ul></li>
 				</ul>
-				<!-- /.ace-nav -->
 			</div>
-			<!-- /.navbar-header -->
 		</div>
-		<!-- /.container -->
 	</div>
 
 	<div class="main-container" id="main-container">
@@ -94,12 +87,13 @@
 		</script>
 	
 		<div class="main-container-inner">
+		
 			<a class="menu-toggler" id="menu-toggler" href="#"> <span
 				class="menu-text"></span>
 			</a>
-			
 			 
 			<div class="sidebar" id="sidebar">
+			
 				<script type="text/javascript">
 					try {
 						ace.settings.check('sidebar', 'fixed')
@@ -115,13 +109,14 @@
 						<span class="btn btn-warning"></span> <span class="btn btn-danger"></span>
 					</div>
 				</div>
-				<!-- #sidebar-shortcuts -->
-
+				  
 				<ul class="nav nav-list">
-					<li class="active"><a href="index.html"> <i
-							class="icon-dashboard"></i> <span class="menu-text">
-								苏微医院控制台 </span>
-					</a></li>
+					<li class="active">
+						<a href="index.html"> 
+						   <i class="icon-dashboard"></i> 
+						   <span class="menu-text">苏微医院控制台 </span>
+						</a>
+					</li>
 					
 					<c:forEach items="${menuList }" var="one">
 						<li><a href="#" class="dropdown-toggle"> 
@@ -147,7 +142,7 @@
 								</c:forEach>
 							</ul></li>
 					</c:forEach>
-				 </ul> 
+				</ul> 
 					   
 				<div class="sidebar-collapse" id="sidebar-collapse">
 					<i class="icon-double-angle-left"
@@ -179,47 +174,44 @@
 									 <input name="userid" id="userid" style="display: none;" value=""> 
 								  <div class="form-group">
 								    <label for="exampleInputEmail1">username</label>
-								    <input type="email" class="form-control" id="username" name="username" placeholder="Email">
+								    <input type="email" class="form-control" id="username" name="username" placeholder="username">
 								  </div>
 								  
 								  <div class="form-group">
 								    <label for="exampleInputEmail1">password</label>
-								    <input type="email" class="form-control" id="password" name="userpwd" placeholder="Email">
+								    <input type="email" class="form-control" id="password" name="userpwd" placeholder="password">
 								  </div>
 								  
 								  <div class="form-group">
 								    <label for="exampleInputEmail1">sex</label>
-								    <input type="email" class="form-control" id="sex" name="usersex" placeholder="Email">
+								    <input type="email" class="form-control" id="sex" name="usersex" placeholder="sex">
 								  </div>
 								  
 								  <div class="form-group">
 								    <label for="exampleInputEmail1">departmentname</label>
-								    <!-- <input type="email" class="form-control" id="postname" placeholder="Email"> -->
 								    <select id="departmentSelect" name="departmentname">  
 								    	
 								    </select>
 								  </div>
-								  
 								</form>
 							</div>
 				            <div class="modal-footer">
-				                <button type="button" class="btn btn-default" id="closeBut" data-dismiss="modal">关闭</button>
-				                <button type="button" class="btn btn-primary" id="submitForm">提交更改</button>
+				                <button type="button" class="btn btn-primary" id="closeBut" data-dismiss="modal">关闭</button>
+				                <button type="button" class="btn btn-danger" id="submitForm">提交更改</button>
 				            </div>
 				        </div>
 				    </div>
 				</div>
-				 
- 
+				  
 				<!-- 这是现实所有员工信息的table(bootstrap-table) -->
 				<div style="float: left;width: 1350px;height: 100px" id="tableId">
+					
+					<!-- <button type="button" class="btn btn-primary">（首选项）Primary</button> -->
 					<!-- <table id="table">
 					</table> -->
 				</div>
-				 
 			</div>
-			<!-- /.main-content -->
-
+			  
 			<div class="ace-settings-container" id="ace-settings-container">
 				<div class="btn btn-app btn-xs btn-warning ace-settings-btn"
 					id="ace-settings-btn">
@@ -271,23 +263,17 @@
 					</div>
 				</div>
 			</div>
-			<!-- /#ace-settings-container -->
 		</div>
-		<!-- /.main-container-inner -->
-			
-
+		  
 		<a href="#" id="btn-scroll-up"
 			class="btn-scroll-up btn btn-sm btn-inverse"> <i
 			class="icon-double-angle-up icon-only bigger-110"></i>
 		</a>
-		
-		
+		 
 	</div>
   
-	<script
-		src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
- 
-
+<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
+  
 	<script type="text/javascript">
 		window.jQuery
 				|| document
@@ -304,7 +290,6 @@
 		src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/assets/js/typeahead-bs2.min.js"></script>
- 
 	<script
 		src="${pageContext.request.contextPath}/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script
@@ -328,8 +313,6 @@
 	<script src="${pageContext.request.contextPath}/assets/js/ace.min.js"></script>
 	
 	<!-- boostraptable -->
-	<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/jquery.min.js"></script> --%>
-	<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/bootstrap3.3.7.min.js"></script> --%>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/bootstrap-table.js"></script>
 	<!-- 导出excel、pdf文件 -->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/export/bootstrap-table-export.js"></script>
@@ -340,36 +323,34 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/tableExport/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/tableExport/tableExport.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/jquery.serializejson.min.js"></script>
-
-	<!-- inline scripts related to this page -->
+ 
 	<script type="text/javascript">
 	jQuery(function($) {
-		$('.easy-pie-chart.percentage')
-				.each(
-						function() {
-							var $box = $(this).closest('.infobox');
-							var barColor = $(this).data('color')
-									|| (!$box.hasClass('infobox-dark') ? $box
-											.css('color')
-											: 'rgba(255,255,255,0.95)');
-							var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)'
-									: '#E2E2E2';
-							var size = parseInt($(this).data('size')) || 50;
-							$(this)
-									.easyPieChart(
-											{
-												barColor : barColor,
-												trackColor : trackColor,
-												scaleColor : false,
-												lineCap : 'butt',
-												lineWidth : parseInt(size / 10),
-												animate : /msie\s*(8|7|6)/
-														.test(navigator.userAgent
-																.toLowerCase()) ? false
-														: 1000,
-												size : size
-											});
-						})
+		$('.easy-pie-chart.percentage').each(
+		function() {
+			var $box = $(this).closest('.infobox');
+			var barColor = $(this).data('color')
+					|| (!$box.hasClass('infobox-dark') ? $box
+							.css('color')
+							: 'rgba(255,255,255,0.95)');
+			var trackColor = barColor == 'rgba(255,255,255,0.95)' ? 'rgba(255,255,255,0.25)'
+					: '#E2E2E2';
+			var size = parseInt($(this).data('size')) || 50;
+			$(this)
+					.easyPieChart(
+							{
+								barColor : barColor,
+								trackColor : trackColor,
+								scaleColor : false,
+								lineCap : 'butt',
+								lineWidth : parseInt(size / 10),
+								animate : /msie\s*(8|7|6)/
+										.test(navigator.userAgent
+												.toLowerCase()) ? false
+										: 1000,
+								size : size
+							});
+		})
 
 		$('.sparkline').each(
 				function() {
@@ -438,11 +419,6 @@
 			})
 		}
 		drawPieChart(placeholder, data);
-
-		/**
-		we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
-		so that's not needed actually.
-		 */
 		placeholder.data('chart', data);
 		placeholder.data('draw', drawPieChart);
 
@@ -548,9 +524,7 @@
 		$('.dialogs,.comments').slimScroll({
 			height : '300px'
 		});
-
-		//Android's default browser somehow is confused when tapping on label which will lead to dragging the task
-		//so disable dragging when clicking on label
+ 
 		var agent = navigator.userAgent.toLowerCase();
 		if ("ontouchstart" in document && /applewebkit/.test(agent)
 				&& /android/.test(agent))
@@ -570,7 +544,7 @@
 			placeholder : 'draggable-placeholder',
 			forcePlaceholderSize : true,
 			tolerance : 'pointer',
-			stop : function(event, ui) {//just for Chrome!!!! so that dropdowns on items don't appear below other items after being moved
+			stop : function(event, ui) {
 				$(ui.item).css('z-index', 'auto');
 			}
 		});
@@ -671,7 +645,10 @@
 			            formatter: operateFormatter
 			        },
 				  ]
-				})
+				});
+				
+				/* var but = "<button type='button' class='btn btn-primary'>（首选项）Primary</button>";
+				$(".fixed-table-toolbar").append(); */
 		}else{
 			
 			$("#tableId").empty();
@@ -736,7 +713,6 @@
 						//$("#updateForm").reset();
 					}
 		        });
-			  	  
 		})
 
 	}
@@ -745,8 +721,8 @@
 		
 	    return [
 	        '<div class="btn-group">',
-	        '<button id="btnEditPicGroupDetail1" type="button" onclick="updateButt('+row.userid+')" class="btn btn-default"  singleSelected=true>修改</button>',
-	        '<button id="btnEditPicGroupDetail2" type="button" class="btn btn-default"  singleSelected=true>删除</button>',
+	        '<button id="btnEditPicGroupDetail1" type="button" onclick="updateButt('+row.userid+')" class="btn btn-primary"  singleSelected=true>修改</button>',
+	        '<button id="btnEditPicGroupDetail2" type="button" class="btn btn-danger"  singleSelected=true>删除</button>',
 	        '</div>'
 	    ].join('');
 	}
@@ -756,13 +732,12 @@
 			$("#menuFrame").attr("src", menuUrl);
 	});
 	
-	$("#imgObj").click(function(){
+	/* $("#imgObj").click(function(){
 	   $(this).attr("src","${pageContext.request.contextPath}/kaptcha.action");
    	})
-   	
+   	 */
    	
 	$("#submitForm").click(function(){
-	    
 		var username = $("#username").val();
 		var password = $("#password").val();
 		var sex = $("#sex").val();
@@ -774,29 +749,26 @@
     	    url:"${pageContext.request.contextPath}/user/updateUserById.action", //请求路径
     	    async: false,
     	    data:
-				{
-    	    		"userid":userid,
-    	    		"username":username,
-    	    		"userpwd":password,
-    	    		"usersex":sex,
-    	    		"departmentname":departmentname
-				},
+			{
+   	    		"userid":userid,
+   	    		"username":username,
+   	    		"userpwd":password,
+   	    		"usersex":sex,
+   	    		"departmentname":departmentname
+			},
     	    traditional: true,//加上这个就可以传数组
     	    dataType : 'json', 
     	    success:function(data){
-    	    	//alert("成功了！");
-    	    	//关闭窗体
+    	    	//关闭修改窗体
     	    	$("#closeBut").click();
     	    	
     	    	//重新查询员工信息
     	    	$("#table").bootstrapTable('refresh');
-    	    	//showEmps(userid);
     	    },
 			error : function(data) {
 				alert("error");
 			}
         })
-		 
    	})
 	</script>
 </body>
