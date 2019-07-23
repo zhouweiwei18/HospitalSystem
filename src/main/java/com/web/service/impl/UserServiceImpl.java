@@ -11,7 +11,7 @@ import com.web.entity.UserExample;
 import com.web.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public  class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserMapper userMapper;
@@ -60,4 +60,8 @@ public class UserServiceImpl implements UserService {
 		int u = userMapper.insert(user);
 		return u;
 	}
+	
+	
+
+
 }

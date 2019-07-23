@@ -15,11 +15,11 @@
 <body>
 
 
-	<!-- 按钮触发模态框 -->
+  <!--     	按钮触发模态框
 	<button class="btn btn-primary btn-lg" data-toggle="modal"
-		data-target="#myModal">开始演示模态框</button>
+		data-target="#myModal">开始演示模态框</button>  -->
 
-	<div class="modal fade" id="myModal" role="dialog" aria-hidden="true">
+	<div class="modal show" id="myModal" role="dialog" aria-hidden="true">
 		<div class="modal-dialog" role="regist">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -36,7 +36,12 @@
 								<div class="col-sm-8">
 									<input class="form-control" id="username"  name="username" type="text"
 										placeholder="username">
+										<p  id="checkuser">&nbsp;</p>
+										<!-- <input class="form-control" id="checkuser"  name="checkuser"  style="display: none"
+										> -->
+										
 								</div>
+					
 
 							</div>
 						
@@ -131,7 +136,7 @@ $(document).ready(function() {
                         message: 'The username is required and cannot be empty'
                     },
                     stringLength: {
-                        min: 6,
+                        min: 2,
                         max: 30,
                         message: 'The username must be more than 6 and less than 30 characters long'
                     },
@@ -142,10 +147,10 @@ $(document).ready(function() {
                     different: {
                         field: 'password',
                         message: 'The username and password cannot be the same as each other'
-                    }
+                    },
+            //
                 }
             },
-            
             password: {
                 validators: {
                     notEmpty: {
@@ -248,31 +253,30 @@ $(document).ready(function() {
     	        "usersex":usersex,
     	        "usercard":usercard,
     	        "birthday":birthday,
-    	  
     	    },
     	 
     	    traditional: true,//加上这个就可以传数组
     	    dataType : 'json', 
-    	    success:function(){
-    	    	 
-    	    	/* alert();
+    	    success:function(date){
     	    	
-    	    	var str = $("#registeForm").val();
-    	    	alert(str); */
-    	    	location.href="${pageContext.request.contextPath}/index.jsp";
-    	    	 
+    	    	 var aa= date["flag"];
+
+    	    	if(date.state==false){
+    	    		 
+    	    		  $('#checkuser').val("");
+    	    		  $("#checkuser").append(aa);
+    	    		 // location.href="${pageContext.request.contextPath}/pages/qqq.jsp";
+    	    	}
+    	    	    else{
+    	    			location.href="${pageContext.request.contextPath}/index.jsp"; 	
+    	    		}
     	    }
+    	  
         }) 
     })	
   
 });
 
-   
-   
-
 </script>
-
-
-
 </body>
 </html>
