@@ -14,7 +14,7 @@ public interface UserService {
 	 * @param example
 	 * @return
 	 */
-	List<User> selectAll(UserExample example);
+	List<User> selectAll(User user);
 
 	/**
 	 * 登录
@@ -30,10 +30,24 @@ public interface UserService {
 	 * @return
 	 */
 	List<UserAndPartment> getUserAndPart(Integer id);
+	
+	/**
+	 * 根据id查询
+	 * @param id
+	 * @return
+	 */
+	User getUserById(Integer id);
 
 	/*
 	 * User表和Department同时更新
 	 */
 	int updateUserAndDepartment(UserAndPartment uap);
+
+	/**
+	 * 根据用户id修改用户信息
+	 * @param user
+	 * @return
+	 */
+	Integer updateUserById(User user);
 	
 }

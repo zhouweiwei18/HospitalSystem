@@ -13,3 +13,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/tableExport/libs/jsPDF/jspdf.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/tableExport/libs/jsPDF-AutoTable/jspdf.plugin.autotable.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/plugin/js/tableExport/tableExport.js"></script>
+
+<!-- kindeditor -->
+<script src="${pageContext.request.contextPath}/plugin/kindeditor/kindeditor.js"></script>
+<script src="${pageContext.request.contextPath}/plugin/kindeditor/lang/zh_CN.js"></script>

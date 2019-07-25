@@ -26,10 +26,20 @@ public class Position implements Serializable {
      * 岗位工资
      */
     private Integer postsalary;
+    
+    private Department department;// 多对一
 
     private static final long serialVersionUID = 1L;
+     
+    public Department getDepartment() {
+		return department;
+	}
 
-    public Integer getPostnumber() {
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Integer getPostnumber() {
         return postnumber;
     }
 

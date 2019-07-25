@@ -19,9 +19,9 @@ public class UserServiceImpl implements UserService {
 	UserMapper userMapper;
 
 	@Override
-	public List<User> selectAll(UserExample example) {
+	public List<User> selectAll(User user) {
 
-		List<User> list = userMapper.selectByExample(example);
+		List<User> list = userMapper.queryAll(user);
 
 		return list;
 	}
@@ -50,10 +50,23 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int updateUserAndDepartment(UserAndPartment uap) {
-		
+
 		int i = userMapper.updateUserAndDepart(uap);
-		
+
 		return i;
+	}
+
+	@Override
+	public User getUserById(Integer id) {
+
+		return userMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public Integer updateUserById(User user) {
+
+		//这里只对用户做出修改的信息做出更新，不修改的信息不更新
+		return userMapper.updateByPrimaryKeySelective(user);
 	}
 
 }

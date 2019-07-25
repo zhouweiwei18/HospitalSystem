@@ -34,6 +34,19 @@ public class UserController {
 	@Resource
 	MenuService menuService;
 
+	@RequestMapping("/user/saveUpdateUser")
+	@ResponseBody
+	public Integer saveUpdateUser(User user) {
+
+		return userService.updateUserById(user);
+	}
+
+	/**
+	 * 这是多表的修改
+	 * 
+	 * @param uap
+	 * @return
+	 */
 	@RequestMapping("/user/updateUserById")
 	@ResponseBody
 	public Integer updateUserById(UserAndPartment uap) {
@@ -42,6 +55,12 @@ public class UserController {
 
 	}
 
+	/**
+	 * 这是之前多表查询
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("/user/getUserById")
 	@ResponseBody
 	public UserAndPartment getUserById(Integer id) {
@@ -57,15 +76,22 @@ public class UserController {
 		return null;
 	}
 
+	@RequestMapping("/user/getById")
+	@ResponseBody
+	public User getByById(Integer uid) {
+
+		User user = userService.getUserById(uid);
+
+		return user;
+	}
+
 	@RequestMapping("user/getUser")
 	@ResponseBody
 	public List<User> getUser() {
 
-		UserExample example = new UserExample();
+		User u = new User();
 
-		List<User> list = userService.selectAll(example);
-
-		System.out.println(list.toString());
+		List<User> list = userService.selectAll(u);
 
 		return list;
 	}
@@ -90,9 +116,9 @@ public class UserController {
 			// -------------------------------------------
 			// 判断用户名和密码是否正确 (正常的登录)
 			// 判断验证码是否正确
-			//防止直接在url地址栏输入http://localhost:8080/HospitalSystem/login.action
-			//确保用户经过了登录页面
-			if (code != null) { 
+			// 防止直接在url地址栏输入http://localhost:8080/HospitalSystem/login.action
+			// 确保用户经过了登录页面
+			if (code != null) {
 				if (code.equalsIgnoreCase(randomCode)) {
 					user = userService.login(userName, userPwd);
 					// System.out.println(user + "------------------------------------------");

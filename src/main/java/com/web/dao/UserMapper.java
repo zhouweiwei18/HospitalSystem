@@ -1,11 +1,12 @@
 package com.web.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.web.entity.User;
 import com.web.entity.UserExample;
 import com.web.pojo.UserAndPartment;
-
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
     long countByExample(UserExample example);
@@ -43,4 +44,10 @@ public interface UserMapper {
      * @return
      */
 	int updateUserAndDepart(UserAndPartment uap);
+	
+	/**
+	 * 关联查询(User Position Department)
+	 * @return
+	 */
+	List<User> queryAll(User user);
 }

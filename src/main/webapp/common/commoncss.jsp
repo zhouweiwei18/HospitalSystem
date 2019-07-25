@@ -5,3 +5,6 @@
 
 <!-- boostraptable -->
 <link href="${pageContext.request.contextPath}/plugin/css/bootstrap-table.css" rel="stylesheet">    
+
+<!-- kindeditor -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/plugin/kindeditor/themes/default/default.css" />

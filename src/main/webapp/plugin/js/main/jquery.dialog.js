@@ -1,5 +1,4 @@
-﻿
-(function($) {
+﻿(function($) {
     /**
      * @name Dialog
      * @class 弹出框,可拖拽，设置宽和高，有无遮罩，

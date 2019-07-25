@@ -328,7 +328,7 @@
     ;
   </update>
   
-  <!-- 自定义resultMap用于一堆多查询 -->
+  <!-- 自定义resultMap用于一对多查询 -->
 	<resultMap id="MyResultMap" type="com.web.pojo.UserAndPartment">
 		<id column="userId" property="userid" jdbcType="INTEGER" />
 		<result column="userName" property="username"
@@ -389,5 +389,53 @@
 		and 
 			user.userId=#{id}
 	</select>
+	
+  <!-- 自定义结果集 -->
+  <resultMap type="com.web.entity.User" id="userResultMap">
+       <id column="userId" jdbcType="INTEGER" property="userid" />
+	   <result column="userName" jdbcType="VARCHAR" property="username" />
+	   <result column="userPwd" jdbcType="VARCHAR" property="userpwd" />
+	   <result column="userSex" jdbcType="VARCHAR" property="usersex" />
+	   <result column="userPhoto" jdbcType="VARCHAR" property="userphoto" />
+	   <result column="userCard" jdbcType="VARCHAR" property="usercard" />
+	   <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+	   <result column="postId" jdbcType="INTEGER" property="postid" />
+	   <result column="state" jdbcType="INTEGER" property="state" />
+	   <result column="icuId" jdbcType="INTEGER" property="icuid" />
+	   <result column="descc" jdbcType="VARCHAR" property="descc" />
+	    
+	    <!-- 多对一 association    一对多:collection
+	    column:列名（数据库表，sql查询）       property:属性名字 -->
+	    <association property="position" javaType="com.web.entity.Position">
+	        <!-- id:主键    column：列名    property：属性名称 -->
+	       <id column="postNumber" jdbcType="INTEGER" property="postnumber" />
+	        
+	        <!-- result:普通属性 -->
+	        <result column="postName" jdbcType="VARCHAR" property="postname" />
+    		<result column="departmentId" jdbcType="INTEGER" property="departmentid" />
+    		<result column="postSalary" jdbcType="INTEGER" property="postsalary" />
+		    
+		    <!-- 多对一 -->
+		    <association property="department" javaType="com.web.entity.Department">
+		   			<!-- id:主键    column：列名    property：属性名称 -->
+	                <id column="departmentId1" jdbcType="INTEGER" property="departmentid" />
+	                <!-- result:普通属性 -->
+				  	<result column="departmentName" jdbcType="VARCHAR" property="departmentname" />
+				    <result column="departmentAddress" jdbcType="VARCHAR" property="departmentaddress" />
+				    <result column="departmentTelephone" jdbcType="VARCHAR" property="departmenttelephone" />
+				    <result column="userid1" jdbcType="INTEGER" property="userid" />
+				    <result column="isDelete" jdbcType="VARCHAR" property="isdelete" />
+		    </association>
+	    </association>
+  </resultMap>
+  
+  <!--关联查询  -->
+  <select id="queryAll"  resultMap="userResultMap">
+    select * from user u,position p,department d
+     where u.postId=p.postNumber and p.departmentId=d.departmentId
+     <if test="username != null">
+       and u.username like concat('%',concat(#{username},'%'));
+     </if>
+  </select>
 	 
 </mapper>

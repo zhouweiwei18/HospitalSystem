@@ -61,8 +61,19 @@ public class User implements Serializable {
      * 描述
      */
     private String descc;
+    
+    private Position position;
+     
+	private static final long serialVersionUID = 1L;
 
-    private static final long serialVersionUID = 1L;
+    public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
 
     public Integer getUserid() {
         return userid;
