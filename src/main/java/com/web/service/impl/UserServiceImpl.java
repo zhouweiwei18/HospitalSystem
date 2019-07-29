@@ -75,6 +75,8 @@ public class UserServiceImpl implements UserService {
 		// 这里拆分为两张表的单表操作
 		// 首先是User表
 		//insert方法返回当前插入对象所生成的主键
+		//注意下user的state需要设置为0 不然查询的时候会报错 
+		user.setState(0);
 		int j = userMapper.insert(user);
 		
 		//修改department表

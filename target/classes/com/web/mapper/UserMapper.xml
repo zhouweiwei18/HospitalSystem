@@ -114,7 +114,8 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.web.entity.User">
+  
+  <insert id="insert" parameterType="com.web.entity.User" useGeneratedKeys="true" keyProperty="userid">
     insert into user (userId, userName, userPwd, 
       userSex, userPhoto, userCard, 
       birthday, postId, state, 
@@ -124,6 +125,7 @@
       #{birthday,jdbcType=VARCHAR}, #{postid,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
       #{icuid,jdbcType=INTEGER}, #{descc,jdbcType=VARCHAR})
   </insert>
+  
   <insert id="insertSelective" parameterType="com.web.entity.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -314,19 +316,27 @@
   
   
   <!-- 同时更新User和department -->
-  <update id="updateUserAndDepart" parameterType="com.web.pojo.UserAndPartment">
-  	UPDATE user u ,
- 	department d   
-	SET u.userName = #{username},  
+  <!-- <update id="updateUserAndDepart" parameterType="com.web.entity.User">
+  	UPDATE
+  		user u , department d   
+	SET 
+		u.userName = #{username},  
 	    u.userPwd = #{userpwd},  
         u.userSex = #{usersex},  
-        d.departmentName = #{departmentname}  
+        u.userphoto = #{userphoto},  
+        u.usercard = #{usercard},  
+        u.birthday = #{birthday},  
+        u.postid = #{postid},  
+        u.state = #{state},  
+        u.icuid = #{icuid},  
+        u.descc = #{descc},  
+        u.descc = #{descc},  
+        d.userid = #{u.userid}  
 	WHERE
-    u.userId = d.userid
-    and 
-    u.userId= #{userid}
-    ;
-  </update>
+    	u.userId = d.userid
+    and  
+    	u.userId= #{userid};
+  </update> -->
   
   <!-- 自定义resultMap用于一对多查询 -->
 	<resultMap id="MyResultMap" type="com.web.pojo.UserAndPartment">

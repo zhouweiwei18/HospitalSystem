@@ -170,6 +170,13 @@ $(function(){//jquery的加载事件
 		})
 })
 
+/* 做权限分配啦  */
+function myAuthorityClick(id) {
+	
+	alert("");
+}
+
+/* 做加删除啦  */
 function myDeleteClick(id) {
 	
 	var userId = id;

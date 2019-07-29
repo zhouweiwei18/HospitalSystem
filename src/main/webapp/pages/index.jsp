@@ -114,43 +114,8 @@
 					</div>
 				</div>
 
-				<ul class="nav nav-list">
-					<li class="active">
-						<a href="${pageContext.request.contextPath }/main.jsp"> 
-							<i class="icon-dashboard"></i> 
-							<span class="menu-text"> 控制台 </span>
-						</a>
-					</li>
-
-					<c:forEach items="${menuList}" var="one">
-						<li>
-							<a href="#" class="dropdown-toggle"> 
-								<i class="icon-desktop"></i> 
-								<span class="menu-text"> ${one.menuName } </span> 
-								<b class="arrow icon-angle-down"></b>
-						    </a>
-							<ul class="submenu">
-								<c:forEach items="${one.childMenuPojo}" var="two">
-									<li>
-									   <a href="#" class="dropdown-toggle" dataUrl="${pageContext.request.contextPath }/${two.menuUrl}">
-											<i class="icon-double-angle-right"></i> ${two.menuName} 
-											<b class="arrow icon-angle-down"></b>
-									   </a>
-										<ul class="submenu">
-											<c:forEach items="${two.childMenuPojo}" var="three">
-												<li>
-													<a href="#" dataUrl="${pageContext.request.contextPath }/${three.menuUrl}">
-														<i class="icon-leaf"></i> ${three.menuName}
-													</a>
-												</li>
-											</c:forEach>
-										</ul> 
-									</li>
-								</c:forEach>
-							</ul>
-						</li>
-					</c:forEach>
-				</ul> 
+				<!-- 左边的菜单 --> 
+				<%@ include file="leftmenu.jsp" %> 
 				 
 				<div class="sidebar-collapse" id="sidebar-collapse">
 					<i class="icon-double-angle-left"
