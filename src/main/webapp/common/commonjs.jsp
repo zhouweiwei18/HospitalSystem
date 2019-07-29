@@ -17,3 +17,8 @@
 <!-- kindeditor -->
 <script src="${pageContext.request.contextPath}/plugin/kindeditor/kindeditor.js"></script>
 <script src="${pageContext.request.contextPath}/plugin/kindeditor/lang/zh_CN.js"></script>
+
+<!-- 身份证校验的js以及JQuery校验 -->
+<script src="${pageContext.request.contextPath}/plugin/js/UserIDCard.js"></script>
+<%-- <script src="${pageContext.request.contextPath}/plugin/js/messages_zh.js"></script> --%>
+<script src="${pageContext.request.contextPath}/plugin/js/jquery.validate.min.js"></script>

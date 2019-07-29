@@ -8,6 +8,6 @@
 </head>
 <body>
 	<center><font><b></b></font></center>
-	<img alt="医院" style="height:80%; width:100%;" class="" src="${pageContext.request.contextPath}/images/hospital.jpg" >
+	<img alt="医院" style="height:80%; width:100%;" class="" src="${pageContext.request.contextPath}/images/zy.jpg" >
 </body>
 </html>

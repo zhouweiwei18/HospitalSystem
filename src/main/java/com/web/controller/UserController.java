@@ -1,12 +1,15 @@
 package com.web.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.code.kaptcha.Constants;
 import com.web.entity.Menu;
 import com.web.entity.User;
-import com.web.entity.UserExample;
 import com.web.pojo.MenuPojo;
 import com.web.pojo.UserAndPartment;
 import com.web.service.MenuService;
@@ -34,25 +36,33 @@ public class UserController {
 	@Resource
 	MenuService menuService;
 
+	@RequestMapping("/user/deleteById")
+	@ResponseBody
+	public Integer deleteById(User user) {
+
+		user.setState(1);
+		// 删除某个User用户(假删除)
+		Integer i = userService.updateUserById(user);
+
+		return i;
+
+	}
+
+	@RequestMapping("/user/addUser")
+	@ResponseBody
+	public Integer addUser(User user) {
+
+		// 添加User用户，同时修改department表对应科室的负责人(用户的id)
+		Integer i = userService.updateUserAndDepartment(user);
+
+		return i;
+	}
+
 	@RequestMapping("/user/saveUpdateUser")
 	@ResponseBody
 	public Integer saveUpdateUser(User user) {
 
 		return userService.updateUserById(user);
-	}
-
-	/**
-	 * 这是多表的修改
-	 * 
-	 * @param uap
-	 * @return
-	 */
-	@RequestMapping("/user/updateUserById")
-	@ResponseBody
-	public Integer updateUserById(UserAndPartment uap) {
-
-		return userService.updateUserAndDepartment(uap);
-
 	}
 
 	/**

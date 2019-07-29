@@ -18,21 +18,24 @@ public interface UserService {
 
 	/**
 	 * 登录
+	 * 
 	 * @param userName
 	 * @param password
 	 * @return
 	 */
 	User login(String userName, String password);
-	
+
 	/**
 	 * 根据用户的id查询到该用户信息(department)
+	 * 
 	 * @param id
 	 * @return
 	 */
 	List<UserAndPartment> getUserAndPart(Integer id);
-	
+
 	/**
 	 * 根据id查询
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -41,13 +44,14 @@ public interface UserService {
 	/*
 	 * User表和Department同时更新
 	 */
-	int updateUserAndDepartment(UserAndPartment uap);
+	int updateUserAndDepartment(User user);
 
 	/**
 	 * 根据用户id修改用户信息
+	 * 
 	 * @param user
 	 * @return
 	 */
 	Integer updateUserById(User user);
-	
+
 }
