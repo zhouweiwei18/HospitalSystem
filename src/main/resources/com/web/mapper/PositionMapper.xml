@@ -201,4 +201,31 @@
       postSalary = #{postsalary,jdbcType=INTEGER}
     where postNumber = #{postnumber,jdbcType=INTEGER}
   </update>
+  
+  
+  <!-- 自定义结果集 -->
+  <resultMap type="com.web.entity.Position" id="resultPosition">
+        <id column="postNumber" jdbcType="INTEGER" property="postnumber" />
+        <result column="postName" jdbcType="VARCHAR" property="postname" />
+        <result column="departmentId" jdbcType="INTEGER" property="departmentid" />
+        <result column="postSalary" jdbcType="INTEGER" property="postsalary" />
+	    
+	    <!-- 多对一 -->
+	    <association property="department" javaType="com.web.entity.Department">
+	        <id column="departmentId1" jdbcType="INTEGER" property="departmentid" />
+		    <result column="departmentName" jdbcType="VARCHAR" property="departmentname" />
+		    <result column="departmentAddress" jdbcType="VARCHAR" property="departmentaddress" />
+		    <result column="departmentTelephone" jdbcType="VARCHAR" property="departmenttelephone" />
+		    <result column="userid" jdbcType="INTEGER" property="userid" />
+		    <result column="isDelete" jdbcType="VARCHAR" property="isdelete" />
+	    </association>
+  
+  </resultMap>
+  
+  <select id="queryPositionDept" parameterType="com.web.entity.Position" 
+     resultMap="resultPosition">
+     select  p.*,d.*  from position p,department d
+      where p.departmentId = d.departmentId
+  </select>
+   
 </mapper>

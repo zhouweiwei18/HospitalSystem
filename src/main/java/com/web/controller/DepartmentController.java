@@ -31,7 +31,6 @@ public class DepartmentController {
 		}
 		
 		return list;
-		
 	}
 
 }

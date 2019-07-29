@@ -8,3 +8,7 @@
 
 <!-- kindeditor -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/plugin/kindeditor/themes/default/default.css" />
+
+<!-- ztree -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/plugin/ztree/css/demo.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/plugin/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">

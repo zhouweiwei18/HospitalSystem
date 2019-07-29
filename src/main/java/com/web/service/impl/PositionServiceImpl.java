@@ -16,10 +16,19 @@ public class PositionServiceImpl implements PositionService {
 	@Autowired
 	PositionMapper positionMapper;
 
+	/**
+	 * 这是position表的单表全查询(下拉列表)
+	 */
 	@Override
 	public List<Position> queryAllPosition(PositionExample example) {
 		
 		return positionMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Position> queryPositionDept() {
+		
+		return positionMapper.queryPositionDept();
 	}
 
 }

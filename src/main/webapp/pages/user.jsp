@@ -107,9 +107,9 @@ $(function(){//jquery的加载事件
 				  valign:'middle',
 				  formatter:function(value,row,index){
 					  var updateButton = "<button  onclick=\"myUpdateClick("+row.userid+")\" type=\"button\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-edit\" style=\"color: rgb(0, 0, 60); font-size: 17px;\"> </span></button>";
-					  var authorityButton = "<button  onclick=\"myAuthorityClick("+row.userid+")\" type=\"button\" class=\"btn btn-link\"> <span class=\"glyphicon glyphicon-lock\" style=\"color: rgb(0, 0, 60);\"> </span></button>";
+					  //var authorityButton = "<button  onclick=\"myAuthorityClick("+row.userid+")\" type=\"button\" class=\"btn btn-link\"> <span class=\"glyphicon glyphicon-lock\" style=\"color: rgb(0, 0, 60);\"> </span></button>";
 					  var deleteButton = "<button onclick=\"myDeleteClick("+row.userid+")\" type=\"button\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-trash\" style=\"color: rgb(0, 0, 60); font-size: 17px;\"> </span></button>";
-					  return updateButton+authorityButton+deleteButton;
+					  return updateButton+deleteButton;
 				  }
 			  }]
 		})
@@ -173,7 +173,7 @@ $(function(){//jquery的加载事件
 /* 做权限分配啦  */
 function myAuthorityClick(id) {
 	
-	alert("");
+	alert("做权限分配了");
 }
 
 /* 做加删除啦  */
@@ -233,7 +233,6 @@ function myUpdateClick(userId){
 			    	 
 			    	 //给下拉列表赋初始值
 			    	 $("#myUpdatePosition").val(data.postid);
-			     
 			     })
 		 }
 	})
@@ -387,10 +386,11 @@ $(function() {
                 <h4 class="modal-title" id="myModalLabel">修改</h4>
             </div>
             <div class="modal-body">
+            
                   <form id="myUpdateForm" class="form-horizontal">
-                  
+                      <!-- 隐藏框传userid的值 -->
                       <input type="hidden" name="userid" id="myUpdateUserId">
-                 
+                      
 					  <div class="form-group">
 					    <label for="inputEmail3" class="col-sm-2 control-label">用户名:</label>
 					    <div class="col-sm-10">

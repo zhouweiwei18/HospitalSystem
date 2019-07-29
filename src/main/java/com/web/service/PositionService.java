@@ -14,4 +14,10 @@ public interface PositionService {
 	 */
 	List<Position> queryAllPosition(PositionExample example);
 
+	/**
+	 * position表和department表的全查询
+	 * @return
+	 */
+	List<Position> queryPositionDept();
+
 }

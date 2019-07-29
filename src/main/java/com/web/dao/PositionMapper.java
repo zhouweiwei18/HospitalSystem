@@ -27,4 +27,10 @@ public interface PositionMapper {
     int updateByPrimaryKeySelective(Position record);
 
     int updateByPrimaryKey(Position record);
+    
+    /**
+     * position表和department表的联表查询
+     * @return
+     */
+    List<Position> queryPositionDept();
 }

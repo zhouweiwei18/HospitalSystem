@@ -22,3 +22,6 @@
 <script src="${pageContext.request.contextPath}/plugin/js/UserIDCard.js"></script>
 <%-- <script src="${pageContext.request.contextPath}/plugin/js/messages_zh.js"></script> --%>
 <script src="${pageContext.request.contextPath}/plugin/js/jquery.validate.min.js"></script>
+
+<!-- zTree -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/ztree/js/jquery.ztree.all.js"></script>
