@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50612
 File Encoding         : 65001
 
-Date: 2019-07-29 20:47:42
+Date: 2019-07-31 14:47:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -741,6 +741,7 @@ CREATE TABLE `pharmacydepot` (
 -- ----------------------------
 DROP TABLE IF EXISTS `position`;
 CREATE TABLE `position` (
+  `isDelete` int(11) DEFAULT NULL,
   `postNumber` int(10) NOT NULL AUTO_INCREMENT COMMENT '岗位编号',
   `postName` varchar(255) DEFAULT NULL COMMENT '岗位名称',
   `departmentId` int(11) DEFAULT NULL COMMENT '科室编号',
@@ -753,13 +754,13 @@ CREATE TABLE `position` (
 -- ----------------------------
 -- Records of position
 -- ----------------------------
-INSERT INTO `position` VALUES ('1', '院长', '1', '4000');
-INSERT INTO `position` VALUES ('2', '副院长', '2', '5000');
-INSERT INTO `position` VALUES ('3', '医师', '4', '3000');
-INSERT INTO `position` VALUES ('4', '护士', '3', '3500');
-INSERT INTO `position` VALUES ('5', '保安', '3', '3500');
-INSERT INTO `position` VALUES ('6', '保洁员', '6', '4000');
-INSERT INTO `position` VALUES ('7', '厨师', '5', '3000');
+INSERT INTO `position` VALUES ('1', '1', '院长', '1', '4000');
+INSERT INTO `position` VALUES ('0', '2', '副院长', '2', '5000');
+INSERT INTO `position` VALUES ('0', '3', '医师', '4', '3000');
+INSERT INTO `position` VALUES ('0', '4', '护士', '3', '3500');
+INSERT INTO `position` VALUES ('0', '5', '保安', '3', '3500');
+INSERT INTO `position` VALUES ('0', '6', '保洁员', '6', '4000');
+INSERT INTO `position` VALUES ('0', '7', '厨师', '5', '3000');
 
 -- ----------------------------
 -- Table structure for `positionmenu`

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.dao.PositionmenuMapper;
+import com.web.entity.Position;
 import com.web.service.PositionMenuService;
 
 @Service
@@ -19,5 +20,5 @@ public class PositionMenuServiceImpl implements PositionMenuService {
 
 		return positionmenuMapper.selctMenuByPoId(poid);
 	}
-
+  
 }

@@ -20,4 +20,6 @@ public interface PositionService {
 	 */
 	List<Position> queryPositionDept();
 
+	Integer updatePositionById(Position p);
+
 }

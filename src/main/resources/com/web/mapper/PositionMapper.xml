@@ -3,6 +3,7 @@
 <mapper namespace="com.web.dao.PositionMapper">
   <resultMap id="BaseResultMap" type="com.web.entity.Position">
     <id column="postNumber" jdbcType="INTEGER" property="postnumber" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
     <result column="postName" jdbcType="VARCHAR" property="postname" />
     <result column="departmentId" jdbcType="INTEGER" property="departmentid" />
     <result column="postSalary" jdbcType="INTEGER" property="postsalary" />
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    postNumber, postName, departmentId, postSalary
+    postNumber, isDelete, postName, departmentId, postSalary
   </sql>
   <select id="selectByExample" parameterType="com.web.entity.PositionExample" resultMap="BaseResultMap">
     select
@@ -107,16 +108,19 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.web.entity.Position">
-    insert into position (postNumber, postName, departmentId, 
-      postSalary)
-    values (#{postnumber,jdbcType=INTEGER}, #{postname,jdbcType=VARCHAR}, #{departmentid,jdbcType=INTEGER}, 
-      #{postsalary,jdbcType=INTEGER})
+    insert into position (postNumber, isDelete, postName, 
+      departmentId, postSalary)
+    values (#{postnumber,jdbcType=INTEGER}, #{isdelete,jdbcType=INTEGER}, #{postname,jdbcType=VARCHAR}, 
+      #{departmentid,jdbcType=INTEGER}, #{postsalary,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.web.entity.Position">
     insert into position
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="postnumber != null">
         postNumber,
+      </if>
+      <if test="isdelete != null">
+        isDelete,
       </if>
       <if test="postname != null">
         postName,
@@ -131,6 +135,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="postnumber != null">
         #{postnumber,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
       </if>
       <if test="postname != null">
         #{postname,jdbcType=VARCHAR},
@@ -155,6 +162,9 @@
       <if test="record.postnumber != null">
         postNumber = #{record.postnumber,jdbcType=INTEGER},
       </if>
+      <if test="record.isdelete != null">
+        isDelete = #{record.isdelete,jdbcType=INTEGER},
+      </if>
       <if test="record.postname != null">
         postName = #{record.postname,jdbcType=VARCHAR},
       </if>
@@ -172,6 +182,7 @@
   <update id="updateByExample" parameterType="map">
     update position
     set postNumber = #{record.postnumber,jdbcType=INTEGER},
+      isDelete = #{record.isdelete,jdbcType=INTEGER},
       postName = #{record.postname,jdbcType=VARCHAR},
       departmentId = #{record.departmentid,jdbcType=INTEGER},
       postSalary = #{record.postsalary,jdbcType=INTEGER}
@@ -182,6 +193,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.web.entity.Position">
     update position
     <set>
+      <if test="isdelete != null">
+        isDelete = #{isdelete,jdbcType=INTEGER},
+      </if>
       <if test="postname != null">
         postName = #{postname,jdbcType=VARCHAR},
       </if>
@@ -196,19 +210,20 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.web.entity.Position">
     update position
-    set postName = #{postname,jdbcType=VARCHAR},
+    set isDelete = #{isdelete,jdbcType=INTEGER},
+      postName = #{postname,jdbcType=VARCHAR},
       departmentId = #{departmentid,jdbcType=INTEGER},
       postSalary = #{postsalary,jdbcType=INTEGER}
     where postNumber = #{postnumber,jdbcType=INTEGER}
   </update>
   
-  
   <!-- 自定义结果集 -->
   <resultMap type="com.web.entity.Position" id="resultPosition">
         <id column="postNumber" jdbcType="INTEGER" property="postnumber" />
-        <result column="postName" jdbcType="VARCHAR" property="postname" />
-        <result column="departmentId" jdbcType="INTEGER" property="departmentid" />
-        <result column="postSalary" jdbcType="INTEGER" property="postsalary" />
+	    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+	    <result column="postName" jdbcType="VARCHAR" property="postname" />
+	    <result column="departmentId" jdbcType="INTEGER" property="departmentid" />
+	    <result column="postSalary" jdbcType="INTEGER" property="postsalary" />
 	    
 	    <!-- 多对一 -->
 	    <association property="department" javaType="com.web.entity.Department">
@@ -227,5 +242,5 @@
      select  p.*,d.*  from position p,department d
       where p.departmentId = d.departmentId
   </select>
-   
+  
 </mapper>

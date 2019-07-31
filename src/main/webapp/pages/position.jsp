@@ -56,7 +56,7 @@
 					  
 					  var updateButton = "<button  onclick=\"myUpdateClick("+row.postnumber+")\" type=\"button\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-edit\" style=\"color: rgb(0, 0, 60); font-size: 17px;\"> </span></button>";
 					  var authorityButton = "<button  onclick=\"myAuthorityClick("+row.postnumber+")\" type=\"button\" class=\"btn btn-link\"> <span class=\"glyphicon glyphicon-lock\" style=\"color: rgb(0, 0, 60);\"> </span></button>";
-					  var deleteButton = "<button onclick=\"myDeleteClick("+row.userid+")\" type=\"button\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-trash\" style=\"color: rgb(0, 0, 60); font-size: 17px;\"> </span></button>";
+					  var deleteButton = "<button onclick=\"myDeleteClick("+row.postnumber+")\" type=\"button\" class=\"btn btn-link\"><span class=\"glyphicon glyphicon-trash\" style=\"color: rgb(0, 0, 60); font-size: 17px;\"> </span></button>";
 					  
 					  //var updateButton = "<button  onclick=\"myUpdateClick("+row.poId+")\" type=\"button\" class=\"btn btn-success\">修改</button>";
 					  //var authorityButton = "<button  onclick=\"myAuthorityClick("+row.poId+")\" type=\"button\" class=\"btn btn-success\">分配权限</button>";
@@ -94,6 +94,26 @@ function myAuthorityClick(poId){
 				      zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, null);
 				   });
 	  })
+}
+  
+/* 做加删除啦  */
+function myDeleteClick(id) {
+	
+	//alert(id);
+	
+	var postnumber = id;
+	
+	$.ajax({
+		 type:"post",//请求方式
+		 url:"${pageContext.request.contextPath}/position/deleteById.action",//根据编号查询用户的信息
+		 data:{postnumber:postnumber},//传参数到后台
+		 dataType:"json",//以json格式传递数据
+		 success:function(data){
+			  //刷新页面
+			  //alert("删除成功了");
+			  $("#table").bootstrapTable("refresh");
+			}
+	})
 }
 
 </script>
