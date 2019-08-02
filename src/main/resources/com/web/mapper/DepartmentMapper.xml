@@ -7,7 +7,7 @@
     <result column="departmentAddress" jdbcType="VARCHAR" property="departmentaddress" />
     <result column="departmentTelephone" jdbcType="VARCHAR" property="departmenttelephone" />
     <result column="userid" jdbcType="INTEGER" property="userid" />
-    <result column="isDelete" jdbcType="VARCHAR" property="isdelete" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -113,7 +113,7 @@
       departmentTelephone, userid, isDelete
       )
     values (#{departmentid,jdbcType=INTEGER}, #{departmentname,jdbcType=VARCHAR}, #{departmentaddress,jdbcType=VARCHAR}, 
-      #{departmenttelephone,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{isdelete,jdbcType=VARCHAR}
+      #{departmenttelephone,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{isdelete,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.web.entity.Department">
@@ -155,7 +155,7 @@
         #{userid,jdbcType=INTEGER},
       </if>
       <if test="isdelete != null">
-        #{isdelete,jdbcType=VARCHAR},
+        #{isdelete,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -184,7 +184,7 @@
         userid = #{record.userid,jdbcType=INTEGER},
       </if>
       <if test="record.isdelete != null">
-        isDelete = #{record.isdelete,jdbcType=VARCHAR},
+        isDelete = #{record.isdelete,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -198,7 +198,7 @@
       departmentAddress = #{record.departmentaddress,jdbcType=VARCHAR},
       departmentTelephone = #{record.departmenttelephone,jdbcType=VARCHAR},
       userid = #{record.userid,jdbcType=INTEGER},
-      isDelete = #{record.isdelete,jdbcType=VARCHAR}
+      isDelete = #{record.isdelete,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -219,7 +219,7 @@
         userid = #{userid,jdbcType=INTEGER},
       </if>
       <if test="isdelete != null">
-        isDelete = #{isdelete,jdbcType=VARCHAR},
+        isDelete = #{isdelete,jdbcType=INTEGER},
       </if>
     </set>
     where departmentId = #{departmentid,jdbcType=INTEGER}
@@ -230,7 +230,40 @@
       departmentAddress = #{departmentaddress,jdbcType=VARCHAR},
       departmentTelephone = #{departmenttelephone,jdbcType=VARCHAR},
       userid = #{userid,jdbcType=INTEGER},
-      isDelete = #{isdelete,jdbcType=VARCHAR}
+      isDelete = #{isdelete,jdbcType=INTEGER}
     where departmentId = #{departmentid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义结果集 -->
+  <resultMap type="com.web.entity.Department" id="departmentResultMap">
+    <id column="departmentId" jdbcType="INTEGER" property="departmentid" />
+    <result column="departmentName" jdbcType="VARCHAR" property="departmentname" />
+    <result column="departmentAddress" jdbcType="VARCHAR" property="departmentaddress" />
+    <result column="departmentTelephone" jdbcType="VARCHAR" property="departmenttelephone" />
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+	   
+	    <association property="user" javaType="com.web.entity.User">
+			<id column="userId1" jdbcType="INTEGER" property="userid" />
+		    <result column="userName" jdbcType="VARCHAR" property="username" />
+		    <result column="userPwd" jdbcType="VARCHAR" property="userpwd" />
+		    <result column="userSex" jdbcType="VARCHAR" property="usersex" />
+		    <result column="userPhoto" jdbcType="VARCHAR" property="userphoto" />
+		    <result column="userCard" jdbcType="VARCHAR" property="usercard" />
+		    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+		    <result column="postId" jdbcType="INTEGER" property="postid" />
+		    <result column="state" jdbcType="INTEGER" property="state" />
+		    <result column="icuId" jdbcType="INTEGER" property="icuid" />
+		    <result column="descc" jdbcType="VARCHAR" property="descc" />
+	    </association>
+  </resultMap>
+  
+  <!-- 联表查询User和department -->
+  <select id="selectDepartment" resultMap="departmentResultMap">
+  	SELECT * 
+  		FROM department d,`user` u 
+  	WHERE 
+  		d.userid = u.userId
+  </select>
+   
 </mapper>

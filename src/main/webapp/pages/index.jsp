@@ -138,14 +138,14 @@
 						style="overflow: visible;" scrolling="no" frameborder="yes"
 						width="100%" height="700"> </iframe>
 					<div>
-						<hr style="margin-top: -10px;">
+						<!-- <hr style="margin-top: -10px;">
 						<p class="pull-right">
 							Collect from <a href="http://www.cssmoban.com/"
 								title="继续支持酒店后台系统" target="_blank">WelCome</a>
 						</p>
 						<p>
 							© 2017 <a href="#" target="_blank">Portnine</a>
-						</p>
+						</p> -->
 					</div>
 				</div>
 			</div>

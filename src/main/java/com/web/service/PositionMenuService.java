@@ -12,5 +12,8 @@ public interface PositionMenuService {
 	 * @return
 	 */
 	List<Integer> selectMenuByPoId(Integer poid);
+
+	//保存权限
+	int saveAuthority(Integer poId, Integer[] menuIds);
  
 }

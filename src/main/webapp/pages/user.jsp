@@ -9,8 +9,6 @@
 </head>
 <%@ include file="/common/commoncss.jsp" %>
 <%@ include file="/common/commonjs.jsp" %>
-<!-- <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
-<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script> -->
 <body>
 
 <div id="toolbar" style="float: left;width: 100%;">
@@ -29,7 +27,7 @@ $(function(){//jquery的加载事件
 		  pagination: true,//允许分页
 		  search: true,//可以搜索
 		  toolbar: '#toolbar', //工具按钮用哪个容器
-		  pageSize:5,//每页显示3条数据
+		  pageSize:5,//每页显示5条数据
 		  pageList:[5,7],//每页显示的条数列表
 		  showColumns:true,//选择显示的列
 		  showRefresh:true,//允许刷新
@@ -319,9 +317,7 @@ $.validator.setDefaults({
 		}
 		
 	})
-      
-      
-      
+
     }
 });
 
@@ -377,7 +373,7 @@ $(function() {
 });
 </script>  
 
-<!-- 修改模态框（Modal） -->
+<!-- 修改模态框(Modal) -->
 <div class="modal fade" id="myUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

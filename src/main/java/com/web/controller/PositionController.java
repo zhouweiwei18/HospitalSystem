@@ -30,6 +30,32 @@ public class PositionController {
 	@Resource
 	PositionMenuService pms;
 
+	@RequestMapping("/updatePositionById")
+	@ResponseBody
+	public Integer updatePositionById(Position position) {
+		//直接调用service 
+		return positionService.updateById(position);
+	}
+	
+	@RequestMapping("/getPositionById")
+	@ResponseBody
+	public Position getPositionById(Integer poId) {
+		
+		// 查询当前id的position信息
+		return positionService.queryPositionById(poId);
+	}
+
+	@RequestMapping("/addPosition")
+	@ResponseBody
+	public Integer addPosition(Position p) {
+
+		// 这里这里二次封装p(是否删除 )
+		p.setIsdelete(0);
+		int i = positionService.addPosition(p);
+
+		return i;
+	}
+
 	@RequestMapping("/deleteById")
 	@ResponseBody
 	public Integer deleteById(Position p) {
@@ -135,6 +161,19 @@ public class PositionController {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * 保存权限
+	 * Integer poId:岗位id
+	 * Integer[] menuIds：菜单集合数组
+	 * @return
+	 */
+	@RequestMapping(value="/saveAuthority")
+	@ResponseBody
+	public int saveAuthority(Integer poId,Integer[] menuIds){
+		
+		return pms.saveAuthority(poId, menuIds);
 	}
 
 }
