@@ -18,11 +18,6 @@ public class Icu implements Serializable {
     private Integer bedno;
 
     /**
-     * 用户ID
-     */
-    private Integer userid;
-
-    /**
      * 病区名
      */
     private String icuname;
@@ -30,7 +25,7 @@ public class Icu implements Serializable {
     /**
      * 负责人
      */
-    private String chargeperson;
+    private Integer chargeperson;
 
     /**
      * 入住人数
@@ -73,10 +68,20 @@ public class Icu implements Serializable {
     private Double bedutilizationrate;
 
     private Integer isdelete;
+    
+    private User user; //外键对象
 
     private static final long serialVersionUID = 1L;
+     
+    public User getUser() {
+		return user;
+	}
 
-    public Integer getIcuid() {
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Integer getIcuid() {
         return icuid;
     }
 
@@ -92,14 +97,6 @@ public class Icu implements Serializable {
         this.bedno = bedno;
     }
 
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
-
     public String getIcuname() {
         return icuname;
     }
@@ -108,11 +105,11 @@ public class Icu implements Serializable {
         this.icuname = icuname;
     }
 
-    public String getChargeperson() {
+    public Integer getChargeperson() {
         return chargeperson;
     }
 
-    public void setChargeperson(String chargeperson) {
+    public void setChargeperson(Integer chargeperson) {
         this.chargeperson = chargeperson;
     }
 
@@ -202,7 +199,6 @@ public class Icu implements Serializable {
         Icu other = (Icu) that;
         return (this.getIcuid() == null ? other.getIcuid() == null : this.getIcuid().equals(other.getIcuid()))
             && (this.getBedno() == null ? other.getBedno() == null : this.getBedno().equals(other.getBedno()))
-            && (this.getUserid() == null ? other.getUserid() == null : this.getUserid().equals(other.getUserid()))
             && (this.getIcuname() == null ? other.getIcuname() == null : this.getIcuname().equals(other.getIcuname()))
             && (this.getChargeperson() == null ? other.getChargeperson() == null : this.getChargeperson().equals(other.getChargeperson()))
             && (this.getOccupantsno() == null ? other.getOccupantsno() == null : this.getOccupantsno().equals(other.getOccupantsno()))
@@ -222,7 +218,6 @@ public class Icu implements Serializable {
         int result = 1;
         result = prime * result + ((getIcuid() == null) ? 0 : getIcuid().hashCode());
         result = prime * result + ((getBedno() == null) ? 0 : getBedno().hashCode());
-        result = prime * result + ((getUserid() == null) ? 0 : getUserid().hashCode());
         result = prime * result + ((getIcuname() == null) ? 0 : getIcuname().hashCode());
         result = prime * result + ((getChargeperson() == null) ? 0 : getChargeperson().hashCode());
         result = prime * result + ((getOccupantsno() == null) ? 0 : getOccupantsno().hashCode());
@@ -245,7 +240,6 @@ public class Icu implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", icuid=").append(icuid);
         sb.append(", bedno=").append(bedno);
-        sb.append(", userid=").append(userid);
         sb.append(", icuname=").append(icuname);
         sb.append(", chargeperson=").append(chargeperson);
         sb.append(", occupantsno=").append(occupantsno);

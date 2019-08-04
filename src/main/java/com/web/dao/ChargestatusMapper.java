@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ChargestatusMapper {
-    long countByExample(ChargestatusExample example);
+	long countByExample(ChargestatusExample example);
 
     int deleteByExample(ChargestatusExample example);
 
-    int deleteByPrimaryKey(Integer chargeitemno);
+    int deleteByPrimaryKey(Integer chargestatusid);
 
     int insert(Chargestatus record);
 
@@ -18,7 +18,7 @@ public interface ChargestatusMapper {
 
     List<Chargestatus> selectByExample(ChargestatusExample example);
 
-    Chargestatus selectByPrimaryKey(Integer chargeitemno);
+    Chargestatus selectByPrimaryKey(Integer chargestatusid);
 
     int updateByExampleSelective(@Param("record") Chargestatus record, @Param("example") ChargestatusExample example);
 
@@ -27,4 +27,7 @@ public interface ChargestatusMapper {
     int updateByPrimaryKeySelective(Chargestatus record);
 
     int updateByPrimaryKey(Chargestatus record);
+
+    //查询所有
+	List<Chargestatus> queryAllInfo();
 }

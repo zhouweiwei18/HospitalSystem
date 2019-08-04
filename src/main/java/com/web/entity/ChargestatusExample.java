@@ -124,6 +124,66 @@ public class ChargestatusExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andChargestatusidIsNull() {
+            addCriterion("chargeStatusId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargestatusidIsNotNull() {
+            addCriterion("chargeStatusId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargestatusidEqualTo(Integer value) {
+            addCriterion("chargeStatusId =", value, "chargestatusid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargestatusidNotEqualTo(Integer value) {
+            addCriterion("chargeStatusId <>", value, "chargestatusid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargestatusidGreaterThan(Integer value) {
+            addCriterion("chargeStatusId >", value, "chargestatusid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargestatusidGreaterThanOrEqualTo(Integer value) {
+            addCriterion("chargeStatusId >=", value, "chargestatusid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargestatusidLessThan(Integer value) {
+            addCriterion("chargeStatusId <", value, "chargestatusid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargestatusidLessThanOrEqualTo(Integer value) {
+            addCriterion("chargeStatusId <=", value, "chargestatusid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargestatusidIn(List<Integer> values) {
+            addCriterion("chargeStatusId in", values, "chargestatusid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargestatusidNotIn(List<Integer> values) {
+            addCriterion("chargeStatusId not in", values, "chargestatusid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargestatusidBetween(Integer value1, Integer value2) {
+            addCriterion("chargeStatusId between", value1, value2, "chargestatusid");
+            return (Criteria) this;
+        }
+
+        public Criteria andChargestatusidNotBetween(Integer value1, Integer value2) {
+            addCriterion("chargeStatusId not between", value1, value2, "chargestatusid");
+            return (Criteria) this;
+        }
+
         public Criteria andChargeitemnoIsNull() {
             addCriterion("chargeItemNo is null");
             return (Criteria) this;
@@ -181,66 +241,6 @@ public class ChargestatusExample {
 
         public Criteria andChargeitemnoNotBetween(Integer value1, Integer value2) {
             addCriterion("chargeItemNo not between", value1, value2, "chargeitemno");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeidIsNull() {
-            addCriterion("chargeId is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeidIsNotNull() {
-            addCriterion("chargeId is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeidEqualTo(Integer value) {
-            addCriterion("chargeId =", value, "chargeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeidNotEqualTo(Integer value) {
-            addCriterion("chargeId <>", value, "chargeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeidGreaterThan(Integer value) {
-            addCriterion("chargeId >", value, "chargeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("chargeId >=", value, "chargeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeidLessThan(Integer value) {
-            addCriterion("chargeId <", value, "chargeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeidLessThanOrEqualTo(Integer value) {
-            addCriterion("chargeId <=", value, "chargeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeidIn(List<Integer> values) {
-            addCriterion("chargeId in", values, "chargeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeidNotIn(List<Integer> values) {
-            addCriterion("chargeId not in", values, "chargeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeidBetween(Integer value1, Integer value2) {
-            addCriterion("chargeId between", value1, value2, "chargeid");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargeidNotBetween(Integer value1, Integer value2) {
-            addCriterion("chargeId not between", value1, value2, "chargeid");
             return (Criteria) this;
         }
 
@@ -564,52 +564,62 @@ public class ChargestatusExample {
             return (Criteria) this;
         }
 
-        public Criteria andIstransferEqualTo(Integer value) {
+        public Criteria andIstransferEqualTo(String value) {
             addCriterion("isTransfer =", value, "istransfer");
             return (Criteria) this;
         }
 
-        public Criteria andIstransferNotEqualTo(Integer value) {
+        public Criteria andIstransferNotEqualTo(String value) {
             addCriterion("isTransfer <>", value, "istransfer");
             return (Criteria) this;
         }
 
-        public Criteria andIstransferGreaterThan(Integer value) {
+        public Criteria andIstransferGreaterThan(String value) {
             addCriterion("isTransfer >", value, "istransfer");
             return (Criteria) this;
         }
 
-        public Criteria andIstransferGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIstransferGreaterThanOrEqualTo(String value) {
             addCriterion("isTransfer >=", value, "istransfer");
             return (Criteria) this;
         }
 
-        public Criteria andIstransferLessThan(Integer value) {
+        public Criteria andIstransferLessThan(String value) {
             addCriterion("isTransfer <", value, "istransfer");
             return (Criteria) this;
         }
 
-        public Criteria andIstransferLessThanOrEqualTo(Integer value) {
+        public Criteria andIstransferLessThanOrEqualTo(String value) {
             addCriterion("isTransfer <=", value, "istransfer");
             return (Criteria) this;
         }
 
-        public Criteria andIstransferIn(List<Integer> values) {
+        public Criteria andIstransferLike(String value) {
+            addCriterion("isTransfer like", value, "istransfer");
+            return (Criteria) this;
+        }
+
+        public Criteria andIstransferNotLike(String value) {
+            addCriterion("isTransfer not like", value, "istransfer");
+            return (Criteria) this;
+        }
+
+        public Criteria andIstransferIn(List<String> values) {
             addCriterion("isTransfer in", values, "istransfer");
             return (Criteria) this;
         }
 
-        public Criteria andIstransferNotIn(List<Integer> values) {
+        public Criteria andIstransferNotIn(List<String> values) {
             addCriterion("isTransfer not in", values, "istransfer");
             return (Criteria) this;
         }
 
-        public Criteria andIstransferBetween(Integer value1, Integer value2) {
+        public Criteria andIstransferBetween(String value1, String value2) {
             addCriterion("isTransfer between", value1, value2, "istransfer");
             return (Criteria) this;
         }
 
-        public Criteria andIstransferNotBetween(Integer value1, Integer value2) {
+        public Criteria andIstransferNotBetween(String value1, String value2) {
             addCriterion("isTransfer not between", value1, value2, "istransfer");
             return (Criteria) this;
         }

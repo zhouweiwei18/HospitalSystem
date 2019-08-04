@@ -244,66 +244,6 @@ public class IcuExample {
             return (Criteria) this;
         }
 
-        public Criteria andUseridIsNull() {
-            addCriterion("userId is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridIsNotNull() {
-            addCriterion("userId is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridEqualTo(Integer value) {
-            addCriterion("userId =", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridNotEqualTo(Integer value) {
-            addCriterion("userId <>", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridGreaterThan(Integer value) {
-            addCriterion("userId >", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridGreaterThanOrEqualTo(Integer value) {
-            addCriterion("userId >=", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridLessThan(Integer value) {
-            addCriterion("userId <", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridLessThanOrEqualTo(Integer value) {
-            addCriterion("userId <=", value, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridIn(List<Integer> values) {
-            addCriterion("userId in", values, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridNotIn(List<Integer> values) {
-            addCriterion("userId not in", values, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridBetween(Integer value1, Integer value2) {
-            addCriterion("userId between", value1, value2, "userid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseridNotBetween(Integer value1, Integer value2) {
-            addCriterion("userId not between", value1, value2, "userid");
-            return (Criteria) this;
-        }
-
         public Criteria andIcunameIsNull() {
             addCriterion("icuName is null");
             return (Criteria) this;
@@ -384,62 +324,52 @@ public class IcuExample {
             return (Criteria) this;
         }
 
-        public Criteria andChargepersonEqualTo(String value) {
+        public Criteria andChargepersonEqualTo(Integer value) {
             addCriterion("chargePerson =", value, "chargeperson");
             return (Criteria) this;
         }
 
-        public Criteria andChargepersonNotEqualTo(String value) {
+        public Criteria andChargepersonNotEqualTo(Integer value) {
             addCriterion("chargePerson <>", value, "chargeperson");
             return (Criteria) this;
         }
 
-        public Criteria andChargepersonGreaterThan(String value) {
+        public Criteria andChargepersonGreaterThan(Integer value) {
             addCriterion("chargePerson >", value, "chargeperson");
             return (Criteria) this;
         }
 
-        public Criteria andChargepersonGreaterThanOrEqualTo(String value) {
+        public Criteria andChargepersonGreaterThanOrEqualTo(Integer value) {
             addCriterion("chargePerson >=", value, "chargeperson");
             return (Criteria) this;
         }
 
-        public Criteria andChargepersonLessThan(String value) {
+        public Criteria andChargepersonLessThan(Integer value) {
             addCriterion("chargePerson <", value, "chargeperson");
             return (Criteria) this;
         }
 
-        public Criteria andChargepersonLessThanOrEqualTo(String value) {
+        public Criteria andChargepersonLessThanOrEqualTo(Integer value) {
             addCriterion("chargePerson <=", value, "chargeperson");
             return (Criteria) this;
         }
 
-        public Criteria andChargepersonLike(String value) {
-            addCriterion("chargePerson like", value, "chargeperson");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargepersonNotLike(String value) {
-            addCriterion("chargePerson not like", value, "chargeperson");
-            return (Criteria) this;
-        }
-
-        public Criteria andChargepersonIn(List<String> values) {
+        public Criteria andChargepersonIn(List<Integer> values) {
             addCriterion("chargePerson in", values, "chargeperson");
             return (Criteria) this;
         }
 
-        public Criteria andChargepersonNotIn(List<String> values) {
+        public Criteria andChargepersonNotIn(List<Integer> values) {
             addCriterion("chargePerson not in", values, "chargeperson");
             return (Criteria) this;
         }
 
-        public Criteria andChargepersonBetween(String value1, String value2) {
+        public Criteria andChargepersonBetween(Integer value1, Integer value2) {
             addCriterion("chargePerson between", value1, value2, "chargeperson");
             return (Criteria) this;
         }
 
-        public Criteria andChargepersonNotBetween(String value1, String value2) {
+        public Criteria andChargepersonNotBetween(Integer value1, Integer value2) {
             addCriterion("chargePerson not between", value1, value2, "chargeperson");
             return (Criteria) this;
         }

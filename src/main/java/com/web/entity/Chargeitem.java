@@ -4,105 +4,121 @@ import java.io.Serializable;
 
 /**
  * chargeitem
- * @author 
+ * 
+ * @author
  */
 public class Chargeitem implements Serializable {
-    private Integer chargeid;
+	private Integer chargeid;
 
-    private Integer patientid;
+	private Integer patientid;
 
-    private Integer medicinefree;
+	private Integer medicinefree;
 
-    private Double inspectionfree;
+	private Double inspectionfree;
 
-    private Double checkfree;
+	private Double checkfree;
 
-    private static final long serialVersionUID = 1L;
+	private Patient patient;
 
-    public Integer getChargeid() {
-        return chargeid;
-    }
+	private static final long serialVersionUID = 1L;
 
-    public void setChargeid(Integer chargeid) {
-        this.chargeid = chargeid;
-    }
+	public Patient getPatient() {
+		return patient;
+	}
 
-    public Integer getPatientid() {
-        return patientid;
-    }
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 
-    public void setPatientid(Integer patientid) {
-        this.patientid = patientid;
-    }
+	public Integer getChargeid() {
+		return chargeid;
+	}
 
-    public Integer getMedicinefree() {
-        return medicinefree;
-    }
+	public void setChargeid(Integer chargeid) {
+		this.chargeid = chargeid;
+	}
 
-    public void setMedicinefree(Integer medicinefree) {
-        this.medicinefree = medicinefree;
-    }
+	public Integer getPatientid() {
+		return patientid;
+	}
 
-    public Double getInspectionfree() {
-        return inspectionfree;
-    }
+	public void setPatientid(Integer patientid) {
+		this.patientid = patientid;
+	}
 
-    public void setInspectionfree(Double inspectionfree) {
-        this.inspectionfree = inspectionfree;
-    }
+	public Integer getMedicinefree() {
+		return medicinefree;
+	}
 
-    public Double getCheckfree() {
-        return checkfree;
-    }
+	public void setMedicinefree(Integer medicinefree) {
+		this.medicinefree = medicinefree;
+	}
 
-    public void setCheckfree(Double checkfree) {
-        this.checkfree = checkfree;
-    }
+	public Double getInspectionfree() {
+		return inspectionfree;
+	}
 
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        Chargeitem other = (Chargeitem) that;
-        return (this.getChargeid() == null ? other.getChargeid() == null : this.getChargeid().equals(other.getChargeid()))
-            && (this.getPatientid() == null ? other.getPatientid() == null : this.getPatientid().equals(other.getPatientid()))
-            && (this.getMedicinefree() == null ? other.getMedicinefree() == null : this.getMedicinefree().equals(other.getMedicinefree()))
-            && (this.getInspectionfree() == null ? other.getInspectionfree() == null : this.getInspectionfree().equals(other.getInspectionfree()))
-            && (this.getCheckfree() == null ? other.getCheckfree() == null : this.getCheckfree().equals(other.getCheckfree()));
-    }
+	public void setInspectionfree(Double inspectionfree) {
+		this.inspectionfree = inspectionfree;
+	}
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getChargeid() == null) ? 0 : getChargeid().hashCode());
-        result = prime * result + ((getPatientid() == null) ? 0 : getPatientid().hashCode());
-        result = prime * result + ((getMedicinefree() == null) ? 0 : getMedicinefree().hashCode());
-        result = prime * result + ((getInspectionfree() == null) ? 0 : getInspectionfree().hashCode());
-        result = prime * result + ((getCheckfree() == null) ? 0 : getCheckfree().hashCode());
-        return result;
-    }
+	public Double getCheckfree() {
+		return checkfree;
+	}
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", chargeid=").append(chargeid);
-        sb.append(", patientid=").append(patientid);
-        sb.append(", medicinefree=").append(medicinefree);
-        sb.append(", inspectionfree=").append(inspectionfree);
-        sb.append(", checkfree=").append(checkfree);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
-    }
+	public void setCheckfree(Double checkfree) {
+		this.checkfree = checkfree;
+	}
+
+	@Override
+	public boolean equals(Object that) {
+		if (this == that) {
+			return true;
+		}
+		if (that == null) {
+			return false;
+		}
+		if (getClass() != that.getClass()) {
+			return false;
+		}
+		Chargeitem other = (Chargeitem) that;
+		return (this.getChargeid() == null ? other.getChargeid() == null
+				: this.getChargeid().equals(other.getChargeid()))
+				&& (this.getPatientid() == null ? other.getPatientid() == null
+						: this.getPatientid().equals(other.getPatientid()))
+				&& (this.getMedicinefree() == null ? other.getMedicinefree() == null
+						: this.getMedicinefree().equals(other.getMedicinefree()))
+				&& (this.getInspectionfree() == null ? other.getInspectionfree() == null
+						: this.getInspectionfree().equals(other.getInspectionfree()))
+				&& (this.getCheckfree() == null ? other.getCheckfree() == null
+						: this.getCheckfree().equals(other.getCheckfree()));
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((getChargeid() == null) ? 0 : getChargeid().hashCode());
+		result = prime * result + ((getPatientid() == null) ? 0 : getPatientid().hashCode());
+		result = prime * result + ((getMedicinefree() == null) ? 0 : getMedicinefree().hashCode());
+		result = prime * result + ((getInspectionfree() == null) ? 0 : getInspectionfree().hashCode());
+		result = prime * result + ((getCheckfree() == null) ? 0 : getCheckfree().hashCode());
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getClass().getSimpleName());
+		sb.append(" [");
+		sb.append("Hash = ").append(hashCode());
+		sb.append(", chargeid=").append(chargeid);
+		sb.append(", patientid=").append(patientid);
+		sb.append(", medicinefree=").append(medicinefree);
+		sb.append(", inspectionfree=").append(inspectionfree);
+		sb.append(", checkfree=").append(checkfree);
+		sb.append(", serialVersionUID=").append(serialVersionUID);
+		sb.append("]");
+		return sb.toString();
+	}
 }
