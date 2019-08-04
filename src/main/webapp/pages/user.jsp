@@ -476,7 +476,6 @@ $(function() {
 					    <div class="col-sm-7">
 					    <input type="text" class="form-control" name="birthday" id="birthday" placeholder="(非必填项)">
 					    <label id="birthday-error" class="error" for="birthday" style="margin-top: 4px;color: red;font-size: 15px;"></label>
-						<script src="${pageContext.request.contextPath}/plugin/layDate-v5.0.9/laydate/laydate.js"></script> 
 						<script>
 							laydate.render({
 							  elem: '#birthday' //指定元素

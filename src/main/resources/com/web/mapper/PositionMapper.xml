@@ -232,7 +232,7 @@
 		    <result column="departmentAddress" jdbcType="VARCHAR" property="departmentaddress" />
 		    <result column="departmentTelephone" jdbcType="VARCHAR" property="departmenttelephone" />
 		    <result column="userid" jdbcType="INTEGER" property="userid" />
-		    <result column="isDelete" jdbcType="VARCHAR" property="isdelete" />
+		    <result column="isDelete1" jdbcType="VARCHAR" property="isdelete" />
 	    </association>
   
   </resultMap>

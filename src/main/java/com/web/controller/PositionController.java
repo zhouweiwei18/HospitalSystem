@@ -89,8 +89,10 @@ public class PositionController {
 	@RequestMapping("/queryPositionDept")
 	@ResponseBody
 	public List<Position> queryPositionDept() {
+		
+		List<Position> list = positionService.queryPositionDept();
 
-		return positionService.queryPositionDept();
+		return list;
 	}
 
 	/**
