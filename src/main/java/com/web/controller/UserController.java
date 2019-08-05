@@ -33,6 +33,25 @@ public class UserController {
 	@Resource
 	MenuService menuService;
 
+	/**
+	 * 退出登录
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping("/user/userExit")
+	public String userExit(HttpServletRequest req) {
+
+		HttpSession session = req.getSession();
+
+		User user = (User) session.getAttribute("user");
+		
+		if (user == null) {
+			session.removeAttribute("user");
+		}
+
+		return "login";
+	}
+
 	@RequestMapping("/user/deleteById")
 	@ResponseBody
 	public Integer deleteById(User user) {

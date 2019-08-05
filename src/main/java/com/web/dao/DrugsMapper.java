@@ -6,25 +6,34 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface DrugsMapper {
-    long countByExample(DrugsExample example);
+	long countByExample(DrugsExample example);
 
-    int deleteByExample(DrugsExample example);
+	int deleteByExample(DrugsExample example);
 
-    int deleteByPrimaryKey(Integer drugsid);
+	int deleteByPrimaryKey(Integer drugsid);
 
-    int insert(Drugs record);
+	int insert(Drugs record);
 
-    int insertSelective(Drugs record);
+	int insertSelective(Drugs record);
 
-    List<Drugs> selectByExample(DrugsExample example);
+	List<Drugs> selectByExample(DrugsExample example);
 
-    Drugs selectByPrimaryKey(Integer drugsid);
+	Drugs selectByPrimaryKey(Integer drugsid);
 
-    int updateByExampleSelective(@Param("record") Drugs record, @Param("example") DrugsExample example);
+	int updateByExampleSelective(@Param("record") Drugs record, @Param("example") DrugsExample example);
 
-    int updateByExample(@Param("record") Drugs record, @Param("example") DrugsExample example);
+	int updateByExample(@Param("record") Drugs record, @Param("example") DrugsExample example);
 
-    int updateByPrimaryKeySelective(Drugs record);
+	int updateByPrimaryKeySelective(Drugs record);
 
-    int updateByPrimaryKey(Drugs record);
+	int updateByPrimaryKey(Drugs record);
+
+	// 下面是自己添加的方法
+	List<Drugs> getAll();
+
+	Drugs getDrugByid(Integer drugsid);
+
+	int updateDrugs(Drugs drugs);
+
+	int delsup(Integer drugsid);
 }

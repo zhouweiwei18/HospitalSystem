@@ -216,4 +216,32 @@
       isDelete = #{isdelete,jdbcType=INTEGER}
     where drugStorageid = #{drugstorageid,jdbcType=INTEGER}
   </update>
+  
+  <select id="getAll"  resultMap="myresultmap">
+     SELECT * 
+   from `user` ,drugstorage
+    WHERE drugstorage.inChargePerson = `user`.userId
+  </select>
+  
+  <resultMap type="com.web.entity.Drugstorage"  id="myresultmap">
+       <id column="drugStorageid" jdbcType="INTEGER" property="drugstorageid" />
+    <result column="category" jdbcType="VARCHAR" property="category" />
+    <result column="inChargePerson" jdbcType="INTEGER" property="inchargeperson" />
+    <result column="area" jdbcType="DOUBLE" property="area" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+
+    <association property="user"  javaType="com.web.entity.User">
+      <id column="userId" jdbcType="INTEGER" property="userid" />
+    <result column="userName" jdbcType="VARCHAR" property="username" />
+    <result column="userPwd" jdbcType="VARCHAR" property="userpwd" />
+    <result column="userSex" jdbcType="VARCHAR" property="usersex" />
+    <result column="userPhoto" jdbcType="VARCHAR" property="userphoto" />
+    <result column="userCard" jdbcType="VARCHAR" property="usercard" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="postId" jdbcType="INTEGER" property="postid" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="icuId" jdbcType="INTEGER" property="icuid" />
+    <result column="descc" jdbcType="VARCHAR" property="descc" />
+    </association>
+  </resultMap>
 </mapper>

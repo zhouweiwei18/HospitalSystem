@@ -27,4 +27,7 @@ public interface SupplierMapper {
     int updateByPrimaryKeySelective(Supplier record);
 
     int updateByPrimaryKey(Supplier record);
+    
+    //下面是自定义的方法
+    int delSupplierByid(Integer supplierid);
 }

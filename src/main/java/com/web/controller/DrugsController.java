@@ -36,6 +36,46 @@ public class DrugsController {
 	}
 	
 	
+	@RequestMapping("/getAll")
+	@ResponseBody
+	public List<Drugs>   getAll(){
+	
+		return  drugsService.getAll();
+	}
+	
+	@RequestMapping("/getDrugByid")
+	@ResponseBody
+	public Drugs getDrugByid(Integer drugsid){
+		
+		return drugsService.getDrugByid(drugsid);
+	}
+	
+	@RequestMapping("/updateDrugs")
+	@ResponseBody
+	public int  updateDrugs(Drugs drugs){
+		
+		return drugsService.updateDrugs(drugs);
+		
+		
+	}
+	
+	@RequestMapping("/insertdrugs")
+	@ResponseBody
+	public int insertdrugs(Drugs drugs){
+		
+	return 	drugsService.insertdrugs(drugs);
+		
+	}
+	
+	
+	@RequestMapping("/delsup")
+	@ResponseBody
+	public int delsup(Integer drugsid){
+		
+	 return  drugsService.delsup(drugsid);
+
+	}
+	
 
 
 }

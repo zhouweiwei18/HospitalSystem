@@ -10,7 +10,15 @@ public interface DrugsService {
 
 	List<Drugs> getDrugs();
 
-	 
+	List<Drugs> getAll();
+
+	Drugs getDrugByid(Integer drugsid);
+
+	int updateDrugs(Drugs drugs);
+
+	int insertdrugs(Drugs drugs);
+	
+	int delsup(Integer drugsid);
 
 	
 

@@ -45,6 +45,18 @@ public class Drugs implements Serializable {
     private String guaranteetime;
 
     private Integer supplierid;
+    
+    
+    
+    public Supplier getSupplier() {
+		return Supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		Supplier = supplier;
+	}
+
+	private Supplier  Supplier;
 
     private static final long serialVersionUID = 1L;
 
@@ -178,4 +190,6 @@ public class Drugs implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+    
+    
 }

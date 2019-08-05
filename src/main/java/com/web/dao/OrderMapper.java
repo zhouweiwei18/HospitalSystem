@@ -27,4 +27,7 @@ public interface OrderMapper {
     int updateByPrimaryKeySelective(Order record);
 
     int updateByPrimaryKey(Order record);
+    
+    //下面是自定义的方法
+    List<Order> getAll();
 }

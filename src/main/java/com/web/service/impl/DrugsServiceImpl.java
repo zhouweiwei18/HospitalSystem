@@ -13,14 +13,62 @@ import com.web.service.DrugsService;
 
 @Service
 public class DrugsServiceImpl implements DrugsService {
-	
+
 	@Autowired
 	DrugsMapper drugsMapper;
-	
+
 	@Override
 	public List<Drugs> getDrugs() {
-		
+
 		return drugsMapper.selectByExample(new DrugsExample());
+	}
+
+	@Override
+	public List<Drugs> getAll() {
+
+		/*
+		 * List<Drugs> list = drugsMapper.getAll();
+		 * 
+		 * ArrayList<Drugs> arrayList = new ArrayList<>();
+		 * 
+		 * for (Drugs a : list) {
+		 * 
+		 * if(a.getSpecifications()=="1") {
+		 * 
+		 * arrayList.add(a);
+		 * 
+		 * }
+		 * 
+		 * }
+		 * 
+		 * return arrayList;
+		 */
+
+		return drugsMapper.getAll();
+	}
+
+	@Override
+	public Drugs getDrugByid(Integer drugsid) {
+
+		return drugsMapper.getDrugByid(drugsid);
+	}
+
+	@Override
+	public int updateDrugs(Drugs drugs) {
+
+		return drugsMapper.updateByPrimaryKeySelective(drugs);
+	}
+
+	@Override
+	public int insertdrugs(Drugs drugs) {
+
+		return drugsMapper.insert(drugs);
+	}
+
+	@Override
+	public int delsup(Integer drugsid) {
+
+		return drugsMapper.delsup(drugsid);
 	}
 
 }
