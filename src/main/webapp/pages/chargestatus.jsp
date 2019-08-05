@@ -99,7 +99,7 @@
 			}]
 		})
 		
-		//负责人下拉列表动态读取数据
+		//收款员下拉列表动态读取数据
 		$.ajax({
 			type:'post',//提交方式
 			url:'${pageContext.request.contextPath}/user/getUser.action',//访问后台的地址   查询所有的岗位信息
@@ -117,6 +117,7 @@
 					}
 				   
 					$("#myUpdateChargestatus").html(optionhtml);
+					$("#cashier").html(optionhtml);
 				}
 			}
 		})
@@ -139,11 +140,33 @@
 					}
 				   
 					$("#myUpdateChargeItemPatient").html(optionhtml);
+					$("#patientid").html(optionhtml);
 				}
 			}
 		})
 		
-  })
+		//项目号下拉列表动态读取数据
+		$.ajax({
+			type:'post',//提交方式
+			url:'${pageContext.request.contextPath}/chargeitem/getChargeitem.action',//访问后台的地址   查询所有的岗位信息
+			async:false,//  true：异步     false:同步
+			dataType: "json",//数据类型
+			success: function(data){
+				 
+				if(data != null){
+					var optionhtml = '';//定义一个字符串变量
+					
+					for(var i=0;i<data.length;i++){
+						
+						optionhtml +='<option value="'+data[i].chargeid+'">'+data[i].chargeid+'</option>';
+						
+					}
+				   
+					$("#chargeitemno").html(optionhtml);
+				}
+			}
+		})
+})
   
 //添加事件
 $("#btn_add").click(function () {
@@ -154,18 +177,16 @@ $("#btn_add").click(function () {
 	  })
 })
 
-//添加科室  添加按钮点击事件
+//添加薪资表  添加按钮点击事件
 function addChargeStatus() {
 	
 	//由于数据较少，这里就手动获取了
 	//并且加上校验
-	var departmentname = $("#departmentname").val();
-	var departmentaddress = $("#departmentaddress").val();
-	var departmenttelephone = $("#departmenttelephone").val();
-	var userid = $("#userid").val();
+	var chargeamount = $("#chargeamount").val();
+	var settleamount = $("#settleamount").val();
 	 
 	//有一个用户未选择则不让添加
-	if(departmentname==null||departmentaddress==null||departmenttelephone==null||userid==null||departmentname==''||departmentaddress==''||departmenttelephone==''||userid==''){
+	if(chargeamount==null||settleamount==null||settleamount==''||chargeamount==''){
 		swal({
 			text: "请填写数据完整",
 			type: "warning",
@@ -173,16 +194,15 @@ function addChargeStatus() {
 			confirmButtonColor: '#f8bb86',
 		})
 	}else{
+		
+		//获取表单中的所有值
+	    var data = $("#myAddForm").serializeArray();
+		
 		//ajax提交数据
 		 $.ajax({
 		 type:"post",//请求方式
-		 url:"${pageContext.request.contextPath}/department/addDepartment.action",//根据编号查询用户的信息
-		 data:{
-			 departmentname:departmentname,
-			 departmentaddress:departmentaddress,
-			 departmenttelephone:departmenttelephone,
-			 userid:userid
-		},//传参数到后台
+		 url:"${pageContext.request.contextPath}/chargestatus/addChargestatus.action",//根据编号查询用户的信息
+		 data:data,//传参数到后台
 		 dataType:"json",//以json格式传递数据
 		 success:function(data){
 			  //alert("添加成功");
@@ -190,7 +210,7 @@ function addChargeStatus() {
 			  $("#table").bootstrapTable("refresh");
 			  $("#addBtn").click();
 			  swal({
-					text: "科室分配成功！",
+					text: "薪资添加成功！",
 					type: "success",
 					confirmButtonText: '确认',
 					confirmButtonColor: '#4cd964',
@@ -198,7 +218,7 @@ function addChargeStatus() {
 			}
 	})
 	}
-}  
+}
 
 //chargestatus表修改的预查询
 function myUpdateClick(id) {
@@ -241,7 +261,7 @@ function updateChargeStatus() {
 			 //刷新表格
 			 $("#table").bootstrapTable("refresh");
 			 swal({
-					text: "科室修改成功！",
+					text: "薪资修改成功！",
 					type: "success",
 					confirmButtonText: '确认',
 					confirmButtonColor: '#4cd964',
@@ -326,43 +346,74 @@ function updateChargeStatus() {
     </div>
 </div>
  
-<!-- 添加岗位模态框（Modal） -->
+<!-- 添加薪资模态框（Modal） -->
 <div class="modal fade" id="myAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">添加科室</h4>
+                <h4 class="modal-title" id="myModalLabel">添加收费情况</h4>
             </div>
             <div class="modal-body">
                   <form id="myAddForm" class="form-horizontal" action="">
                   
 					  <div class="form-group">
-					    <label class="col-sm-2 control-label">科室名称:</label>
+					    <label class="col-sm-2 control-label">项目号:</label>
 					    <div class="col-sm-7">
-					      <input type="text"  name="departmentname" class="form-control" id="departmentname" placeholder="(必填项)">
+					       <select id="chargeitemno" name="chargeitemno">
+					        	
+					       </select>
 					    </div>
 					  </div>
 					  
 					  <div class="form-group">
-					    <label class="col-sm-2 control-label">科室地址:</label>
+					    <label class="col-sm-2 control-label">收费金额:</label>
 					    <div class="col-sm-7">
-					       <input type="text"  name="departmentaddress" class="form-control" id="departmentaddress" placeholder="(必填项)">
+					       <input type="text"  name="chargeamount" class="form-control" id="chargeamount" placeholder="(必填项)">
 					    </div>
 					  </div>
 					   
 					  <div class="form-group">
-					    <label for="inputPassword3" class="col-sm-2 control-label">科室电话:</label>
+					    <label for="inputPassword3" class="col-sm-2 control-label">结账金额:</label>
 					    <div class="col-sm-7">
-					        <input type="text"  name="departmenttelephone" class="form-control" id="departmenttelephone" placeholder="(必填项)">
+					        <input type="text"  name="settleamount" class="form-control" id="settleamount" placeholder="(必填项)">
 					    </div>
 					  </div>
 					  
 					  <div class="form-group">
-					    <label class="col-sm-2 control-label">负责人:</label>
+					    <label class="col-sm-2 control-label">收款员:</label>
 					    <div class="col-sm-7">
-					       <select id="userid" class="form-control" name="username">
-					      		 
+					       <select id="cashier" class="form-control" name="cashier">
+					      		
+					       </select>
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">病人:</label>
+					    <div class="col-sm-7">
+					       <select id="patientid" class="form-control" name="patientid">
+					      		
+					       </select>
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">结账情况:</label>
+					    <div class="col-sm-7">
+					       <select id="checkoutstatus" class="form-control" name="checkoutstatus">
+					      		<option value="0">已结账</option>
+					      		<option value="1">未结账</option>
+					       </select>
+					    </div>
+					  </div>
+					  
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">转账情况:</label>
+					    <div class="col-sm-7">
+					       <select id="istransfer" class="form-control" name="istransfer">
+					      		<option value="0">已转账</option>
+					      		<option value="1">未转账</option>
 					       </select>
 					    </div>
 					  </div>
@@ -370,7 +421,7 @@ function updateChargeStatus() {
             </div>
             <div class="modal-footer">
                 <button type="button" id="addBtn" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button onclick="addDepartment()" type="button" class="btn btn-primary">添加</button>
+                <button onclick="addChargeStatus()" type="button" class="btn btn-primary">添加</button>
             </div>
         </div>
     </div>

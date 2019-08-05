@@ -54,4 +54,10 @@ public class ChargeStatusServiceImpl implements ChargeStatusService {
 		return i&j;
 	}
 
+	@Override
+	public Integer addChargestatus(Chargestatus chargestatus) {
+		
+		return csm.insert(chargestatus);
+	}
+
 }

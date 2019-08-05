@@ -15,4 +15,7 @@ public interface ChargeStatusService {
 	//根据id修改
 	Integer updateChargeStatusById(Chargestatus chargestatus);
 
+	//添加薪资
+	Integer addChargestatus(Chargestatus chargestatus);
+
 }

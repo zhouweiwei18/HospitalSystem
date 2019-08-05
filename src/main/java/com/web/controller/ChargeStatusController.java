@@ -18,10 +18,17 @@ public class ChargeStatusController {
 	@Resource
 	ChargeStatusService css;
 
+	@RequestMapping("/addChargestatus")
+	@ResponseBody
+	public Integer addChargestatus(Chargestatus chargestatus) {
+ 
+		return css.addChargestatus(chargestatus);
+	}
+	
 	@RequestMapping("/updateChargestatusById")
 	@ResponseBody
 	public Integer updateChargestatusById(Chargestatus chargestatus) {
- 
+		
 		return css.updateChargeStatusById(chargestatus);
 	}
 	
