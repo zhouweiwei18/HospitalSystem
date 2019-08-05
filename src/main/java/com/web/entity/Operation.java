@@ -62,6 +62,46 @@ public class Operation implements Serializable {
     private Double operationprice;
 
     private Integer isdelete;
+    
+    private Patient patient;
+    
+    private User user;
+    
+    private Operationroom operationroom;
+    
+    private Inpatient inpatient;
+    
+    public Inpatient getInpatient() {
+		return inpatient;
+	}
+
+	public void setInpatient(Inpatient inpatient) {
+		this.inpatient = inpatient;
+	}
+    
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Operationroom getOperationroom() {
+		return operationroom;
+	}
+
+	public void setOperationroom(Operationroom operationroom) {
+		this.operationroom = operationroom;
+	}
 
     private static final long serialVersionUID = 1L;
 
@@ -239,4 +279,5 @@ public class Operation implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
 }

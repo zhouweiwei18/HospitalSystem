@@ -1,267 +1,380 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.web.dao.RegistrationorderMapper">
-  <resultMap id="BaseResultMap" type="com.web.entity.Registrationorder">
-    <id column="registerId" jdbcType="INTEGER" property="registerid" />
-    <result column="registrationNumber" jdbcType="INTEGER" property="registrationnumber" />
-    <result column="registrationDate" jdbcType="VARCHAR" property="registrationdate" />
-    <result column="registeredFee" jdbcType="DOUBLE" property="registeredfee" />
-    <result column="registrationDepartment" jdbcType="INTEGER" property="registrationdepartment" />
-    <result column="physicianInCharge" jdbcType="INTEGER" property="physicianincharge" />
-    <result column="patientId" jdbcType="INTEGER" property="patientid" />
-    <result column="registeredPersonId" jdbcType="INTEGER" property="registeredpersonid" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    registerId, registrationNumber, registrationDate, registeredFee, registrationDepartment, 
-    physicianInCharge, patientId, registeredPersonId
-  </sql>
-  <select id="selectByExample" parameterType="com.web.entity.RegistrationorderExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from registrationorder
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-    <if test="limit != null">
-      <if test="offset != null">
-        limit ${offset}, ${limit}
-      </if>
-      <if test="offset == null">
-        limit ${limit}
-      </if>
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from registrationorder
-    where registerId = #{registerid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from registrationorder
-    where registerId = #{registerid,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.web.entity.RegistrationorderExample">
-    delete from registrationorder
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.web.entity.Registrationorder">
-    insert into registrationorder (registerId, registrationNumber, registrationDate, 
-      registeredFee, registrationDepartment, physicianInCharge, 
-      patientId, registeredPersonId)
-    values (#{registerid,jdbcType=INTEGER}, #{registrationnumber,jdbcType=INTEGER}, #{registrationdate,jdbcType=VARCHAR}, 
-      #{registeredfee,jdbcType=DOUBLE}, #{registrationdepartment,jdbcType=INTEGER}, #{physicianincharge,jdbcType=INTEGER}, 
-      #{patientid,jdbcType=INTEGER}, #{registeredpersonid,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.web.entity.Registrationorder">
-    insert into registrationorder
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="registerid != null">
-        registerId,
-      </if>
-      <if test="registrationnumber != null">
-        registrationNumber,
-      </if>
-      <if test="registrationdate != null">
-        registrationDate,
-      </if>
-      <if test="registeredfee != null">
-        registeredFee,
-      </if>
-      <if test="registrationdepartment != null">
-        registrationDepartment,
-      </if>
-      <if test="physicianincharge != null">
-        physicianInCharge,
-      </if>
-      <if test="patientid != null">
-        patientId,
-      </if>
-      <if test="registeredpersonid != null">
-        registeredPersonId,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="registerid != null">
-        #{registerid,jdbcType=INTEGER},
-      </if>
-      <if test="registrationnumber != null">
-        #{registrationnumber,jdbcType=INTEGER},
-      </if>
-      <if test="registrationdate != null">
-        #{registrationdate,jdbcType=VARCHAR},
-      </if>
-      <if test="registeredfee != null">
-        #{registeredfee,jdbcType=DOUBLE},
-      </if>
-      <if test="registrationdepartment != null">
-        #{registrationdepartment,jdbcType=INTEGER},
-      </if>
-      <if test="physicianincharge != null">
-        #{physicianincharge,jdbcType=INTEGER},
-      </if>
-      <if test="patientid != null">
-        #{patientid,jdbcType=INTEGER},
-      </if>
-      <if test="registeredpersonid != null">
-        #{registeredpersonid,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.web.entity.RegistrationorderExample" resultType="java.lang.Long">
-    select count(*) from registrationorder
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update registrationorder
-    <set>
-      <if test="record.registerid != null">
-        registerId = #{record.registerid,jdbcType=INTEGER},
-      </if>
-      <if test="record.registrationnumber != null">
-        registrationNumber = #{record.registrationnumber,jdbcType=INTEGER},
-      </if>
-      <if test="record.registrationdate != null">
-        registrationDate = #{record.registrationdate,jdbcType=VARCHAR},
-      </if>
-      <if test="record.registeredfee != null">
-        registeredFee = #{record.registeredfee,jdbcType=DOUBLE},
-      </if>
-      <if test="record.registrationdepartment != null">
-        registrationDepartment = #{record.registrationdepartment,jdbcType=INTEGER},
-      </if>
-      <if test="record.physicianincharge != null">
-        physicianInCharge = #{record.physicianincharge,jdbcType=INTEGER},
-      </if>
-      <if test="record.patientid != null">
-        patientId = #{record.patientid,jdbcType=INTEGER},
-      </if>
-      <if test="record.registeredpersonid != null">
-        registeredPersonId = #{record.registeredpersonid,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update registrationorder
-    set registerId = #{record.registerid,jdbcType=INTEGER},
-      registrationNumber = #{record.registrationnumber,jdbcType=INTEGER},
-      registrationDate = #{record.registrationdate,jdbcType=VARCHAR},
-      registeredFee = #{record.registeredfee,jdbcType=DOUBLE},
-      registrationDepartment = #{record.registrationdepartment,jdbcType=INTEGER},
-      physicianInCharge = #{record.physicianincharge,jdbcType=INTEGER},
-      patientId = #{record.patientid,jdbcType=INTEGER},
-      registeredPersonId = #{record.registeredpersonid,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.web.entity.Registrationorder">
-    update registrationorder
-    <set>
-      <if test="registrationnumber != null">
-        registrationNumber = #{registrationnumber,jdbcType=INTEGER},
-      </if>
-      <if test="registrationdate != null">
-        registrationDate = #{registrationdate,jdbcType=VARCHAR},
-      </if>
-      <if test="registeredfee != null">
-        registeredFee = #{registeredfee,jdbcType=DOUBLE},
-      </if>
-      <if test="registrationdepartment != null">
-        registrationDepartment = #{registrationdepartment,jdbcType=INTEGER},
-      </if>
-      <if test="physicianincharge != null">
-        physicianInCharge = #{physicianincharge,jdbcType=INTEGER},
-      </if>
-      <if test="patientid != null">
-        patientId = #{patientid,jdbcType=INTEGER},
-      </if>
-      <if test="registeredpersonid != null">
-        registeredPersonId = #{registeredpersonid,jdbcType=INTEGER},
-      </if>
-    </set>
-    where registerId = #{registerid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.web.entity.Registrationorder">
-    update registrationorder
-    set registrationNumber = #{registrationnumber,jdbcType=INTEGER},
-      registrationDate = #{registrationdate,jdbcType=VARCHAR},
-      registeredFee = #{registeredfee,jdbcType=DOUBLE},
-      registrationDepartment = #{registrationdepartment,jdbcType=INTEGER},
-      physicianInCharge = #{physicianincharge,jdbcType=INTEGER},
-      patientId = #{patientid,jdbcType=INTEGER},
-      registeredPersonId = #{registeredpersonid,jdbcType=INTEGER}
-    where registerId = #{registerid,jdbcType=INTEGER}
-  </update>
+	<resultMap id="BaseResultMap" type="com.web.entity.Registrationorder">
+		<id column="registerId" jdbcType="INTEGER" property="registerid" />
+		<result column="registrationNumber" jdbcType="INTEGER"
+			property="registrationnumber" />
+		<result column="registrationDate" jdbcType="VARCHAR" property="registrationdate" />
+		<result column="registeredFee" jdbcType="DOUBLE" property="registeredfee" />
+		<result column="registrationDepartment" jdbcType="INTEGER"
+			property="registrationdepartment" />
+		<result column="physicianInCharge" jdbcType="INTEGER" property="physicianincharge" />
+		<result column="patientId" jdbcType="INTEGER" property="patientid" />
+		<result column="registeredPersonId" jdbcType="INTEGER"
+			property="registeredpersonid" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		registerId, registrationNumber, registrationDate,
+		registeredFee,
+		registrationDepartment,
+		physicianInCharge, patientId,
+		registeredPersonId
+	</sql>
+	<select id="selectByExample" parameterType="com.web.entity.RegistrationorderExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from registrationorder
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+		<if test="limit != null">
+			<if test="offset != null">
+				limit ${offset}, ${limit}
+			</if>
+			<if test="offset == null">
+				limit ${limit}
+			</if>
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from registrationorder
+		where registerId =
+		#{registerid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		registrationorder
+		where registerId = #{registerid,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.web.entity.RegistrationorderExample">
+		delete from registrationorder
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.web.entity.Registrationorder">
+		insert into registrationorder
+		(registerId, registrationNumber,
+		registrationDate,
+		registeredFee,
+		registrationDepartment, physicianInCharge,
+		patientId,
+		registeredPersonId)
+		values (#{registerid,jdbcType=INTEGER},
+		#{registrationnumber,jdbcType=INTEGER},
+		#{registrationdate,jdbcType=VARCHAR},
+		#{registeredfee,jdbcType=DOUBLE},
+		#{registrationdepartment,jdbcType=INTEGER},
+		#{physicianincharge,jdbcType=INTEGER},
+		#{patientid,jdbcType=INTEGER},
+		#{registeredpersonid,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="com.web.entity.Registrationorder">
+		insert into registrationorder
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="registerid != null">
+				registerId,
+			</if>
+			<if test="registrationnumber != null">
+				registrationNumber,
+			</if>
+			<if test="registrationdate != null">
+				registrationDate,
+			</if>
+			<if test="registeredfee != null">
+				registeredFee,
+			</if>
+			<if test="registrationdepartment != null">
+				registrationDepartment,
+			</if>
+			<if test="physicianincharge != null">
+				physicianInCharge,
+			</if>
+			<if test="patientid != null">
+				patientId,
+			</if>
+			<if test="registeredpersonid != null">
+				registeredPersonId,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="registerid != null">
+				#{registerid,jdbcType=INTEGER},
+			</if>
+			<if test="registrationnumber != null">
+				#{registrationnumber,jdbcType=INTEGER},
+			</if>
+			<if test="registrationdate != null">
+				#{registrationdate,jdbcType=VARCHAR},
+			</if>
+			<if test="registeredfee != null">
+				#{registeredfee,jdbcType=DOUBLE},
+			</if>
+			<if test="registrationdepartment != null">
+				#{registrationdepartment,jdbcType=INTEGER},
+			</if>
+			<if test="physicianincharge != null">
+				#{physicianincharge,jdbcType=INTEGER},
+			</if>
+			<if test="patientid != null">
+				#{patientid,jdbcType=INTEGER},
+			</if>
+			<if test="registeredpersonid != null">
+				#{registeredpersonid,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.web.entity.RegistrationorderExample"
+		resultType="java.lang.Long">
+		select count(*) from registrationorder
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update registrationorder
+		<set>
+			<if test="record.registerid != null">
+				registerId = #{record.registerid,jdbcType=INTEGER},
+			</if>
+			<if test="record.registrationnumber != null">
+				registrationNumber =
+				#{record.registrationnumber,jdbcType=INTEGER},
+			</if>
+			<if test="record.registrationdate != null">
+				registrationDate =
+				#{record.registrationdate,jdbcType=VARCHAR},
+			</if>
+			<if test="record.registeredfee != null">
+				registeredFee = #{record.registeredfee,jdbcType=DOUBLE},
+			</if>
+			<if test="record.registrationdepartment != null">
+				registrationDepartment =
+				#{record.registrationdepartment,jdbcType=INTEGER},
+			</if>
+			<if test="record.physicianincharge != null">
+				physicianInCharge =
+				#{record.physicianincharge,jdbcType=INTEGER},
+			</if>
+			<if test="record.patientid != null">
+				patientId = #{record.patientid,jdbcType=INTEGER},
+			</if>
+			<if test="record.registeredpersonid != null">
+				registeredPersonId =
+				#{record.registeredpersonid,jdbcType=INTEGER},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update registrationorder
+		set registerId =
+		#{record.registerid,jdbcType=INTEGER},
+		registrationNumber =
+		#{record.registrationnumber,jdbcType=INTEGER},
+		registrationDate =
+		#{record.registrationdate,jdbcType=VARCHAR},
+		registeredFee =
+		#{record.registeredfee,jdbcType=DOUBLE},
+		registrationDepartment =
+		#{record.registrationdepartment,jdbcType=INTEGER},
+		physicianInCharge =
+		#{record.physicianincharge,jdbcType=INTEGER},
+		patientId =
+		#{record.patientid,jdbcType=INTEGER},
+		registeredPersonId =
+		#{record.registeredpersonid,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.web.entity.Registrationorder">
+		update registrationorder
+		<set>
+			<if test="registrationnumber != null">
+				registrationNumber =
+				#{registrationnumber,jdbcType=INTEGER},
+			</if>
+			<if test="registrationdate != null">
+				registrationDate = #{registrationdate,jdbcType=VARCHAR},
+			</if>
+			<if test="registeredfee != null">
+				registeredFee = #{registeredfee,jdbcType=DOUBLE},
+			</if>
+			<if test="registrationdepartment != null">
+				registrationDepartment =
+				#{registrationdepartment,jdbcType=INTEGER},
+			</if>
+			<if test="physicianincharge != null">
+				physicianInCharge =
+				#{physicianincharge,jdbcType=INTEGER},
+			</if>
+			<if test="patientid != null">
+				patientId = #{patientid,jdbcType=INTEGER},
+			</if>
+			<if test="registeredpersonid != null">
+				registeredPersonId =
+				#{registeredpersonid,jdbcType=INTEGER},
+			</if>
+		</set>
+		where registerId = #{registerid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.web.entity.Registrationorder">
+		update
+		registrationorder
+		set registrationNumber =
+		#{registrationnumber,jdbcType=INTEGER},
+		registrationDate =
+		#{registrationdate,jdbcType=VARCHAR},
+		registeredFee =
+		#{registeredfee,jdbcType=DOUBLE},
+		registrationDepartment =
+		#{registrationdepartment,jdbcType=INTEGER},
+		physicianInCharge =
+		#{physicianincharge,jdbcType=INTEGER},
+		patientId =
+		#{patientid,jdbcType=INTEGER},
+		registeredPersonId =
+		#{registeredpersonid,jdbcType=INTEGER}
+		where registerId =
+		#{registerid,jdbcType=INTEGER}
+	</update>
+
+
+
+	<!-- 自定义结果集 -->
+	<resultMap type="com.web.entity.Registrationorder" id="registrationorderResultMap">
+
+		<id column="registerId" jdbcType="INTEGER" property="registerid" />
+		<result column="registrationNumber" jdbcType="INTEGER"
+			property="registrationnumber" />
+		<result column="registrationDate" jdbcType="VARCHAR" property="registrationdate" />
+		<result column="registeredFee" jdbcType="DOUBLE" property="registeredfee" />
+		<result column="registrationDepartment" jdbcType="INTEGER"
+			property="registrationdepartment" />
+		<result column="physicianInCharge" jdbcType="INTEGER" property="physicianincharge" />
+		<result column="patientId" jdbcType="INTEGER" property="patientid" />
+		<result column="registeredPersonId" jdbcType="INTEGER"
+			property="registeredpersonid" />
+
+
+		<association property="user" javaType="com.web.entity.User">
+			<id column="userId" jdbcType="INTEGER" property="userid" />
+			<result column="userName" jdbcType="VARCHAR" property="username" />
+
+		</association>
+
+
+		<association property="department" javaType="com.web.entity.Department">
+			<!-- id:主键 column：列名 property：属性名称 -->
+			<id column="departmentId" jdbcType="INTEGER" property="departmentid" />
+		
+			<result column="departmentName" jdbcType="VARCHAR" property="departmentname" />
+
+		</association>
+
+		<association property="patient" javaType="com.web.entity.Patient">
+			<id column="patientId" jdbcType="INTEGER" property="patientid" />
+			<result column="name" jdbcType="VARCHAR" property="name" />
+
+		</association>
+
+
+
+	</resultMap>
+
+
+
+	<select id="queryAll" resultMap="registrationorderResultMap">
+		select
+		r.*,p.`name`,u.userName,d.departmentName
+		from registrationorder
+		r,patient p,`user` u,department d
+		where r.patientId = p.patientId and
+		r.registrationDepartment =
+		d.departmentId and r.registeredPersonId =
+		u.userId
+	</select>
+
+
+
+
 </mapper>

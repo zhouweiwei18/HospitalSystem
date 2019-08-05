@@ -4,9 +4,8 @@
   <resultMap id="BaseResultMap" type="com.web.entity.Icu">
     <id column="icuId" jdbcType="INTEGER" property="icuid" />
     <result column="bedNo" jdbcType="INTEGER" property="bedno" />
-    <result column="userId" jdbcType="INTEGER" property="userid" />
     <result column="icuName" jdbcType="VARCHAR" property="icuname" />
-    <result column="chargePerson" jdbcType="VARCHAR" property="chargeperson" />
+    <result column="chargePerson" jdbcType="INTEGER" property="chargeperson" />
     <result column="occupantsNo" jdbcType="INTEGER" property="occupantsno" />
     <result column="dischargesNo" jdbcType="INTEGER" property="dischargesno" />
     <result column="treatmentRate" jdbcType="DOUBLE" property="treatmentrate" />
@@ -76,9 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    icuId, bedNo, userId, icuName, chargePerson, occupantsNo, dischargesNo, treatmentRate, 
-    improvementRate, unhealedRate, mortality, diagnosticCoincidence, bedUtilizationRate, 
-    isDelete
+    icuId, bedNo, icuName, chargePerson, occupantsNo, dischargesNo, treatmentRate, improvementRate, 
+    unhealedRate, mortality, diagnosticCoincidence, bedUtilizationRate, isDelete
   </sql>
   <select id="selectByExample" parameterType="com.web.entity.IcuExample" resultMap="BaseResultMap">
     select
@@ -119,16 +117,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.web.entity.Icu">
-    insert into icu (icuId, bedNo, userId, 
-      icuName, chargePerson, occupantsNo, 
-      dischargesNo, treatmentRate, improvementRate, 
-      unhealedRate, mortality, diagnosticCoincidence, 
-      bedUtilizationRate, isDelete)
-    values (#{icuid,jdbcType=INTEGER}, #{bedno,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
-      #{icuname,jdbcType=VARCHAR}, #{chargeperson,jdbcType=VARCHAR}, #{occupantsno,jdbcType=INTEGER}, 
-      #{dischargesno,jdbcType=INTEGER}, #{treatmentrate,jdbcType=DOUBLE}, #{improvementrate,jdbcType=DOUBLE}, 
-      #{unhealedrate,jdbcType=DOUBLE}, #{mortality,jdbcType=DOUBLE}, #{diagnosticcoincidence,jdbcType=VARCHAR}, 
-      #{bedutilizationrate,jdbcType=DOUBLE}, #{isdelete,jdbcType=INTEGER})
+    insert into icu (icuId, bedNo, icuName, 
+      chargePerson, occupantsNo, dischargesNo, 
+      treatmentRate, improvementRate, unhealedRate, 
+      mortality, diagnosticCoincidence, bedUtilizationRate, 
+      isDelete)
+    values (#{icuid,jdbcType=INTEGER}, #{bedno,jdbcType=INTEGER}, #{icuname,jdbcType=VARCHAR}, 
+      #{chargeperson,jdbcType=INTEGER}, #{occupantsno,jdbcType=INTEGER}, #{dischargesno,jdbcType=INTEGER}, 
+      #{treatmentrate,jdbcType=DOUBLE}, #{improvementrate,jdbcType=DOUBLE}, #{unhealedrate,jdbcType=DOUBLE}, 
+      #{mortality,jdbcType=DOUBLE}, #{diagnosticcoincidence,jdbcType=VARCHAR}, #{bedutilizationrate,jdbcType=DOUBLE}, 
+      #{isdelete,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.web.entity.Icu">
     insert into icu
@@ -138,9 +136,6 @@
       </if>
       <if test="bedno != null">
         bedNo,
-      </if>
-      <if test="userid != null">
-        userId,
       </if>
       <if test="icuname != null">
         icuName,
@@ -183,14 +178,11 @@
       <if test="bedno != null">
         #{bedno,jdbcType=INTEGER},
       </if>
-      <if test="userid != null">
-        #{userid,jdbcType=INTEGER},
-      </if>
       <if test="icuname != null">
         #{icuname,jdbcType=VARCHAR},
       </if>
       <if test="chargeperson != null">
-        #{chargeperson,jdbcType=VARCHAR},
+        #{chargeperson,jdbcType=INTEGER},
       </if>
       <if test="occupantsno != null">
         #{occupantsno,jdbcType=INTEGER},
@@ -236,14 +228,11 @@
       <if test="record.bedno != null">
         bedNo = #{record.bedno,jdbcType=INTEGER},
       </if>
-      <if test="record.userid != null">
-        userId = #{record.userid,jdbcType=INTEGER},
-      </if>
       <if test="record.icuname != null">
         icuName = #{record.icuname,jdbcType=VARCHAR},
       </if>
       <if test="record.chargeperson != null">
-        chargePerson = #{record.chargeperson,jdbcType=VARCHAR},
+        chargePerson = #{record.chargeperson,jdbcType=INTEGER},
       </if>
       <if test="record.occupantsno != null">
         occupantsNo = #{record.occupantsno,jdbcType=INTEGER},
@@ -281,9 +270,8 @@
     update icu
     set icuId = #{record.icuid,jdbcType=INTEGER},
       bedNo = #{record.bedno,jdbcType=INTEGER},
-      userId = #{record.userid,jdbcType=INTEGER},
       icuName = #{record.icuname,jdbcType=VARCHAR},
-      chargePerson = #{record.chargeperson,jdbcType=VARCHAR},
+      chargePerson = #{record.chargeperson,jdbcType=INTEGER},
       occupantsNo = #{record.occupantsno,jdbcType=INTEGER},
       dischargesNo = #{record.dischargesno,jdbcType=INTEGER},
       treatmentRate = #{record.treatmentrate,jdbcType=DOUBLE},
@@ -303,14 +291,11 @@
       <if test="bedno != null">
         bedNo = #{bedno,jdbcType=INTEGER},
       </if>
-      <if test="userid != null">
-        userId = #{userid,jdbcType=INTEGER},
-      </if>
       <if test="icuname != null">
         icuName = #{icuname,jdbcType=VARCHAR},
       </if>
       <if test="chargeperson != null">
-        chargePerson = #{chargeperson,jdbcType=VARCHAR},
+        chargePerson = #{chargeperson,jdbcType=INTEGER},
       </if>
       <if test="occupantsno != null">
         occupantsNo = #{occupantsno,jdbcType=INTEGER},
@@ -345,9 +330,8 @@
   <update id="updateByPrimaryKey" parameterType="com.web.entity.Icu">
     update icu
     set bedNo = #{bedno,jdbcType=INTEGER},
-      userId = #{userid,jdbcType=INTEGER},
       icuName = #{icuname,jdbcType=VARCHAR},
-      chargePerson = #{chargeperson,jdbcType=VARCHAR},
+      chargePerson = #{chargeperson,jdbcType=INTEGER},
       occupantsNo = #{occupantsno,jdbcType=INTEGER},
       dischargesNo = #{dischargesno,jdbcType=INTEGER},
       treatmentRate = #{treatmentrate,jdbcType=DOUBLE},
@@ -359,4 +343,35 @@
       isDelete = #{isdelete,jdbcType=INTEGER}
     where icuId = #{icuid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义结果集 -->
+  <resultMap type="com.web.entity.Icu" id="myIcuResult">
+  	<id column="icuId" jdbcType="INTEGER" property="icuid" />
+    <result column="bedNo" jdbcType="INTEGER" property="bedno" />
+    <result column="icuName" jdbcType="VARCHAR" property="icuname" />
+    <result column="chargePerson" jdbcType="INTEGER" property="chargeperson" />
+    <result column="occupantsNo" jdbcType="INTEGER" property="occupantsno" />
+    <result column="dischargesNo" jdbcType="INTEGER" property="dischargesno" />
+    <result column="treatmentRate" jdbcType="DOUBLE" property="treatmentrate" />
+    <result column="improvementRate" jdbcType="DOUBLE" property="improvementrate" />
+    <result column="unhealedRate" jdbcType="DOUBLE" property="unhealedrate" />
+    <result column="mortality" jdbcType="DOUBLE" property="mortality" />
+    <result column="diagnosticCoincidence" jdbcType="VARCHAR" property="diagnosticcoincidence" />
+    <result column="bedUtilizationRate" jdbcType="DOUBLE" property="bedutilizationrate" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+  	
+  	<!-- User -->
+  	<association property="user" javaType="com.web.entity.User">
+	  	<id column="userId" jdbcType="INTEGER" property="userid" />
+	    <result column="userName" jdbcType="VARCHAR" property="username" />
+  	</association>
+  	 
+  </resultMap>
+  <!-- 查询icu表所有信息(联合外键) -->
+  <select id="selectIcuInfo" resultMap="myIcuResult">
+  	 SELECT * 
+  	 FROM icu i,`user` u
+	 WHERE i.chargePerson = u.userId
+  </select>
+   
 </mapper>

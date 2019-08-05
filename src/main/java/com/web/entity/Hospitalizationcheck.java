@@ -38,6 +38,56 @@ public class Hospitalizationcheck implements Serializable {
     private String inspectionresult;
 
     private Integer isdelete;
+    
+    private Patient patient;
+    
+    private User user;
+    
+    private Checkproject checkproject;
+    
+    private Hospitalizationadvice hospitalizationadvice;
+    
+    private Inpatient inpatient;
+    
+    public Hospitalizationadvice getHospitalizationadvice() {
+		return hospitalizationadvice;
+	}
+
+	public void setHospitalizationadvice(Hospitalizationadvice hospitalizationadvice) {
+		this.hospitalizationadvice = hospitalizationadvice;
+	}
+
+	public Inpatient getInpatient() {
+		return inpatient;
+	}
+
+	public void setInpatient(Inpatient inpatient) {
+		this.inpatient = inpatient;
+	}
+    
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Checkproject getCheckproject() {
+		return checkproject;
+	}
+
+	public void setCheckproject(Checkproject checkproject) {
+		this.checkproject = checkproject;
+	}
 
     private static final long serialVersionUID = 1L;
 
@@ -149,4 +199,6 @@ public class Hospitalizationcheck implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+
 }

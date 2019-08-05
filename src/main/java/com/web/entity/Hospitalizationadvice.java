@@ -36,6 +36,36 @@ public class Hospitalizationadvice implements Serializable {
     private String diachargetime;
 
     private Integer isdelete;
+    
+    private Patient patient;
+    
+    private Inpatient inpatient;
+    
+    private User user;
+    
+	public Inpatient getInpatient() {
+		return inpatient;
+	}
+
+	public void setInpatient(Inpatient inpatient) {
+		this.inpatient = inpatient;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+    
+    public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 
     private static final long serialVersionUID = 1L;
 
@@ -169,4 +199,6 @@ public class Hospitalizationadvice implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+	
 }

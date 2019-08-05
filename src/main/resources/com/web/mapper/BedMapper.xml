@@ -264,4 +264,72 @@
       isDelete = #{isdelete,jdbcType=INTEGER}
     where bedNumber = #{bednumber,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义结果集 -->
+  <resultMap id="resultBed" type="com.web.entity.Bed">
+    <id column="bedNumber" jdbcType="INTEGER" property="bednumber" />
+    <result column="icuId" jdbcType="INTEGER" property="icuid" />
+    <result column="competentPhysician" jdbcType="INTEGER" property="competentphysician" />
+    <result column="watchKeeperId" jdbcType="INTEGER" property="watchkeeperid" />
+    <result column="therapeuticOutcome" jdbcType="VARCHAR" property="therapeuticoutcome" />
+    <result column="bedEmptyOrNot" jdbcType="INTEGER" property="bedemptyornot" />
+    <result column="bedRent" jdbcType="INTEGER" property="bedrent" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+    
+    <!-- 多对一 -->
+    <association property="user" javaType="com.web.entity.User">
+	   <id column="userId1" jdbcType="INTEGER" property="userid" />
+	   <result column="userName" jdbcType="VARCHAR" property="username" />
+	   <result column="userPwd" jdbcType="VARCHAR" property="userpwd" />
+	   <result column="userSex" jdbcType="VARCHAR" property="usersex" />
+	   <result column="userPhoto" jdbcType="VARCHAR" property="userphoto" />
+	   <result column="userCard" jdbcType="VARCHAR" property="usercard" />
+	   <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+	   <result column="postId" jdbcType="INTEGER" property="postid" />
+	   <result column="state" jdbcType="INTEGER" property="state" />
+	   <result column="icuId" jdbcType="INTEGER" property="icuid" />
+	   <result column="descc" jdbcType="VARCHAR" property="descc" /> 		      
+    </association>
+    
+    <!-- <association property="user" javaType="com.web.entity.User">
+	   <id column="userId2" jdbcType="INTEGER" property="userid" />
+	   <result column="userName" jdbcType="VARCHAR" property="username" />
+	   <result column="userPwd" jdbcType="VARCHAR" property="userpwd" />
+	   <result column="userSex" jdbcType="VARCHAR" property="usersex" />
+	   <result column="userPhoto" jdbcType="VARCHAR" property="userphoto" />
+	   <result column="userCard" jdbcType="VARCHAR" property="usercard" />
+	   <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+	   <result column="postId" jdbcType="INTEGER" property="postid" />
+	   <result column="state" jdbcType="INTEGER" property="state" />
+	   <result column="icuId" jdbcType="INTEGER" property="icuid" />
+	   <result column="descc" jdbcType="VARCHAR" property="descc" /> 		      
+    </association> -->
+    <association property="icu" javaType="com.web.entity.Icu">
+      <id column="icuId" jdbcType="INTEGER" property="icuid" />
+      <result column="bedNo1" jdbcType="INTEGER" property="bedno" />
+     <!--  <result column="userId" jdbcType="INTEGER" property="userid" /> -->
+      <result column="icuName" jdbcType="VARCHAR" property="icuname" />
+      <result column="chargePerson" jdbcType="VARCHAR" property="chargeperson" />
+      <result column="occupantsNo" jdbcType="INTEGER" property="occupantsno" />
+      <result column="dischargesNo" jdbcType="INTEGER" property="dischargesno" />
+      <result column="treatmentRate" jdbcType="DOUBLE" property="treatmentrate" />
+      <result column="improvementRate" jdbcType="DOUBLE" property="improvementrate" />
+      <result column="unhealedRate" jdbcType="DOUBLE" property="unhealedrate" />
+      <result column="mortality" jdbcType="DOUBLE" property="mortality" />
+      <result column="diagnosticCoincidence" jdbcType="VARCHAR" property="diagnosticcoincidence" />
+      <result column="bedUtilizationRate" jdbcType="DOUBLE" property="bedutilizationrate" />
+      <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+    </association>
+  </resultMap>
+  
+  <select id="queryBedUserIcu" parameterType="com.web.entity.Bed" 
+     resultMap="resultBed">
+     select  b.*,u.*,i.*
+     from bed b,user u,icu i
+     WHERE (b.competentPhysician = u.userId or b.watchKeeperId = u.userId)
+     and b.icuId = i.icuId
+     
+  </select>
+  
+  
 </mapper>

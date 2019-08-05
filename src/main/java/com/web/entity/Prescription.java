@@ -23,7 +23,36 @@ public class Prescription implements Serializable {
 
     private Integer isdelete;
 
-    private static final long serialVersionUID = 1L;
+    
+    private Patient patient;
+    private Drugs drugs;
+    private Doctoradvice doctoradvice;
+    
+    public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public Drugs getDrugs() {
+		return drugs;
+	}
+
+	public void setDrugs(Drugs drugs) {
+		this.drugs = drugs;
+	}
+
+	public Doctoradvice getDoctoradvice() {
+		return doctoradvice;
+	}
+
+	public void setDoctoradvice(Doctoradvice doctoradvice) {
+		this.doctoradvice = doctoradvice;
+	}
+
+	private static final long serialVersionUID = 1L;
 
     public Integer getPrescriptionnumber() {
         return prescriptionnumber;

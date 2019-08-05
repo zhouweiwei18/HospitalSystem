@@ -27,4 +27,6 @@ public interface HospitalizationcheckMapper {
     int updateByPrimaryKeySelective(Hospitalizationcheck record);
 
     int updateByPrimaryKey(Hospitalizationcheck record);
+    
+    List<Hospitalizationcheck> queryPatientUserCheck();
 }

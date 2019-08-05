@@ -27,4 +27,6 @@ public interface HospitalizationadviceMapper {
     int updateByPrimaryKeySelective(Hospitalizationadvice record);
 
     int updateByPrimaryKey(Hospitalizationadvice record);
+
+	List<Hospitalizationadvice> queryPatientUser();
 }

@@ -37,16 +37,55 @@ public class Registrationorder implements Serializable {
      */
     private Integer physicianincharge;
 
+    /**
+     * 病人id
+     */
     private Integer patientid;
 
     /**
      * 挂号人员
      */
     private Integer registeredpersonid;
+    
+  
+   
+    
+    
+    private Patient patient;
+    private User user;
+    private Department department;
+    
 
+    
+    
     private static final long serialVersionUID = 1L;
+     
 
-    public Integer getRegisterid() {
+    public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Integer getRegisterid() {
         return registerid;
     }
 

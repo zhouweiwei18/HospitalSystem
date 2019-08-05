@@ -27,4 +27,10 @@ public interface PrescriptionMapper {
     int updateByPrimaryKeySelective(Prescription record);
 
     int updateByPrimaryKey(Prescription record);
+    
+    /**
+     * 查询所有
+     * @return
+     */
+    List<Prescription> queryAll();
 }

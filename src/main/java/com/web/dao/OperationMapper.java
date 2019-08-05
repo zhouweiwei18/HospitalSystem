@@ -6,7 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface OperationMapper {
-    long countByExample(OperationExample example);
+
+	long countByExample(OperationExample example);
 
     int deleteByExample(OperationExample example);
 
@@ -27,4 +28,6 @@ public interface OperationMapper {
     int updateByPrimaryKeySelective(Operation record);
 
     int updateByPrimaryKey(Operation record);
+    
+    List<Operation> queryPatientUserRoom();
 }

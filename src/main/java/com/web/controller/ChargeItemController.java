@@ -26,5 +26,15 @@ public class ChargeItemController {
 
 		return list;
 	}
+	
+	@RequestMapping("/queryChargeitem")
+	@ResponseBody
+	public List<Chargeitem> getAllChargeitem(){
+
+		List<Chargeitem> list = cis.queryAllInfo();
+
+		return list;
+	}
+	
 
 }

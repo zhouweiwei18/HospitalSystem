@@ -41,6 +41,36 @@ public class Hospitallzationfeeitems implements Serializable {
      * 结账情况
      */
     private Integer checkoutstatus;
+    
+    private Patient patient;
+    
+    private User user;
+    
+    private Inpatient inpatient;
+    
+	public Inpatient getInpatient() {
+		return inpatient;
+	}
+
+	public void setInpatient(Inpatient inpatient) {
+		this.inpatient = inpatient;
+	}
+    
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
     private static final long serialVersionUID = 1L;
 
@@ -152,4 +182,6 @@ public class Hospitallzationfeeitems implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+
 }

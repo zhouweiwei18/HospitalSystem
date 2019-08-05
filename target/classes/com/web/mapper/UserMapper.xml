@@ -338,7 +338,7 @@
     	u.userId= #{userid};
   </update> -->
   
-  <!-- 自定义resultMap用于一对多查询 -->
+    <!-- 自定义resultMap用于一对多查询 -->
 	<resultMap id="MyResultMap" type="com.web.pojo.UserAndPartment">
 		<id column="userId" property="userid" jdbcType="INTEGER" />
 		<result column="userName" property="username"

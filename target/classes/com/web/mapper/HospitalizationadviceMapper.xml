@@ -281,4 +281,75 @@
       isDelete = #{isdelete,jdbcType=INTEGER}
     where hospitalizationAdviceId = #{hospitalizationadviceid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义结果集 -->
+  <resultMap id="resultHospitalizationadvice" type="com.web.entity.Hospitalizationadvice">
+    <id column="hospitalizationAdviceId" jdbcType="INTEGER" property="hospitalizationadviceid" />
+    <result column="diseaseName" jdbcType="VARCHAR" property="diseasename" />
+    <result column="hospitalizationTime" jdbcType="VARCHAR" property="hospitalizationtime" />
+    <result column="adviceContent" jdbcType="VARCHAR" property="advicecontent" />
+    <result column="doctorId" jdbcType="INTEGER" property="doctorid" />
+    <result column="hospitalizationId" jdbcType="INTEGER" property="hospitalizationid" />
+    <result column="situation" jdbcType="VARCHAR" property="situation" />
+    <result column="diachargeTime" jdbcType="VARCHAR" property="diachargetime" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+
+  	<association property="inpatient" javaType="com.web.entity.Inpatient">
+	  	<id column="hospitalizationId" jdbcType="INTEGER" property="hospitalizationid" />
+	    <result column="patientId" jdbcType="INTEGER" property="patientid" />
+	    <result column="departmentid" jdbcType="INTEGER" property="departmentid" />
+	    <result column="hospitalizationTime" jdbcType="VARCHAR" property="hospitalizationtime" />
+	    <result column="bedNumber" jdbcType="INTEGER" property="bednumber" />
+	    <result column="situation" jdbcType="VARCHAR" property="situation" />
+	    <result column="transferSituation" jdbcType="INTEGER" property="transfersituation" />
+	    <result column="dischargeTime" jdbcType="VARCHAR" property="dischargetime" />
+	    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+  		
+  		  <association property="patient" javaType="com.web.entity.Patient">
+    	  <id column="patientId1" jdbcType="INTEGER" property="patientid" />
+	      <result column="name" jdbcType="VARCHAR" property="name" />
+	      <result column="sex" jdbcType="VARCHAR" property="sex" />
+	      <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+	      <result column="age" jdbcType="INTEGER" property="age" />
+	      <result column="marrage" jdbcType="VARCHAR" property="marrage" />
+	      <result column="occupation" jdbcType="VARCHAR" property="occupation" />
+	      <result column="birthPlace" jdbcType="VARCHAR" property="birthplace" />
+	      <result column="nation" jdbcType="VARCHAR" property="nation" />
+	      <result column="nationality" jdbcType="VARCHAR" property="nationality" />
+	      <result column="idCard" jdbcType="VARCHAR" property="idcard" />
+	      <result column="companyAndAddress" jdbcType="VARCHAR" property="companyandaddress" />
+	      <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+	      <result column="postalCode" jdbcType="INTEGER" property="postalcode" />
+	      <result column="registeredAddress" jdbcType="VARCHAR" property="registeredaddress" />
+	      <result column="contactsName" jdbcType="VARCHAR" property="contactsname" />
+	      <result column="contactsAddress" jdbcType="VARCHAR" property="contactsaddress" />
+	      <result column="contactsRelationship" jdbcType="VARCHAR" property="contactsrelationship" />
+	      <result column="contactsTelephone" jdbcType="VARCHAR" property="contactstelephone" />
+	      <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+    	</association>
+  	</association>
+   
+    <association property="user" javaType="com.web.entity.User">
+    <id column="userId1" jdbcType="INTEGER" property="userid" />
+	   <result column="userName" jdbcType="VARCHAR" property="username" />
+	   <result column="userPwd" jdbcType="VARCHAR" property="userpwd" />
+	   <result column="userSex" jdbcType="VARCHAR" property="usersex" />
+	   <result column="userPhoto" jdbcType="VARCHAR" property="userphoto" />
+	   <result column="userCard" jdbcType="VARCHAR" property="usercard" />
+	   <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+	   <result column="postId" jdbcType="INTEGER" property="postid" />
+	   <result column="state" jdbcType="INTEGER" property="state" />
+	   <result column="icuId" jdbcType="INTEGER" property="icuid" />
+	   <result column="descc" jdbcType="VARCHAR" property="descc" />
+	 </association>
+ </resultMap>
+ 
+ <select id="queryPatientUser" parameterType="com.web.entity.Hospitalizationadvice" 
+     resultMap="resultHospitalizationadvice">
+     SELECT h.*,p.*,u.*,i.hospitalizationId
+     FROM hospitalizationadvice h,patient p,user u,inpatient i
+     WHERE h.hospitalizationId = i.hospitalizationId AND p.patientId = i.patientId
+     AND h.doctorId = u.userId
+  </select>
+    
 </mapper>

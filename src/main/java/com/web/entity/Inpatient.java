@@ -20,7 +20,7 @@ public class Inpatient implements Serializable {
     /**
      * 入院科别
      */
-    private Integer admissiondepartment;
+    private Integer departmentid;
 
     /**
      * 入院时间
@@ -46,8 +46,28 @@ public class Inpatient implements Serializable {
      * 出院时间
      */
     private String dischargetime;
+    
+    private Department department;
+    
+    private Patient patient;
+     
+    public Department getDepartment() {
+		return department;
+	}
 
-    private Integer isdelete;
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	private Integer isdelete;
 
     private static final long serialVersionUID = 1L;
 
@@ -67,12 +87,12 @@ public class Inpatient implements Serializable {
         this.patientid = patientid;
     }
 
-    public Integer getAdmissiondepartment() {
-        return admissiondepartment;
+    public Integer getDepartmentid() {
+        return departmentid;
     }
 
-    public void setAdmissiondepartment(Integer admissiondepartment) {
-        this.admissiondepartment = admissiondepartment;
+    public void setDepartmentid(Integer departmentid) {
+        this.departmentid = departmentid;
     }
 
     public String getHospitalizationtime() {
@@ -137,7 +157,7 @@ public class Inpatient implements Serializable {
         Inpatient other = (Inpatient) that;
         return (this.getHospitalizationid() == null ? other.getHospitalizationid() == null : this.getHospitalizationid().equals(other.getHospitalizationid()))
             && (this.getPatientid() == null ? other.getPatientid() == null : this.getPatientid().equals(other.getPatientid()))
-            && (this.getAdmissiondepartment() == null ? other.getAdmissiondepartment() == null : this.getAdmissiondepartment().equals(other.getAdmissiondepartment()))
+            && (this.getDepartmentid() == null ? other.getDepartmentid() == null : this.getDepartmentid().equals(other.getDepartmentid()))
             && (this.getHospitalizationtime() == null ? other.getHospitalizationtime() == null : this.getHospitalizationtime().equals(other.getHospitalizationtime()))
             && (this.getBednumber() == null ? other.getBednumber() == null : this.getBednumber().equals(other.getBednumber()))
             && (this.getSituation() == null ? other.getSituation() == null : this.getSituation().equals(other.getSituation()))
@@ -152,7 +172,7 @@ public class Inpatient implements Serializable {
         int result = 1;
         result = prime * result + ((getHospitalizationid() == null) ? 0 : getHospitalizationid().hashCode());
         result = prime * result + ((getPatientid() == null) ? 0 : getPatientid().hashCode());
-        result = prime * result + ((getAdmissiondepartment() == null) ? 0 : getAdmissiondepartment().hashCode());
+        result = prime * result + ((getDepartmentid() == null) ? 0 : getDepartmentid().hashCode());
         result = prime * result + ((getHospitalizationtime() == null) ? 0 : getHospitalizationtime().hashCode());
         result = prime * result + ((getBednumber() == null) ? 0 : getBednumber().hashCode());
         result = prime * result + ((getSituation() == null) ? 0 : getSituation().hashCode());
@@ -170,7 +190,7 @@ public class Inpatient implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", hospitalizationid=").append(hospitalizationid);
         sb.append(", patientid=").append(patientid);
-        sb.append(", admissiondepartment=").append(admissiondepartment);
+        sb.append(", departmentid=").append(departmentid);
         sb.append(", hospitalizationtime=").append(hospitalizationtime);
         sb.append(", bednumber=").append(bednumber);
         sb.append(", situation=").append(situation);

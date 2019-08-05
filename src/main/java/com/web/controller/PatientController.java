@@ -27,4 +27,13 @@ public class PatientController {
 		return list;
 	}
 
+	@RequestMapping("/queryPatient")
+	@ResponseBody
+	public List<Patient> getPatienter() {
+
+		List<Patient> list = patientService.getSalaryInfo();
+
+		return list;
+	}
+
 }

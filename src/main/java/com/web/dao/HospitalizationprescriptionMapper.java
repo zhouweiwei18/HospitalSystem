@@ -27,4 +27,6 @@ public interface HospitalizationprescriptionMapper {
     int updateByPrimaryKeySelective(Hospitalizationprescription record);
 
     int updateByPrimaryKey(Hospitalizationprescription record);
+    
+    List<Hospitalizationprescription> querypatientdrugs();
 }

@@ -2,6 +2,8 @@ package com.web.dao;
 
 import com.web.entity.Medicalrecord;
 import com.web.entity.MedicalrecordExample;
+import com.web.entity.Registrationorder;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +29,12 @@ public interface MedicalrecordMapper {
     int updateByPrimaryKeySelective(Medicalrecord record);
 
     int updateByPrimaryKey(Medicalrecord record);
+    
+    
+    
+    /**
+     * 全查询
+     * @return
+     */
+    List<Medicalrecord> queryAll();
 }

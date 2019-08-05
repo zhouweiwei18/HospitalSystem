@@ -37,6 +37,26 @@ public class Bed implements Serializable {
     private Integer bedrent;
 
     private Integer isdelete;
+    
+    private User user;
+    
+    private Icu icu;
+    
+    public Icu getIcu() {
+		return icu;
+	}
+
+	public void setIcu(Icu icu) {
+		this.icu = icu;
+	}
+  
+    public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
     private static final long serialVersionUID = 1L;
 
@@ -159,4 +179,5 @@ public class Bed implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
 }

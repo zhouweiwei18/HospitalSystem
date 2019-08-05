@@ -28,6 +28,46 @@ public class Hospitalizationprescription implements Serializable {
     private Integer drugno;
 
     private Integer isdelete;
+    
+    private Patient patient;
+    
+    private Drugs drugs;
+    
+    private Hospitalizationadvice hospitalizationadvice;
+    
+    private Inpatient inpatient;
+    
+    public Hospitalizationadvice getHospitalizationadvice() {
+		return hospitalizationadvice;
+	}
+
+	public void setHospitalizationadvice(Hospitalizationadvice hospitalizationadvice) {
+		this.hospitalizationadvice = hospitalizationadvice;
+	}
+
+	public Inpatient getInpatient() {
+		return inpatient;
+	}
+
+	public void setInpatient(Inpatient inpatient) {
+		this.inpatient = inpatient;
+	}
+    
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public Drugs getDrugs() {
+		return drugs;
+	}
+
+	public void setDrugs(Drugs drugs) {
+		this.drugs = drugs;
+	}
 
     private static final long serialVersionUID = 1L;
 
@@ -117,4 +157,6 @@ public class Hospitalizationprescription implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+
 }

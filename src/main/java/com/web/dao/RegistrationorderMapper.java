@@ -27,4 +27,12 @@ public interface RegistrationorderMapper {
     int updateByPrimaryKeySelective(Registrationorder record);
 
     int updateByPrimaryKey(Registrationorder record);
+    
+    
+    /**
+     * 关联查询
+     * @param registrationorder
+     * @return
+     */
+    List<Registrationorder> queryAll();
 }

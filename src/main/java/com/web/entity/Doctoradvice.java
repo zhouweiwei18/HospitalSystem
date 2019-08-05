@@ -56,7 +56,16 @@ public class Doctoradvice implements Serializable {
 
     private Integer isdelete;
 
-    private static final long serialVersionUID = 1L;
+    private Patient patient;
+    public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	private static final long serialVersionUID = 1L;
 
     public Integer getDoctoradviceid() {
         return doctoradviceid;

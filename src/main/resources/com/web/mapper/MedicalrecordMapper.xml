@@ -359,4 +359,44 @@
       dischargeStatus = #{dischargestatus,jdbcType=VARCHAR}
     where medicalRecordId = #{medicalrecordid,jdbcType=INTEGER}
   </update>
+  
+ 
+   <resultMap type="com.web.entity.Medicalrecord" id="medicalrecordResultMap">
+   
+    <id column="medicalRecordId" jdbcType="INTEGER" property="medicalrecordid" />
+    <result column="patientId" jdbcType="INTEGER" property="patientid" />
+    <result column="anamnesis" jdbcType="VARCHAR" property="anamnesis" />
+    <result column="doctorAdviceId" jdbcType="INTEGER" property="doctoradviceid" />
+    <result column="idDelete" jdbcType="VARCHAR" property="iddelete" />
+   
+   
+   <association property="patient" javaType="com.web.entity.Patient">
+			<id column="patientId" jdbcType="INTEGER" property="patientid" />
+			<result column="name" jdbcType="VARCHAR" property="name" />
+
+		</association>
+		
+		
+		
+		<association property="doctoradvice" javaType="com.web.entity.Doctoradvice">
+			 <id column="doctorAdviceId" jdbcType="INTEGER" property="doctoradviceid" />
+			 <result column="doctorAdviceContent" jdbcType="VARCHAR" property="doctoradvicecontent" />
+
+		</association>
+		
+		
+		
+  </resultMap>
+  
+  
+  <select id="queryAll" resultMap="medicalrecordResultMap">
+     SELECT m.medicalRecordId,m.anamnesis,p.`name`,d.doctorAdviceContent
+     FROM medicalrecord m,patient p,doctoradvice d
+     WHERE m.patientId=p.patientId
+     and m.doctorAdviceId= d.doctorAdviceId
+  
+  </select>
+  
+  
+  
 </mapper>

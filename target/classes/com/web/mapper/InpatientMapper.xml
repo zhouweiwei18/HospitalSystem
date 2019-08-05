@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.web.entity.Inpatient">
     <id column="hospitalizationId" jdbcType="INTEGER" property="hospitalizationid" />
     <result column="patientId" jdbcType="INTEGER" property="patientid" />
-    <result column="admissionDepartment" jdbcType="INTEGER" property="admissiondepartment" />
+    <result column="departmentid" jdbcType="INTEGER" property="departmentid" />
     <result column="hospitalizationTime" jdbcType="VARCHAR" property="hospitalizationtime" />
     <result column="bedNumber" jdbcType="INTEGER" property="bednumber" />
     <result column="situation" jdbcType="VARCHAR" property="situation" />
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    hospitalizationId, patientId, admissionDepartment, hospitalizationTime, bedNumber, 
+    hospitalizationId, patientId, departmentid, hospitalizationTime, bedNumber, 
     situation, transferSituation, dischargeTime, isDelete
   </sql>
   <select id="selectByExample" parameterType="com.web.entity.InpatientExample" resultMap="BaseResultMap">
@@ -113,11 +113,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.web.entity.Inpatient">
-    insert into inpatient (hospitalizationId, patientId, admissionDepartment, 
+    insert into inpatient (hospitalizationId, patientId, departmentid, 
       hospitalizationTime, bedNumber, situation, 
       transferSituation, dischargeTime, isDelete
       )
-    values (#{hospitalizationid,jdbcType=INTEGER}, #{patientid,jdbcType=INTEGER}, #{admissiondepartment,jdbcType=INTEGER}, 
+    values (#{hospitalizationid,jdbcType=INTEGER}, #{patientid,jdbcType=INTEGER}, #{departmentid,jdbcType=INTEGER}, 
       #{hospitalizationtime,jdbcType=VARCHAR}, #{bednumber,jdbcType=INTEGER}, #{situation,jdbcType=VARCHAR}, 
       #{transfersituation,jdbcType=INTEGER}, #{dischargetime,jdbcType=VARCHAR}, #{isdelete,jdbcType=INTEGER}
       )
@@ -131,8 +131,8 @@
       <if test="patientid != null">
         patientId,
       </if>
-      <if test="admissiondepartment != null">
-        admissionDepartment,
+      <if test="departmentid != null">
+        departmentid,
       </if>
       <if test="hospitalizationtime != null">
         hospitalizationTime,
@@ -160,8 +160,8 @@
       <if test="patientid != null">
         #{patientid,jdbcType=INTEGER},
       </if>
-      <if test="admissiondepartment != null">
-        #{admissiondepartment,jdbcType=INTEGER},
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=INTEGER},
       </if>
       <if test="hospitalizationtime != null">
         #{hospitalizationtime,jdbcType=VARCHAR},
@@ -198,8 +198,8 @@
       <if test="record.patientid != null">
         patientId = #{record.patientid,jdbcType=INTEGER},
       </if>
-      <if test="record.admissiondepartment != null">
-        admissionDepartment = #{record.admissiondepartment,jdbcType=INTEGER},
+      <if test="record.departmentid != null">
+        departmentid = #{record.departmentid,jdbcType=INTEGER},
       </if>
       <if test="record.hospitalizationtime != null">
         hospitalizationTime = #{record.hospitalizationtime,jdbcType=VARCHAR},
@@ -228,7 +228,7 @@
     update inpatient
     set hospitalizationId = #{record.hospitalizationid,jdbcType=INTEGER},
       patientId = #{record.patientid,jdbcType=INTEGER},
-      admissionDepartment = #{record.admissiondepartment,jdbcType=INTEGER},
+      departmentid = #{record.departmentid,jdbcType=INTEGER},
       hospitalizationTime = #{record.hospitalizationtime,jdbcType=VARCHAR},
       bedNumber = #{record.bednumber,jdbcType=INTEGER},
       situation = #{record.situation,jdbcType=VARCHAR},
@@ -245,8 +245,8 @@
       <if test="patientid != null">
         patientId = #{patientid,jdbcType=INTEGER},
       </if>
-      <if test="admissiondepartment != null">
-        admissionDepartment = #{admissiondepartment,jdbcType=INTEGER},
+      <if test="departmentid != null">
+        departmentid = #{departmentid,jdbcType=INTEGER},
       </if>
       <if test="hospitalizationtime != null">
         hospitalizationTime = #{hospitalizationtime,jdbcType=VARCHAR},
@@ -272,7 +272,7 @@
   <update id="updateByPrimaryKey" parameterType="com.web.entity.Inpatient">
     update inpatient
     set patientId = #{patientid,jdbcType=INTEGER},
-      admissionDepartment = #{admissiondepartment,jdbcType=INTEGER},
+      departmentid = #{departmentid,jdbcType=INTEGER},
       hospitalizationTime = #{hospitalizationtime,jdbcType=VARCHAR},
       bedNumber = #{bednumber,jdbcType=INTEGER},
       situation = #{situation,jdbcType=VARCHAR},
@@ -281,4 +281,58 @@
       isDelete = #{isdelete,jdbcType=INTEGER}
     where hospitalizationId = #{hospitalizationid,jdbcType=INTEGER}
   </update>
+  
+  <!-- 自定义结果集 -->
+  <resultMap id="resultInpatient" type="com.web.entity.Inpatient">
+    <id column="hospitalizationId" jdbcType="INTEGER" property="hospitalizationid" />
+    <result column="patientId" jdbcType="INTEGER" property="patientid" />
+    <result column="departmentid" jdbcType="INTEGER" property="departmentid" />
+    <result column="hospitalizationTime" jdbcType="VARCHAR" property="hospitalizationtime" />
+    <result column="bedNumber" jdbcType="INTEGER" property="bednumber" />
+    <result column="situation" jdbcType="VARCHAR" property="situation" />
+    <result column="transferSituation" jdbcType="INTEGER" property="transfersituation" />
+    <result column="dischargeTime" jdbcType="VARCHAR" property="dischargetime" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+    
+    <!-- 多对一 -->
+	    <association property="department" javaType="com.web.entity.Department">
+	        <id column="departmentId1" jdbcType="INTEGER" property="departmentid" />
+		    <result column="departmentName" jdbcType="VARCHAR" property="departmentname" />
+		    <result column="departmentAddress" jdbcType="VARCHAR" property="departmentaddress" />
+		    <result column="departmentTelephone" jdbcType="VARCHAR" property="departmenttelephone" />
+		    <result column="userid" jdbcType="INTEGER" property="userid" />
+		    <result column="isDelete" jdbcType="VARCHAR" property="isdelete" />
+	    </association>
+	    
+	    <association property="patient" javaType="com.web.entity.Patient">
+	        <id column="patientId1" jdbcType="INTEGER" property="patientid" />
+            <result column="name" jdbcType="VARCHAR" property="name" />
+            <result column="sex" jdbcType="VARCHAR" property="sex" />
+            <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+            <result column="age" jdbcType="INTEGER" property="age" />
+            <result column="marrage" jdbcType="VARCHAR" property="marrage" />
+            <result column="occupation" jdbcType="VARCHAR" property="occupation" />
+            <result column="birthPlace" jdbcType="VARCHAR" property="birthplace" />
+            <result column="nation" jdbcType="VARCHAR" property="nation" />
+            <result column="nationality" jdbcType="VARCHAR" property="nationality" />
+            <result column="idCard" jdbcType="VARCHAR" property="idcard" />
+            <result column="companyAndAddress" jdbcType="VARCHAR" property="companyandaddress" />
+            <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+            <result column="postalCode" jdbcType="INTEGER" property="postalcode" />
+            <result column="registeredAddress" jdbcType="VARCHAR" property="registeredaddress" />
+            <result column="contactsName" jdbcType="VARCHAR" property="contactsname" />
+            <result column="contactsAddress" jdbcType="VARCHAR" property="contactsaddress" />
+            <result column="contactsRelationship" jdbcType="VARCHAR" property="contactsrelationship" />
+            <result column="contactsTelephone" jdbcType="VARCHAR" property="contactstelephone" />
+            <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+        </association>
+   </resultMap>
+  
+   <select id="queryInpatientDepartment" parameterType="com.web.entity.Inpatient" 
+     resultMap="resultInpatient">
+     select  i.*,d.*,p.*  
+     from inpatient i,department d,patient p
+     where i.departmentid = d.departmentId and i.patientId = p.patientId
+  </select>
+  
 </mapper>

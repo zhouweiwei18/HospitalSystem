@@ -70,8 +70,37 @@ public class Medicalrecord implements Serializable {
     /**
      * 出院情况
      */
+   
+    
     private String dischargestatus;
+    
+    
+   
 
+
+	private Patient patient;
+    
+    private Doctoradvice doctoradvice;
+    
+    
+    public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public Doctoradvice getDoctoradvice() {
+		return doctoradvice;
+	}
+
+	public void setDoctoradvice(Doctoradvice doctoradvice) {
+		this.doctoradvice = doctoradvice;
+	}
+
+
+    
     private static final long serialVersionUID = 1L;
 
     public Integer getMedicalrecordid() {
@@ -259,4 +288,6 @@ public class Medicalrecord implements Serializable {
         sb.append("]");
         return sb.toString();
     }
+
+	
 }

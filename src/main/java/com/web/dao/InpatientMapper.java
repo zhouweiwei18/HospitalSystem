@@ -27,4 +27,6 @@ public interface InpatientMapper {
     int updateByPrimaryKeySelective(Inpatient record);
 
     int updateByPrimaryKey(Inpatient record);
+    
+    List<Inpatient> queryInpatientDepartment();
 }
