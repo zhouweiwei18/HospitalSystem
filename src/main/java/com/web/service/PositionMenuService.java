@@ -1,7 +1,6 @@
 package com.web.service;
 
 import java.util.List;
-
 import com.web.entity.Position;
 
 public interface PositionMenuService {
@@ -11,9 +10,9 @@ public interface PositionMenuService {
 	 * @param poid
 	 * @return
 	 */
-	List<Integer> selectMenuByPoId(Integer poid);
-
-	//保存权限
-	int saveAuthority(Integer poId, Integer[] menuIds);
+	 List<Integer> selectMenuByPoId(Integer poid);
+	
+	
+	 public Integer saveAuthority(Integer poId,Integer[] menuIds);
  
 }

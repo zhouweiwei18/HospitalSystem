@@ -27,4 +27,12 @@ public interface DrugsMapper {
     int updateByPrimaryKeySelective(Drugs record);
 
     int updateByPrimaryKey(Drugs record);
+    
+    List<Drugs>  getAll();
+    
+    Drugs  getDrugByid(Integer drugsid);
+    
+    int  updateDrugs(Drugs drugs);
+    
+    int delsup(Integer drugsid);
 }

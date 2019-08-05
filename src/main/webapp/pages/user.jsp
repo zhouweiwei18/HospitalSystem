@@ -9,6 +9,8 @@
 </head>
 <%@ include file="/common/commoncss.jsp" %>
 <%@ include file="/common/commonjs.jsp" %>
+<!-- <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script> -->
 <body>
 
 <div id="toolbar" style="float: left;width: 100%;">
@@ -27,7 +29,7 @@ $(function(){//jquery的加载事件
 		  pagination: true,//允许分页
 		  search: true,//可以搜索
 		  toolbar: '#toolbar', //工具按钮用哪个容器
-		  pageSize:5,//每页显示5条数据
+		  pageSize:5,//每页显示3条数据
 		  pageList:[5,7],//每页显示的条数列表
 		  showColumns:true,//选择显示的列
 		  showRefresh:true,//允许刷新
@@ -70,7 +72,7 @@ $(function(){//jquery的加载事件
 		    formatter:function(value,row,index){
 		    	//value:值   row：行      index:索引  \  \"相当于'
 		    	//var imageUrl = '<img onclick="myPhotoClick(2)" alt="" src="/imgeurl/'+row.userPhoto+'" width="50" height="50">';
-		    	var imageUrl="<img class='img-rounded' onclick=\"myPhotoClick('/imgeurl/"+row.userphoto+"')\" alt=\"\" src=\"/imgeurl/"+row.userphoto+"\" width=\"50\" height=\"50\">";
+		    	var imageUrl="<img class='img-rounded' onclick=\"myPhotoClick('/imgeurl/"+row.userphoto+"')\" alt=\"\"   src=\"/imgeurl/"+row.userphoto+"\" width=\"50\" height=\"50\">";
 		    	return imageUrl;
 		    }
 		  }, {
@@ -317,7 +319,9 @@ $.validator.setDefaults({
 		}
 		
 	})
-
+      
+      
+      
     }
 });
 
@@ -373,7 +377,7 @@ $(function() {
 });
 </script>  
 
-<!-- 修改模态框(Modal) -->
+<!-- 修改模态框（Modal） -->
 <div class="modal fade" id="myUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -399,23 +403,13 @@ $(function() {
 					      <input type="text" class="form-control" name="userpwd" id="inputuserPwd" placeholder="请输入密码">
 					    </div>
 					  </div>
+	
 					  <div class="form-group">
-					    <label for="inputPassword3" class="col-sm-2 control-label">头像:</label>
+					    <label for="specifications" class="col-sm-2 control-label">岗位名称:</label>
 					    <div class="col-sm-10">
-					      <input name="userphoto" type="hidden" id="photoImage" value="" /> 
-					      <img id="myUpdateImage" alt="" src="" class="img-thumbnail" width="100" height="100">
-					      <input type="button" id="myPhotoButton" class="btn btn-info" value="选择头像" /></p>
-					    </div>
-					  </div>
-					  
-					  <div class="form-group">
-					    <label for="inputPassword3" class="col-sm-2 control-label">岗位名称:</label>
-					    <div class="col-sm-10">
-					       <select id="myUpdatePosition" class="form-control" name="postid">
-					       			
-					       </select>
-					    </div>
-					  </div>
+					       <input type="text"  id="specifications"  name="specifications">
+					    </div>		
+					    	  </div>
                  </form>
             </div>
             <div class="modal-footer">
@@ -476,6 +470,7 @@ $(function() {
 					    <div class="col-sm-7">
 					    <input type="text" class="form-control" name="birthday" id="birthday" placeholder="(非必填项)">
 					    <label id="birthday-error" class="error" for="birthday" style="margin-top: 4px;color: red;font-size: 15px;"></label>
+						<script src="${pageContext.request.contextPath}/plugin/layDate-v5.0.9/laydate/laydate.js"></script> 
 						<script>
 							laydate.render({
 							  elem: '#birthday' //指定元素
@@ -562,7 +557,8 @@ $(function() {
 					editor.plugin.imageDialog({
 						imageUrl : K('#addPhotoImage').val(),//取值
 						clickFn : function(url, title, width, height, border, align) {
-							var startUrl='C://Users/Administrator/Desktop/image/';
+							//D://projectimage//image/
+							var startUrl='d://projectimage/image/';
 							var newUrl = url.substr(startUrl.length);
 							K('#addPhotoImage').val(newUrl);
 							
@@ -580,9 +576,8 @@ $(function() {
 					editor.plugin.imageDialog({
 						imageUrl : K('#photoImage').val(),//取值
 						clickFn : function(url, title, width, height, border, align) {
-							//alert(url);
-							//C://Users/Administrator/Desktop/image/20190725/20190725161642_624.jpg
-							var startUrl='C://Users/Administrator/Desktop/image/';
+							alert(url);	  
+							var startUrl='d://projectimage/image/';
 							var newUrl = url.substr(startUrl.length);
 							K('#photoImage').val(newUrl);
 							

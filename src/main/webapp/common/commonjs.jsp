@@ -25,10 +25,3 @@
 
 <!-- zTree -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/plugin/ztree/js/jquery.ztree.all.js"></script>
-
-<!-- 弹出框 -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/sweetalert/resource/js/sweetalert2.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/sweetalert/resource/js/es6-promise.min.js"></script>
-
-<!-- 日期控件 -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/plugin/layDate-v5.0.9/laydate/laydate.js"></script> 

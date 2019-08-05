@@ -27,4 +27,8 @@ public interface DrugstorageMapper {
     int updateByPrimaryKeySelective(Drugstorage record);
 
     int updateByPrimaryKey(Drugstorage record);
+    
+    List<Drugstorage>  getAll();
+    
+    
 }

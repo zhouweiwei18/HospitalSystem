@@ -233,4 +233,16 @@
       isDelete = #{isdelete,jdbcType=INTEGER}
     where supplierId = #{supplierid,jdbcType=INTEGER}
   </update>
+  
+  <update id="delSupplierByid"  parameterType="com.web.entity.Supplier">
+  UPDATE  supplier
+SET 
+isDelete=0
+WHERE
+supplierId=#{UPDATE  supplier
+SET 
+isDelete=0
+WHERE
+supplierId=#{supplierid}
+  </update>
 </mapper>

@@ -36,8 +36,48 @@ public class Order implements Serializable {
      * 负责人
      */
     private Integer agent;
+    
+    private Supplier supplier;
+    
+    private User user;
+    
+    private Orderdetails orderdetails;
+    
+    private Drugs drugs;
 
-    private static final long serialVersionUID = 1L;
+    public Drugs getDrugs() {
+		return drugs;
+	}
+
+	public void setDrugs(Drugs drugs) {
+		this.drugs = drugs;
+	}
+
+	public Orderdetails getOrderdetails() {
+		return orderdetails;
+	}
+
+	public void setOrderdetails(Orderdetails orderdetails) {
+		this.orderdetails = orderdetails;
+	}
+
+	public Supplier getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	private static final long serialVersionUID = 1L;
 
     public Integer getOrderid() {
         return orderid;

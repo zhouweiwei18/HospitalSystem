@@ -12,7 +12,3 @@
 <!-- ztree -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/plugin/ztree/css/demo.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/plugin/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
-
-<!--标准mui.css-->
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/plugin/sweetalert/resource/css/sweetalert2.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/plugin/sweetalert/resource/css/mui.min.css" /> --%>

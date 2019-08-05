@@ -37,6 +37,8 @@ public class Orderdetails implements Serializable {
     private String batchnumber;
 
     private Integer isdelete;
+    
+    private Drugs drugs;
 
     private static final long serialVersionUID = 1L;
 
@@ -73,22 +75,30 @@ public class Orderdetails implements Serializable {
     }
 
     public Integer getDrugamount() {
-        return drugamount;
-    }
+		return drugamount;
+	}
 
-    public void setDrugamount(Integer drugamount) {
-        this.drugamount = drugamount;
-    }
+	public void setDrugamount(Integer drugamount) {
+		this.drugamount = drugamount;
+	}
 
-    public Double getDrugprice() {
-        return drugprice;
-    }
+	public Double getDrugprice() {
+		return drugprice;
+	}
 
-    public void setDrugprice(Double drugprice) {
-        this.drugprice = drugprice;
-    }
+	public void setDrugprice(Double drugprice) {
+		this.drugprice = drugprice;
+	}
 
-    public String getBatchnumber() {
+	public Drugs getDrugs() {
+		return drugs;
+	}
+
+	public void setDrugs(Drugs drugs) {
+		this.drugs = drugs;
+	}
+
+	public String getBatchnumber() {
         return batchnumber;
     }
 

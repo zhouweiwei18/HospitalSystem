@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.web.dao.ChargestatusMapper">
   <resultMap id="BaseResultMap" type="com.web.entity.Chargestatus">
-    <id column="chargeStatusId" jdbcType="INTEGER" property="chargestatusid" />
-    <result column="chargeItemNo" jdbcType="INTEGER" property="chargeitemno" />
+    <id column="chargeItemNo" jdbcType="INTEGER" property="chargeitemno" />
+    <result column="chargeId" jdbcType="INTEGER" property="chargeid" />
     <result column="chargeAmount" jdbcType="INTEGER" property="chargeamount" />
     <result column="settleAmount" jdbcType="DOUBLE" property="settleamount" />
     <result column="cashier" jdbcType="INTEGER" property="cashier" />
     <result column="patientId" jdbcType="INTEGER" property="patientid" />
     <result column="checkoutStatus" jdbcType="VARCHAR" property="checkoutstatus" />
-    <result column="isTransfer" jdbcType="VARCHAR" property="istransfer" />
+    <result column="isTransfer" jdbcType="INTEGER" property="istransfer" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    chargeStatusId, chargeItemNo, chargeAmount, settleAmount, cashier, patientId, checkoutStatus, 
+    chargeItemNo, chargeId, chargeAmount, settleAmount, cashier, patientId, checkoutStatus, 
     isTransfer
   </sql>
   <select id="selectByExample" parameterType="com.web.entity.ChargestatusExample" resultMap="BaseResultMap">
@@ -99,11 +99,11 @@
     select 
     <include refid="Base_Column_List" />
     from chargestatus
-    where chargeStatusId = #{chargestatusid,jdbcType=INTEGER}
+    where chargeItemNo = #{chargeitemno,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from chargestatus
-    where chargeStatusId = #{chargestatusid,jdbcType=INTEGER}
+    where chargeItemNo = #{chargeitemno,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.web.entity.ChargestatusExample">
     delete from chargestatus
@@ -112,21 +112,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.web.entity.Chargestatus">
-    insert into chargestatus (chargeStatusId, chargeItemNo, chargeAmount, 
+    insert into chargestatus (chargeItemNo, chargeId, chargeAmount, 
       settleAmount, cashier, patientId, 
       checkoutStatus, isTransfer)
-    values (#{chargestatusid,jdbcType=INTEGER}, #{chargeitemno,jdbcType=INTEGER}, #{chargeamount,jdbcType=INTEGER}, 
+    values (#{chargeitemno,jdbcType=INTEGER}, #{chargeid,jdbcType=INTEGER}, #{chargeamount,jdbcType=INTEGER}, 
       #{settleamount,jdbcType=DOUBLE}, #{cashier,jdbcType=INTEGER}, #{patientid,jdbcType=INTEGER}, 
-      #{checkoutstatus,jdbcType=VARCHAR}, #{istransfer,jdbcType=VARCHAR})
+      #{checkoutstatus,jdbcType=VARCHAR}, #{istransfer,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.web.entity.Chargestatus">
     insert into chargestatus
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="chargestatusid != null">
-        chargeStatusId,
-      </if>
       <if test="chargeitemno != null">
         chargeItemNo,
+      </if>
+      <if test="chargeid != null">
+        chargeId,
       </if>
       <if test="chargeamount != null">
         chargeAmount,
@@ -148,11 +148,11 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="chargestatusid != null">
-        #{chargestatusid,jdbcType=INTEGER},
-      </if>
       <if test="chargeitemno != null">
         #{chargeitemno,jdbcType=INTEGER},
+      </if>
+      <if test="chargeid != null">
+        #{chargeid,jdbcType=INTEGER},
       </if>
       <if test="chargeamount != null">
         #{chargeamount,jdbcType=INTEGER},
@@ -170,7 +170,7 @@
         #{checkoutstatus,jdbcType=VARCHAR},
       </if>
       <if test="istransfer != null">
-        #{istransfer,jdbcType=VARCHAR},
+        #{istransfer,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -183,11 +183,11 @@
   <update id="updateByExampleSelective" parameterType="map">
     update chargestatus
     <set>
-      <if test="record.chargestatusid != null">
-        chargeStatusId = #{record.chargestatusid,jdbcType=INTEGER},
-      </if>
       <if test="record.chargeitemno != null">
         chargeItemNo = #{record.chargeitemno,jdbcType=INTEGER},
+      </if>
+      <if test="record.chargeid != null">
+        chargeId = #{record.chargeid,jdbcType=INTEGER},
       </if>
       <if test="record.chargeamount != null">
         chargeAmount = #{record.chargeamount,jdbcType=INTEGER},
@@ -205,7 +205,7 @@
         checkoutStatus = #{record.checkoutstatus,jdbcType=VARCHAR},
       </if>
       <if test="record.istransfer != null">
-        isTransfer = #{record.istransfer,jdbcType=VARCHAR},
+        isTransfer = #{record.istransfer,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -214,14 +214,14 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update chargestatus
-    set chargeStatusId = #{record.chargestatusid,jdbcType=INTEGER},
-      chargeItemNo = #{record.chargeitemno,jdbcType=INTEGER},
+    set chargeItemNo = #{record.chargeitemno,jdbcType=INTEGER},
+      chargeId = #{record.chargeid,jdbcType=INTEGER},
       chargeAmount = #{record.chargeamount,jdbcType=INTEGER},
       settleAmount = #{record.settleamount,jdbcType=DOUBLE},
       cashier = #{record.cashier,jdbcType=INTEGER},
       patientId = #{record.patientid,jdbcType=INTEGER},
       checkoutStatus = #{record.checkoutstatus,jdbcType=VARCHAR},
-      isTransfer = #{record.istransfer,jdbcType=VARCHAR}
+      isTransfer = #{record.istransfer,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -229,8 +229,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.web.entity.Chargestatus">
     update chargestatus
     <set>
-      <if test="chargeitemno != null">
-        chargeItemNo = #{chargeitemno,jdbcType=INTEGER},
+      <if test="chargeid != null">
+        chargeId = #{chargeid,jdbcType=INTEGER},
       </if>
       <if test="chargeamount != null">
         chargeAmount = #{chargeamount,jdbcType=INTEGER},
@@ -248,61 +248,20 @@
         checkoutStatus = #{checkoutstatus,jdbcType=VARCHAR},
       </if>
       <if test="istransfer != null">
-        isTransfer = #{istransfer,jdbcType=VARCHAR},
+        isTransfer = #{istransfer,jdbcType=INTEGER},
       </if>
     </set>
-    where chargeStatusId = #{chargestatusid,jdbcType=INTEGER}
+    where chargeItemNo = #{chargeitemno,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.web.entity.Chargestatus">
     update chargestatus
-    set chargeItemNo = #{chargeitemno,jdbcType=INTEGER},
+    set chargeId = #{chargeid,jdbcType=INTEGER},
       chargeAmount = #{chargeamount,jdbcType=INTEGER},
       settleAmount = #{settleamount,jdbcType=DOUBLE},
       cashier = #{cashier,jdbcType=INTEGER},
       patientId = #{patientid,jdbcType=INTEGER},
       checkoutStatus = #{checkoutstatus,jdbcType=VARCHAR},
-      isTransfer = #{istransfer,jdbcType=VARCHAR}
-    where chargeStatusId = #{chargestatusid,jdbcType=INTEGER}
+      isTransfer = #{istransfer,jdbcType=INTEGER}
+    where chargeItemNo = #{chargeitemno,jdbcType=INTEGER}
   </update>
-  
-  <resultMap type="com.web.entity.Chargestatus" id="myResult">
-  	<id column="chargeStatusId" jdbcType="INTEGER" property="chargestatusid" />
-    <result column="chargeItemNo" jdbcType="INTEGER" property="chargeitemno" />
-    <result column="chargeAmount" jdbcType="INTEGER" property="chargeamount" />
-    <result column="settleAmount" jdbcType="DOUBLE" property="settleamount" />
-    <result column="cashier" jdbcType="INTEGER" property="cashier" />
-    <result column="patientId1" jdbcType="INTEGER" property="patientid" />
-    <result column="checkoutStatus" jdbcType="VARCHAR" property="checkoutstatus" />
-    <result column="isTransfer" jdbcType="VARCHAR" property="istransfer" />
-  	
-  	<association property="chargeitem" javaType="com.web.entity.Chargeitem">
-	  	<id column="chargeId" jdbcType="INTEGER" property="chargeid" />
-	    <result column="patientId2" jdbcType="INTEGER" property="patientid" />
-	    <result column="medicineFree" jdbcType="INTEGER" property="medicinefree" />
-	    <result column="inspectionFree" jdbcType="DOUBLE" property="inspectionfree" />
-	    <result column="checkFree" jdbcType="DOUBLE" property="checkfree" />
-  		
-  		<!-- patient -->
-  		<association property="patient" javaType="com.web.entity.Patient">
-  			<id column="patientId" jdbcType="INTEGER" property="patientid" />
-    		<result column="name" jdbcType="VARCHAR" property="name" />
-  		</association>
-  	
-  	</association>
-  	
-  	<!-- User -->
-  	<association property="user" javaType="com.web.entity.User">
-	  	<id column="userId" jdbcType="INTEGER" property="userid" />
-	    <result column="userName" jdbcType="VARCHAR" property="username" />
-  	</association>
-   
-  </resultMap>
-   
-  <select id="queryAllInfo" resultMap="myResult">
-  	SELECT c.* ,i.*,u.userName,p.`name`
-		FROM chargestatus c,chargeitem i,`user` u,patient p
-	WHERE
-		c.chargeItemNo = i.chargeId and c.cashier = u.userId and i.patientId = p.patientId
-  </select>
-  
 </mapper>

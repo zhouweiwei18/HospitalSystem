@@ -281,4 +281,92 @@
       supplierId = #{supplierid,jdbcType=INTEGER}
     where drugsId = #{drugsid,jdbcType=INTEGER}
   </update>
+  
+  
+  <!-- 添加一对一查询 -->
+	<select id="getAll" parameterType="int" resultMap="MyResultMap">
+		SELECT  *  from drugs d ,supplier s
+         WHERE   d.supplierId=s.supplierId
+	</select>
+	
+  <!-- 自定义结果集 -->
+  <resultMap type="com.web.entity.Drugs" id="MyResultMap">
+      <id column="drugsId" jdbcType="INTEGER" property="drugsid" />
+    <result column="drugStorageid" jdbcType="INTEGER" property="drugstorageid" />
+    <result column="drugsName" jdbcType="VARCHAR" property="drugsname" />
+    <result column="specifications" jdbcType="VARCHAR" property="specifications" />
+    <result column="amount" jdbcType="VARCHAR" property="amount" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="manufactureDate" jdbcType="VARCHAR" property="manufacturedate" />
+    <result column="guaranteeTime" jdbcType="VARCHAR" property="guaranteetime" />
+    <result column="supplierId" jdbcType="INTEGER" property="supplierid" />
+	    
+	    <!-- 多对一 association    一对多:collection
+	    column:列名（数据库表，sql查询）       property:属性名字 -->
+	    <association property="Supplier" javaType="com.web.entity.Supplier">
+	    <id column="supplierId" jdbcType="INTEGER" property="supplierid" />
+		    <result column="name" jdbcType="VARCHAR" property="name" />
+		    <result column="address" jdbcType="VARCHAR" property="address" />
+		    <result column="tel" jdbcType="VARCHAR" property="tel" />
+		    <result column="creditSituation" jdbcType="VARCHAR" property="creditsituation" />
+		    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+		    
+		
+	    </association>
+  </resultMap>
+  
+  <select id="getDrugByid"  parameterType="int"  resultMap="mymap">
+  
+  SELECT *
+FROM
+supplier,drugs
+WHERE
+supplier.supplierId=drugs.supplierId
+AND
+drugs.drugsId=#{drugsid}
+</select>
+  
+  <resultMap type="com.web.entity.Drugs" id="mymap">
+      <id column="drugsId" jdbcType="INTEGER" property="drugsid" />
+    <result column="drugStorageid" jdbcType="INTEGER" property="drugstorageid" />
+    <result column="drugsName" jdbcType="VARCHAR" property="drugsname" />
+    <result column="specifications" jdbcType="VARCHAR" property="specifications" />
+    <result column="amount" jdbcType="VARCHAR" property="amount" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="manufactureDate" jdbcType="VARCHAR" property="manufacturedate" />
+    <result column="guaranteeTime" jdbcType="VARCHAR" property="guaranteetime" />
+    <result column="supplierId" jdbcType="INTEGER" property="supplierid" />
+	    
+	    <!-- 多对一 association    一对多:collection
+	    column:列名（数据库表，sql查询）       property:属性名字 -->
+	    <association property="Supplier" javaType="com.web.entity.Supplier">
+	    <id column="supplierId" jdbcType="INTEGER" property="supplierid" />
+		    <result column="name" jdbcType="VARCHAR" property="name" />
+		    <result column="address" jdbcType="VARCHAR" property="address" />
+		    <result column="tel" jdbcType="VARCHAR" property="tel" />
+		    <result column="creditSituation" jdbcType="VARCHAR" property="creditsituation" />
+		    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+		    
+		
+	    </association>
+  </resultMap>
+  <update id="updateDrugs" parameterType="com.web.entity.Drugs" >
+      UPDATE  drugs,supplier
+      SET
+      supplier.name = #{supplier.name},
+      amount = #{amount,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      WHERE
+       drugs.supplierid=supplier.supplierid AND drugs.drugsid=#{drugsid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="delsup">
+UPDATE 
+drugs
+SET
+specifications='0'
+WHERE
+drugsId=#{drugsid}
+  </update>
+  
 </mapper>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.web.dao.PositionMapper;
 import com.web.entity.Position;
 import com.web.entity.PositionExample;
+import com.web.entity.User;
 import com.web.service.PositionService;
 
 @Service
@@ -48,26 +49,6 @@ public class PositionServiceImpl implements PositionService {
 	public Integer updatePositionById(Position p) {
 
 		return positionMapper.updateByPrimaryKeySelective(p);
-	}
-
-	@Override
-	public int addPosition(Position p) {
-
-		return positionMapper.insert(p);
-	}
-
-	@Override
-	public Position queryPositionById(Integer poId) {
-
-		return positionMapper.selectByPrimaryKey(poId);
-	}
-
-	@Override
-	public Integer updateById(Position position) {
-
-		int i = positionMapper.updateByPrimaryKeySelective(position);
-
-		return i;
 	}
 
 }

@@ -124,66 +124,6 @@ public class WorktimeExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andWkidIsNull() {
-            addCriterion("wkId is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWkidIsNotNull() {
-            addCriterion("wkId is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWkidEqualTo(Integer value) {
-            addCriterion("wkId =", value, "wkid");
-            return (Criteria) this;
-        }
-
-        public Criteria andWkidNotEqualTo(Integer value) {
-            addCriterion("wkId <>", value, "wkid");
-            return (Criteria) this;
-        }
-
-        public Criteria andWkidGreaterThan(Integer value) {
-            addCriterion("wkId >", value, "wkid");
-            return (Criteria) this;
-        }
-
-        public Criteria andWkidGreaterThanOrEqualTo(Integer value) {
-            addCriterion("wkId >=", value, "wkid");
-            return (Criteria) this;
-        }
-
-        public Criteria andWkidLessThan(Integer value) {
-            addCriterion("wkId <", value, "wkid");
-            return (Criteria) this;
-        }
-
-        public Criteria andWkidLessThanOrEqualTo(Integer value) {
-            addCriterion("wkId <=", value, "wkid");
-            return (Criteria) this;
-        }
-
-        public Criteria andWkidIn(List<Integer> values) {
-            addCriterion("wkId in", values, "wkid");
-            return (Criteria) this;
-        }
-
-        public Criteria andWkidNotIn(List<Integer> values) {
-            addCriterion("wkId not in", values, "wkid");
-            return (Criteria) this;
-        }
-
-        public Criteria andWkidBetween(Integer value1, Integer value2) {
-            addCriterion("wkId between", value1, value2, "wkid");
-            return (Criteria) this;
-        }
-
-        public Criteria andWkidNotBetween(Integer value1, Integer value2) {
-            addCriterion("wkId not between", value1, value2, "wkid");
-            return (Criteria) this;
-        }
-
         public Criteria andWorktimeIsNull() {
             addCriterion("workTime is null");
             return (Criteria) this;

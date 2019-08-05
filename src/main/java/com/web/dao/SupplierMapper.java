@@ -25,6 +25,8 @@ public interface SupplierMapper {
     int updateByExample(@Param("record") Supplier record, @Param("example") SupplierExample example);
 
     int updateByPrimaryKeySelective(Supplier record);
+    
+    
+    int delSupplierByid(Integer supplierid);
 
-    int updateByPrimaryKey(Supplier record);
 }

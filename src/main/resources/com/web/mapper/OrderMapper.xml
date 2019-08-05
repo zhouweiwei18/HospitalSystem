@@ -233,4 +233,72 @@
       agent = #{agent,jdbcType=INTEGER}
     where orderId = #{orderid,jdbcType=INTEGER}
   </update>
+  
+  <select id="getAll"  resultMap="myresultmap">
+  
+SELECT * 
+FROM
+orderdetails, drugs,`order`,supplier,user
+WHERE 
+orderdetails.orderId=`order`.orderId AND orderdetails.drugsId=drugs.drugsId AND  `order`.supplierId=supplier.supplierId AND `order`.agent=user.userId
+  
+  </select>
+  
+  <resultMap type="com.web.entity.Order" id="myresultmap">
+  
+      <id column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="supplierId" jdbcType="INTEGER" property="supplierid" />
+    <result column="orderItems" jdbcType="INTEGER" property="orderitems" />
+    <result column="orderDate" jdbcType="VARCHAR" property="orderdate" />
+    <result column="deliveryDate" jdbcType="VARCHAR" property="deliverydate" />
+    <result column="agent" jdbcType="INTEGER" property="agent" />
+       <!-- 多对一 -->
+       
+        <association property="orderdetails"  javaType="com.web.entity.Orderdetails" >
+        
+         <id column="orderDetailsId" jdbcType="INTEGER" property="orderdetailsid" />
+    <result column="orderId" jdbcType="INTEGER" property="orderid" />
+    <result column="drugsId" jdbcType="INTEGER" property="drugsid" />
+    <result column="specifications" jdbcType="VARCHAR" property="specifications" />
+    <result column="drugAmount" jdbcType="INTEGER" property="drugamount" />
+    <result column="drugPrice" jdbcType="DOUBLE" property="drugprice" />
+    <result column="batchNumber" jdbcType="VARCHAR" property="batchnumber" />
+    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+    
+       <association property="drugs" javaType="com.web.entity.Drugs"  >
+       <id column="drugsId" jdbcType="INTEGER" property="drugsid" />
+    <result column="drugStorageid" jdbcType="INTEGER" property="drugstorageid" />
+    <result column="drugsName" jdbcType="VARCHAR" property="drugsname" />
+    <result column="specifications" jdbcType="VARCHAR" property="specifications" />
+    <result column="amount" jdbcType="VARCHAR" property="amount" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="manufactureDate" jdbcType="VARCHAR" property="manufacturedate" />
+    <result column="guaranteeTime" jdbcType="VARCHAR" property="guaranteetime" />
+    <result column="supplierId" jdbcType="INTEGER" property="supplierid" />
+       </association>
+    
+    </association>
+		    <association property="user" javaType="com.web.entity.User">
+					   <id column="userId" jdbcType="INTEGER" property="userid" />
+			    <result column="userName" jdbcType="VARCHAR" property="username" />
+			    <result column="userPwd" jdbcType="VARCHAR" property="userpwd" />
+			    <result column="userSex" jdbcType="VARCHAR" property="usersex" />
+			    <result column="userPhoto" jdbcType="VARCHAR" property="userphoto" />
+			    <result column="userCard" jdbcType="VARCHAR" property="usercard" />
+			    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+			    <result column="postId" jdbcType="INTEGER" property="postid" />
+			    <result column="state" jdbcType="INTEGER" property="state" />
+			    <result column="icuId" jdbcType="INTEGER" property="icuid" />
+			    <result column="descc" jdbcType="VARCHAR" property="descc" />
+		    </association>
+		    
+		    <association property="supplier" javaType="com.web.entity.Supplier" >
+		        <id column="supplierId" jdbcType="INTEGER" property="supplierid" />
+				    <result column="name" jdbcType="VARCHAR" property="name" />
+				    <result column="address" jdbcType="VARCHAR" property="address" />
+				    <result column="tel" jdbcType="VARCHAR" property="tel" />
+				    <result column="creditSituation" jdbcType="VARCHAR" property="creditsituation" />
+				    <result column="isDelete" jdbcType="INTEGER" property="isdelete" />
+		    </association>
+  </resultMap>
 </mapper>

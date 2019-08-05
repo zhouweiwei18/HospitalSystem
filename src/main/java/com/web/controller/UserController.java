@@ -92,7 +92,7 @@ public class UserController {
 		return user;
 	}
 
-	@RequestMapping("/user/getUser")
+	@RequestMapping("user/getUser")
 	@ResponseBody
 	public List<User> getUser() {
 

@@ -27,7 +27,4 @@ public interface IcuMapper {
     int updateByPrimaryKeySelective(Icu record);
 
     int updateByPrimaryKey(Icu record);
-
-    //查询icu表
-	List<Icu> selectIcuInfo();
 }
