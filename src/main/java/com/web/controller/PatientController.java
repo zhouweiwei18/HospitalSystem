@@ -36,4 +36,37 @@ public class PatientController {
 		return list;
 	}
 
+	// 涂元卉----------------------------------
+ 
+	@RequestMapping("/getinfoByid")
+	@ResponseBody
+	public Patient getinfoByid(Integer patientid) {
+
+		return patientService.getinfoByid(patientid);
+	}
+
+	@RequestMapping("/updateinfo")
+	@ResponseBody
+	public int updateinfo(Patient patient) {
+
+		return patientService.updateinfo(patient);
+
+	}
+
+	@RequestMapping("/delinfo")
+	@ResponseBody
+	public int delinfo(Integer patientid) {
+
+		return patientService.delinfo(patientid);
+
+	}
+
+	@RequestMapping("/addinfo")
+	@ResponseBody
+	public int addinfo(Patient patient) {
+
+		return patientService.addinfo(patient);
+
+	}
+
 }

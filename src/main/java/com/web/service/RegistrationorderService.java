@@ -40,6 +40,13 @@ public interface RegistrationorderService {
 	 * @return
 	 */
 	Integer updateRegistrationorderById(Registrationorder registerid);
+
+	/**
+	 * 假删除
+	 * @param registerid
+	 * @return
+	 */
+	Integer deleteRegistrationorderById(Integer registerid);
 	
 	
 	

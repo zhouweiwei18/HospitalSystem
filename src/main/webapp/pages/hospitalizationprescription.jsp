@@ -159,7 +159,7 @@ $(function(){//jquery的加载事件
 //添加事件
   $("#btn_add").click(function () {
   	//模态框清空内容
-  	 alert("123");
+  	 //alert("123");
   
   	 $('#myAddModal').modal().on('shown.bs.modal', function() {
   		 

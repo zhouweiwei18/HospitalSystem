@@ -35,4 +35,6 @@ public interface RegistrationorderMapper {
      * @return
      */
     List<Registrationorder> queryAll();
+
+	Integer deleteRegistrationorderById(Integer registerid);
 }

@@ -23,5 +23,34 @@ public class ChargeItemServiceImpl implements ChargeItemService {
 
 		return chargeitemMapper.selectByExample(example);
 	}
+	
+	@Override
+	public List<Chargeitem> getChargeitem() {
+		
+		List<Chargeitem> list= chargeitemMapper.queryAll();
+		
+		return list;
+	}
+
+
+	@Override
+	public Integer addChargeitem(Chargeitem chargeitem) {
+		
+		return chargeitemMapper.insertSelective(chargeitem);
+	}
+
+
+	@Override
+	public Chargeitem getChargeitemById(Integer id) {
+		
+		return chargeitemMapper.selectByPrimaryKey(id);
+	}
+
+
+	@Override
+	public Integer updateChargeitemById(Chargeitem chargeid) {
+		
+		return chargeitemMapper.updateByPrimaryKeySelective(chargeid);
+	}
 
 }

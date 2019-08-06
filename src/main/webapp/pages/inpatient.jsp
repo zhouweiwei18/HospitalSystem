@@ -201,7 +201,7 @@ $(function(){//jquery的加载事件
 //添加事件
   $("#btn_add").click(function () {
   	//模态框清空内容
-  	 alert("123");
+  	 //alert("123");
   
   	 $('#myAddModal').modal().on('shown.bs.modal', function() {
   		 
@@ -260,7 +260,7 @@ $(function(){//jquery的加载事件
 						  <div class="form-group">
 						    <label for="inputPassword3" class="col-sm-2 control-label">所在科室:</label>
 						    <div class="col-sm-10">
-						       <select id="myUpdateDepartment" name="departmentid">
+						       <select id="myUpdateDepartment" class="form-control" name="departmentid">
 						            <option value="">请选择</option>
 						       </select>
 						    </div>
@@ -268,7 +268,7 @@ $(function(){//jquery的加载事件
 						<div class="form-group">
 						    <label for="inputPassword3" class="col-sm-2 control-label">床位号:</label>
 						    <div class="col-sm-10">
-						       <select id="myUpdateBed" name="bednumber">
+						       <select id="myUpdateBed" class="form-control" name="bednumber">
 						            <option value="">请选择</option>
 						       </select>
 						    </div>
@@ -309,7 +309,7 @@ $(function(){//jquery的加载事件
                           <div class="form-group">
 						    <label for="inputPassword3" class="col-sm-2 control-label">病人:</label>
 						    <div class="col-sm-10">
-						       <select id="myAddPatient" name="patientid">
+						       <select id="myAddPatient" class="form-control" name="patientid">
 						            <option value="">请选择</option>
 						       </select>
 						    </div>
@@ -317,7 +317,7 @@ $(function(){//jquery的加载事件
 						  <div class="form-group">
 						    <label for="inputPassword3" class="col-sm-2 control-label">所在科室:</label>
 						    <div class="col-sm-10">
-						       <select id="myAddDepartment" name="departmentid">
+						       <select id="myAddDepartment" class="form-control" name="departmentid">
 						            <option value="">请选择</option>
 						       </select>
 						    </div>
@@ -332,7 +332,7 @@ $(function(){//jquery的加载事件
 					    <div class="form-group">
 						    <label for="inputPassword3" class="col-sm-2 control-label">床位号:</label>
 						    <div class="col-sm-10">
-						       <select id="myAddBed" name="bednumber">
+						       <select id="myAddBed" class="form-control" name="bednumber">
 						            <option value="">请选择</option>
 						       </select>
 						    </div>

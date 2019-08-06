@@ -346,7 +346,7 @@
 		<association property="department" javaType="com.web.entity.Department">
 			<!-- id:主键 column：列名 property：属性名称 -->
 			<id column="departmentId" jdbcType="INTEGER" property="departmentid" />
-		
+
 			<result column="departmentName" jdbcType="VARCHAR" property="departmentname" />
 
 		</association>
@@ -375,6 +375,11 @@
 	</select>
 
 
+	<update id="deleteRegistrationorderById" parameterType="integer">
+		UPDATE registrationorder
+		SET registrationNumber=1
+		WHERE registerId=#{registerid}
+	</update>
 
 
 </mapper>

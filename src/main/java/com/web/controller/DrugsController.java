@@ -18,7 +18,6 @@ import com.web.service.DrugsService;
 @RequestMapping("/drugs")
 public class DrugsController {
 	
-	
 	@Resource
 	DrugsService drugsService;
 	

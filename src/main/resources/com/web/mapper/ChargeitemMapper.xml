@@ -216,4 +216,26 @@
       checkFree = #{checkfree,jdbcType=DOUBLE}
     where chargeId = #{chargeid,jdbcType=INTEGER}
   </update>
+  
+  <resultMap id="chargeitemResultMap" type="com.web.entity.Chargeitem">
+		<id column="chargeId" jdbcType="INTEGER" property="chargeid" />
+		<result column="patientId" jdbcType="INTEGER" property="patientid" />
+		<result column="medicineFree" jdbcType="INTEGER" property="medicinefree" />
+		<result column="inspectionFree" jdbcType="DOUBLE" property="inspectionfree" />
+		<result column="checkFree" jdbcType="DOUBLE" property="checkfree" />
+
+		<association property="patient" javaType="com.web.entity.Patient">
+			<id column="patientId" jdbcType="INTEGER" property="patientid" />
+			<result column="name" jdbcType="VARCHAR" property="name" />
+		</association>
+
+	</resultMap>
+
+	<select id="queryAll" resultMap="chargeitemResultMap">
+		select c.*,p.`name`
+		FROM
+		chargeitem c, patient p
+		WHERE c.patientId = p.patientId
+
+	</select>
 </mapper>

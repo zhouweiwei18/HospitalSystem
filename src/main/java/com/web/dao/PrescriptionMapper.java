@@ -33,4 +33,7 @@ public interface PrescriptionMapper {
      * @return
      */
     List<Prescription> queryAll();
+    
+    
+    Integer deletePrescriptionById(Integer prescriptionnumber);
 }

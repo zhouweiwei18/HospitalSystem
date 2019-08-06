@@ -453,4 +453,14 @@
       isDelete = #{isdelete,jdbcType=INTEGER}
     where patientId = #{patientid,jdbcType=INTEGER}
   </update>
+  
+    <update id="delinfo" >
+    UPDATE patient
+SET
+isDelete=1
+WHERE
+patientId=#{patientid}
+  
+  </update>
+  
 </mapper>

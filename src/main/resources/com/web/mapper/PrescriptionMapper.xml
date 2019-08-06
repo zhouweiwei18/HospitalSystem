@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.web.dao.PrescriptionMapper">
-	<resultMap id="BaseResultMap"
-		type="com.web.entity.Prescription">
-		<id column="prescriptionNumber" jdbcType="INTEGER"
-			property="prescriptionnumber" />
+	<resultMap id="BaseResultMap" type="com.web.entity.Prescription">
+		<id column="prescriptionNumber" jdbcType="INTEGER" property="prescriptionnumber" />
 		<result column="drugsId" jdbcType="INTEGER" property="drugsid" />
 		<result column="drugNo" jdbcType="INTEGER" property="drugno" />
-		<result column="doctorAdviceId" jdbcType="INTEGER"
-			property="doctoradviceid" />
-		<result column="isDelete" jdbcType="INTEGER"
-			property="isdelete" />
+		<result column="doctorAdviceId" jdbcType="INTEGER" property="doctoradviceid" />
+		<result column="isDelete" jdbcType="INTEGER" property="isdelete" />
 	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
-			<foreach collection="oredCriteria" item="criteria"
-				separator="or">
+			<foreach collection="oredCriteria" item="criteria" separator="or">
 				<if test="criteria.valid">
 					<trim prefix="(" prefixOverrides="and" suffix=")">
 						<foreach collection="criteria.criteria" item="criterion">
@@ -33,8 +28,8 @@
 								</when>
 								<when test="criterion.listValue">
 									and ${criterion.condition}
-									<foreach close=")" collection="criterion.value"
-										item="listItem" open="(" separator=",">
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
 										#{listItem}
 									</foreach>
 								</when>
@@ -66,8 +61,8 @@
 								</when>
 								<when test="criterion.listValue">
 									and ${criterion.condition}
-									<foreach close=")" collection="criterion.value"
-										item="listItem" open="(" separator=",">
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
 										#{listItem}
 									</foreach>
 								</when>
@@ -82,8 +77,7 @@
 		prescriptionNumber, drugsId, drugNo, doctorAdviceId,
 		isDelete
 	</sql>
-	<select id="selectByExample"
-		parameterType="com.web.entity.PrescriptionExample"
+	<select id="selectByExample" parameterType="com.web.entity.PrescriptionExample"
 		resultMap="BaseResultMap">
 		select
 		<if test="distinct">
@@ -106,22 +100,21 @@
 			</if>
 		</if>
 	</select>
-	<select id="selectByPrimaryKey"
-		parameterType="java.lang.Integer" resultMap="BaseResultMap">
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
 		select
 		<include refid="Base_Column_List" />
 		from prescription
 		where prescriptionNumber =
 		#{prescriptionnumber,jdbcType=INTEGER}
 	</select>
-	<delete id="deleteByPrimaryKey"
-		parameterType="java.lang.Integer">
-		delete from prescription
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		prescription
 		where prescriptionNumber =
 		#{prescriptionnumber,jdbcType=INTEGER}
 	</delete>
-	<delete id="deleteByExample"
-		parameterType="com.web.entity.PrescriptionExample">
+	<delete id="deleteByExample" parameterType="com.web.entity.PrescriptionExample">
 		delete from prescription
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
@@ -137,8 +130,7 @@
 		#{doctoradviceid,jdbcType=INTEGER},
 		#{isdelete,jdbcType=INTEGER})
 	</insert>
-	<insert id="insertSelective"
-		parameterType="com.web.entity.Prescription">
+	<insert id="insertSelective" parameterType="com.web.entity.Prescription">
 		insert into prescription
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="prescriptionnumber != null">
@@ -175,8 +167,7 @@
 			</if>
 		</trim>
 	</insert>
-	<select id="countByExample"
-		parameterType="com.web.entity.PrescriptionExample"
+	<select id="countByExample" parameterType="com.web.entity.PrescriptionExample"
 		resultType="java.lang.Long">
 		select count(*) from prescription
 		<if test="_parameter != null">
@@ -224,8 +215,7 @@
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
 	</update>
-	<update id="updateByPrimaryKeySelective"
-		parameterType="com.web.entity.Prescription">
+	<update id="updateByPrimaryKeySelective" parameterType="com.web.entity.Prescription">
 		update prescription
 		<set>
 			<if test="drugsid != null">
@@ -243,61 +233,67 @@
 		</set>
 		where prescriptionNumber = #{prescriptionnumber,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey"
-		parameterType="com.web.entity.Prescription">
-		update prescription
-		set drugsId =
-		#{drugsid,jdbcType=INTEGER},
-		drugNo = #{drugno,jdbcType=INTEGER},
-		doctorAdviceId = #{doctoradviceid,jdbcType=INTEGER},
+	<update id="updateByPrimaryKey" parameterType="com.web.entity.Prescription">
+		update
+		prescription
+		set drugsId = #{drugsid,jdbcType=INTEGER},
+		drugNo =
+		#{drugno,jdbcType=INTEGER},
+		doctorAdviceId =
+		#{doctoradviceid,jdbcType=INTEGER},
 		isDelete =
 		#{isdelete,jdbcType=INTEGER}
 		where prescriptionNumber =
 		#{prescriptionnumber,jdbcType=INTEGER}
 	</update>
 
-	<resultMap id="prescriptionResultMap"
-		type="com.web.entity.Prescription">
-		<id column="prescriptionNumber" jdbcType="INTEGER"
-			property="prescriptionnumber" />
+
+	<resultMap id="prescriptionResultMap" type="com.web.entity.Prescription">
+		<id column="prescriptionNumber" jdbcType="INTEGER" property="prescriptionnumber" />
 		<result column="drugsId" jdbcType="INTEGER" property="drugsid" />
 		<result column="drugNo" jdbcType="INTEGER" property="drugno" />
-		<result column="doctorAdviceId" jdbcType="INTEGER"
-			property="doctoradviceid" />
-		<result column="isDelete" jdbcType="INTEGER"
-			property="isdelete" />
+		<result column="doctorAdviceId" jdbcType="INTEGER" property="doctoradviceid" />
+		<result column="isDelete" jdbcType="INTEGER" property="isdelete" />
 
 
-		<association property="drugs"
-			javaType="com.web.entity.Drugs">
+		<association property="drugs" javaType="com.web.entity.Drugs">
 			<id column="drugsId" jdbcType="INTEGER" property="drugsid" />
-			<result column="drugsName" jdbcType="VARCHAR"
-				property="drugsname" />
+			<result column="drugsName" jdbcType="VARCHAR" property="drugsname" />
 		</association>
 
-		<association property="doctoradvice"
-			javaType="com.web.entity.Doctoradvice">
-			<id column="doctorAdviceId" jdbcType="INTEGER"
-				property="doctoradviceid" />
+		<association property="doctoradvice" javaType="com.web.entity.Doctoradvice">
+			<id column="doctorAdviceId" jdbcType="INTEGER" property="doctoradviceid" />
 			<result column="doctorAdviceContent" jdbcType="VARCHAR"
 				property="doctoradvicecontent" />
 
-			<association property="patient"
-				javaType="com.web.entity.Patient">
+
+			<association property="patient" javaType="com.web.entity.Patient">
 				<id column="patientId" jdbcType="INTEGER" property="patientid" />
 				<result column="name" jdbcType="VARCHAR" property="name" />
 
 			</association>
+
 		</association>
+
+
+
 	</resultMap>
 
 	<select id="queryAll" resultMap="prescriptionResultMap">
 		SELECT
-		d.drugsName,a.doctorAdviceContent,t.`name`
-		FROM prescription p,drugs
-		d,doctoradvice a,patient t
-		WHERE p.doctorAdviceId = a.doctorAdviceId
+		p.*,d.drugsName,a.doctorAdviceContent,t.`name`
+		FROM prescription
+		p,drugs d,doctoradvice a,patient t
+		WHERE p.doctorAdviceId =
+		a.doctorAdviceId
 		AND p.drugsId= d.drugsId
 		AND a.patientId= t.patientId
 	</select>
+
+	<update id="deletePrescriptionById" parameterType="integer">
+		UPDATE prescription
+		SET isDelete=1
+		WHERE prescriptionNumber=#{prescriptionnumber}
+
+	</update>
 </mapper>

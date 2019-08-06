@@ -185,7 +185,7 @@ function myDeleteClick(id) {
 	$.ajax({
 		 type:"post",//请求方式
 		 url:"${pageContext.request.contextPath}/registrationorder/deleteById.action",//根据编号查询用户的信息
-		 data:{registerId:registerId},//传参数到后台
+		 data:{registerid:registerId},//传参数到后台
 		 dataType:"json",//以json格式传递数据
 		 success:function(data){
 			  //刷新页面
@@ -405,6 +405,17 @@ function ClearInput() {
 					  </div>
 					  
 				
+				
+					<div class="form-group">
+							<label class="col-sm-2 control-label"></label>
+							<div class="col-sm-7">
+								<input type="hidden" class="form-control" name="registrationnumber"
+									id="registrationnumber" value="0"> <label
+									id="registrationnumber-error" class="error" for="registrationnumber"
+									style="margin-top: 4px; color: red; font-size: 15px;"></label>
+							</div>
+						</div>
+						
                  </form>
             </div>
             <div class="modal-footer">

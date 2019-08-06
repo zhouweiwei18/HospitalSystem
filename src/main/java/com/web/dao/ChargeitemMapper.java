@@ -27,4 +27,11 @@ public interface ChargeitemMapper {
     int updateByPrimaryKeySelective(Chargeitem record);
 
     int updateByPrimaryKey(Chargeitem record);
+    
+    /**
+     * 关联查询
+     * @return
+     */
+    List<Chargeitem> queryAll();
+    
 }

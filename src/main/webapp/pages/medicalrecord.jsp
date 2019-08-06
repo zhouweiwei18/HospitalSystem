@@ -134,7 +134,24 @@
   })
   
   
-  
+  function myDeleteClick(id){
+	 
+	  var medicalrecordid = id;	
+	
+	  $.ajax({
+		  type:"post",
+		  url:"${pageContext.request.contextPath}/medicalrecord/deleteById.action",
+		  data:{medicalrecordid:medicalrecordid},
+		  dataType:"json",
+		  success:function(){
+			  
+			  $("#table").bootstrapTable("refresh");  
+		  }
+		  
+	  })
+	  
+	  
+  }
   
     /* 修改  预先查询病历信息显示于页面  */
 function myUpdateClick(medicalrecordid){
@@ -247,7 +264,7 @@ function ClearInput() {
 				//刷新表格  线程等待一会儿
 				setTimeout(function(){$("#table").bootstrapTable("refresh");}, 1000);
 				  
-				alert("成功了");
+				//alert("成功了");
 				
 			}
 			
@@ -304,7 +321,15 @@ function ClearInput() {
 					  </div>
 					  
 					  
-					   
+					   <div class="form-group">
+							<label class="col-sm-2 control-label"></label>
+							<div class="col-sm-7">
+								<input type="hidden" class="form-control" name="iddelete"
+									id="iddelete" value="0"> <label
+									id="iddelete-error" class="error" for="iddelete"
+									style="margin-top: 4px; color: red; font-size: 15px;"></label>
+							</div>
+						</div>
 					  
 					  
 					 
@@ -340,7 +365,6 @@ function ClearInput() {
                       <!-- 隐藏框传registerid的值 -->
                       <input type="hidden" name="medicalrecordid" id="myUpdateMedicalRecordId">
                       
-					  
 					  
 					  
 					    <div class="form-group">

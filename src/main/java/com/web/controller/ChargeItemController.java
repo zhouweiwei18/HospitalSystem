@@ -1,5 +1,6 @@
 package com.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -26,15 +27,43 @@ public class ChargeItemController {
 
 		return list;
 	}
-	
+
 	@RequestMapping("/queryChargeitem")
 	@ResponseBody
-	public List<Chargeitem> getAllChargeitem(){
+	public List<Chargeitem> getAllChargeitem() {
 
-		List<Chargeitem> list = cis.queryAllInfo();
+		List<Chargeitem> list = cis.getChargeitem();
 
+		if (list == null) {
+			return new ArrayList<Chargeitem>();
+		}
 		return list;
 	}
-	
+
+	@RequestMapping("/addChargeitem")
+	@ResponseBody
+
+	public Integer addChargeitem(Chargeitem chargeitem) {
+
+		Integer r = cis.addChargeitem(chargeitem);
+		return r;
+	}
+
+	@RequestMapping("/getById")
+	@ResponseBody
+	public Chargeitem getById(Integer chargeid) {
+
+		Chargeitem chargeitem = cis.getChargeitemById(chargeid);
+		return chargeitem;
+
+	}
+
+	@RequestMapping("/saveUpdateChargeitem")
+	@ResponseBody
+
+	public Integer saveUpdateChargeitem(Chargeitem chargeid) {
+
+		return cis.updateChargeitemById(chargeid);
+	}
 
 }

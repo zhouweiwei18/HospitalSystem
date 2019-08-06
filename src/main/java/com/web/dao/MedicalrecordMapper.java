@@ -37,4 +37,6 @@ public interface MedicalrecordMapper {
      * @return
      */
     List<Medicalrecord> queryAll();
+    
+    Integer deleteMedicalRecordById(Integer medicalrecordid);
 }
